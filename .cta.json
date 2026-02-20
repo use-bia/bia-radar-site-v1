@@ -1,0 +1,17 @@
+{
+  "projectName": "bia-radar-site-v1",
+  "mode": "file-router",
+  "typescript": true,
+  "packageManager": "pnpm",
+  "includeExamples": false,
+  "tailwind": true,
+  "addOnOptions": {},
+  "envVarValues": {},
+  "git": true,
+  "routerOnly": true,
+  "version": 1,
+  "framework": "react-cra",
+  "chosenAddOns": [
+    "biome"
+  ]
+}
