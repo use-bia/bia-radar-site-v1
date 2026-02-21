@@ -1,4 +1,5 @@
 import { Link, linkOptions } from "@tanstack/react-router";
+import { ShoppingCartIcon } from "lucide-react";
 import BiaLogo from "@/assets/bia-radar-logo.svg?react";
 import ByNeosenti from "@/assets/by-neosenti.svg?react";
 import { m } from "@/paraglide/messages";
@@ -20,43 +21,57 @@ const options = linkOptions([
 		to: "/contact",
 		label: m.contact(),
 	},
-	{
-		to: "/store",
-		label: m.store(),
-	},
 ]);
 
 export default function Header() {
 	return (
-		<header className="flex w-full justify-between items-center">
-			<Link
-				to="/"
-				activeOptions={{ exact: true }}
-				aria-label="BIA Radar Home"
-				className="space-y-2"
-			>
-				<BiaLogo aria-hidden="true" className="h-4 w-auto" />
-				<ByNeosenti aria-hidden="true" className="h-3 w-auto" />
-			</Link>
+		<header className="p-3 border-b-primary border bg-background">
+			<div className="max-w-7xl mx-auto flex w-full justify-between items-center">
+				<Link
+					to="/"
+					activeOptions={{ exact: true }}
+					aria-label="BIA Radar Home"
+					className="space-y-2"
+				>
+					<BiaLogo aria-hidden="true" className="h-[0.6em] w-auto" />
+					<ByNeosenti aria-hidden="true" className="h-[0.45em] w-auto" />
+				</Link>
 
-			<div>
-				{options.map(({ to, label }) => (
+				<div className="flex gap-8 items-center">
+					{options.map(({ to, label }) => (
+						<Link
+							key={`header-link-${label}`}
+							to={to}
+							preload="intent"
+							activeOptions={{ exact: to === "/" }}
+							className="uppercase"
+							activeProps={{
+								className: "text-foreground font-bold",
+								"aria-current": "page",
+							}}
+							inactiveProps={{
+								className: "text-muted",
+							}}
+						>
+							{label}
+						</Link>
+					))}
 					<Link
-						key={`header-link-${label}`}
-						to={to}
-						preload="intent"
-						activeOptions={{ exact: to === "/" }}
+						to="/store"
+						className="bg-primary text-primary-foreground px-5 py-2 uppercase font-bold"
 						activeProps={{
-							className: "text-red-500",
 							"aria-current": "page",
 						}}
-						inactiveProps={{
-							className: "text-foreground",
-						}}
 					>
-						{label}
+						<span>
+							<ShoppingCartIcon
+								className="inline-block h-4 w-4 mr-2 align-text-top"
+								aria-hidden="true"
+							/>
+							{m.store()}
+						</span>
 					</Link>
-				))}
+				</div>
 			</div>
 		</header>
 	);
