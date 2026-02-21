@@ -25,28 +25,28 @@ const options = linkOptions([
 
 export default function Header() {
 	return (
-		<header className="p-3 border-b-primary border bg-background">
-			<div className="max-w-7xl mx-auto flex w-full justify-between items-center">
+		<header className="p-3 border-b bg-background">
+			<div className="container mx-auto flex w-full justify-between items-center">
 				<Link
 					to="/"
 					activeOptions={{ exact: true }}
-					aria-label="BIA Radar Home"
+					aria-label={m.bia_radar_logo_alt()}
 					className="space-y-2"
 				>
-					<BiaLogo aria-hidden="true" className="h-[0.6em] w-auto" />
-					<ByNeosenti aria-hidden="true" className="h-[0.45em] w-auto" />
+					<BiaLogo aria-hidden="true" className="h-[0.7em] w-auto" />
+					<ByNeosenti aria-hidden="true" className="h-[0.5em] w-auto" />
 				</Link>
 
-				<div className="flex gap-8 items-center">
+				<div className="flex gap-12 items-center">
 					{options.map(({ to, label }) => (
 						<Link
 							key={`header-link-${label}`}
 							to={to}
 							preload="intent"
 							activeOptions={{ exact: to === "/" }}
-							className="uppercase"
+							className="uppercase font-bold"
 							activeProps={{
-								className: "text-foreground font-bold",
+								className: "text-foreground",
 								"aria-current": "page",
 							}}
 							inactiveProps={{

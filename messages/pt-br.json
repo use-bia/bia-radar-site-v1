@@ -5,5 +5,9 @@
   "guides": "Guias",
   "contact": "Contato",
   "store": "Loja",
-  "bia-radar-logo-alt": "Logo da BIA RADAR."
+  "bia_radar_logo_alt": "Logo da BIA RADAR",
+  "designed_for_dignity": "Projetado por dignidade",
+  "language_selector": "Seleção de idioma",
+  "WCAG_2_1_level_AAA_compliant": "Em conformidade com WCAG 2.1 Nível AAA",
+  "accessibility_options": "Opções de acessibilidade"
 }

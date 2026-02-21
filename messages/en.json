@@ -5,5 +5,9 @@
   "guides": "guides",
   "contact": "contact",
   "store": "store",
-  "bia-radar-logo-alt": "BIA RADAR logo."
+  "bia_radar_logo_alt": "BIA RADAR logo",
+  "designed_for_dignity": "Designed for dignity",
+  "language_selector": "Language selector",
+  "WCAG_2_1_level_AAA_compliant": "WCAG 2.1 Level AAA Compliant",
+  "accessibility_options": "Accessibility options"
 }

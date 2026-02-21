@@ -4,8 +4,7 @@ import {
 	RouterProvider,
 } from "@tanstack/react-router";
 import ReactDOM from "react-dom/client";
-import { setLocale } from "@/paraglide/runtime.js";
-import { detectInitialLocale } from "./-helper";
+import { getLocale, setLocale } from "@/paraglide/runtime.js";
 import { applyTheme } from "./-theme";
 import { audioEngine } from "./audio/audioEngine";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -40,7 +39,7 @@ if (!rootElement) {
 }
 
 if (!rootElement.innerHTML) {
-	const currentLocale = detectInitialLocale();
+	const currentLocale = getLocale() ?? "pt-br";
 	setLocale(currentLocale);
 	document.documentElement.lang = currentLocale;
 
