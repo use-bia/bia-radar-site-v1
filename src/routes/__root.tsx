@@ -4,6 +4,7 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import Header from "@/components/Header";
 
 import "../styles.css";
+import Footer from "@/components/Footer";
 
 export const Route = createRootRoute({
 	component: RootComponent,
@@ -14,6 +15,7 @@ function RootComponent() {
 		<>
 			<Header />
 			<Outlet />
+			<Footer />
 			<TanStackDevtools
 				config={{
 					position: "bottom-right",

@@ -6,7 +6,17 @@ import {
 import ReactDOM from "react-dom/client";
 import { setLocale } from "@/paraglide/runtime.js";
 import { detectInitialLocale } from "./-helper";
+import { applyTheme } from "./-theme";
+import { audioEngine } from "./audio/audioEngine";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import { routeTree } from "./routeTree.gen";
+
+import "@fontsource/anonymous-pro";
+
+const storedTheme = localStorage.getItem("theme") as "dark" | "light" | null;
+const theme = storedTheme ?? "dark";
+applyTheme(theme);
+audioEngine.init();
 
 const hashHistory = createHashHistory();
 
@@ -35,5 +45,9 @@ if (!rootElement.innerHTML) {
 	document.documentElement.lang = currentLocale;
 
 	const root = ReactDOM.createRoot(rootElement);
-	root.render(<RouterProvider router={router} />);
+	root.render(
+		<ThemeProvider>
+			<RouterProvider router={router} />
+		</ThemeProvider>,
+	);
 }
