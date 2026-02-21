@@ -14,6 +14,7 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 import { m } from "@/paraglide/messages";
 import { Button } from "./ui/button";
 
@@ -31,10 +32,9 @@ export type ImageBoxImageDetails = {
 interface ImageBoxComponentProps {
 	details?: ImageBoxDetails[];
 	imageSrc: string;
-	// Short visual description (e.g., "Close-up of the Bia Radar sensor")
 	imageAlt: string;
-	// The deep, long-form description goes here
 	imageDetails?: ImageBoxImageDetails;
+	className?: string;
 }
 
 const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
@@ -42,9 +42,15 @@ const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
 	imageSrc,
 	imageAlt,
 	imageDetails,
+	className,
 }) => {
 	return (
-		<div className="relative w-200 aspect-square backdrop-blur-xs bg-background/60 border overflow-hidden">
+		<div
+			className={cn(
+				"relative aspect-square backdrop-blur-xs bg-background/60 border overflow-hidden",
+				className,
+			)}
+		>
 			{/* The Long Description Dialog Button */}
 			{imageDetails && (
 				<div className="absolute right-0 top-0 z-10">
@@ -54,7 +60,7 @@ const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
 								<DialogTrigger asChild>
 									<Button
 										variant="outline"
-										className="rounded-full m-2 bg-background/80 hover:bg-background"
+										className="rounded-full m-4 bg-background/80 hover:bg-background"
 										size="icon"
 										aria-label={m.full_description()}
 									>
@@ -95,21 +101,23 @@ const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
 
 			{/* Product Specifications formatted as a Definition List */}
 			{details.length > 0 && (
-				<div className="absolute bottom-0 z-10 w-full p-4">
+				<div className="absolute bottom-0 w-full p-6">
 					{/* <dl> defines the description list */}
-					<dl className="flex justify-between gap-4 m-0 w-full">
+					<dl className="flex justify-between gap-8 m-0 w-full">
 						{details.map((detail) => (
 							<div
 								key={`image-detail-${detail.title}`}
-								className="flex-1 border bg-background/80 backdrop-blur-md rounded-md overflow-hidden shadow-sm flex flex-col"
+								className="flex-1 border flex items-center gap-3 p-4 bg-muted/70"
 							>
-								{/* <dt> is the term being defined (e.g., "Precision") */}
-								<dt className="flex items-center gap-2 p-2 bg-muted/50 border-b font-medium text-sm">
-									{detail.icon}
-									{detail.title}
-								</dt>
-								{/* <dd> is the actual value/definition (e.g., "25mm") */}
-								<dd className="p-2 font-bold text-base m-0">{detail.value}</dd>
+								<div aria-hidden="true">{detail.icon}</div>
+								<div>
+									<dt className="text-sm font-bold text-muted-foreground uppercase leading-none">
+										{detail.title}
+									</dt>
+									<dd className="font-bold text-lg leading-tight">
+										{detail.value}
+									</dd>
+								</div>
 							</div>
 						))}
 					</dl>
