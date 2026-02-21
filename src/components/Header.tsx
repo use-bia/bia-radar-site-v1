@@ -33,8 +33,14 @@ export default function Header() {
 					aria-label={m.bia_radar_logo_alt()}
 					className="space-y-2"
 				>
-					<BiaLogo aria-hidden="true" className="h-[0.7em] w-auto" />
-					<ByNeosenti aria-hidden="true" className="h-[0.5em] w-auto" />
+					<BiaLogo
+						aria-hidden="true"
+						className="h-[0.7em] w-auto text-foreground"
+					/>
+					<ByNeosenti
+						aria-hidden="true"
+						className="h-[0.5em] w-auto text-muted"
+					/>
 				</Link>
 
 				<div className="flex gap-12 items-center">

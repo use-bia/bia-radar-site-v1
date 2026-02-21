@@ -74,3 +74,6 @@ While your editor should handle most formatting and safe fixes on save, you can 
 ```bash
 pnpm dlx @biomejs/biome check --write .
 ```
+
+## Image Optimization
+use [Squoosh](https://squoosh.app/) to optimize images before adding them to the project. This helps reduce file sizes and improve load times without sacrificing quality.

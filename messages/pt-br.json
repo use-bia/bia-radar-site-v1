@@ -9,5 +9,7 @@
   "designed_for_dignity": "Projetado por dignidade",
   "language_selector": "Seleção de idioma",
   "WCAG_2_1_level_AAA_compliant": "Em conformidade com WCAG 2.1 Nível AAA",
-  "accessibility_options": "Opções de acessibilidade"
+  "accessibility_options": "Opções de acessibilidade",
+  "dark_theme": "Tema escuro",
+  "light_theme": "Tema claro"
 }

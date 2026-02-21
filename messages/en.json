@@ -9,5 +9,7 @@
   "designed_for_dignity": "Designed for dignity",
   "language_selector": "Language selector",
   "WCAG_2_1_level_AAA_compliant": "WCAG 2.1 Level AAA Compliant",
-  "accessibility_options": "Accessibility options"
+  "accessibility_options": "Accessibility options",
+  "dark_theme": "Dark theme",
+  "light_theme": "Light theme"
 }

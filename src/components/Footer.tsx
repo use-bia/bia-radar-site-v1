@@ -17,6 +17,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
+import { useTheme } from "@/contexts/ThemeContext";
 import { m } from "@/paraglide/messages";
 import { setLocale } from "@/paraglide/runtime";
 import { Button } from "./ui/button";
@@ -24,6 +25,8 @@ import { Button } from "./ui/button";
 type FooterProps = {};
 
 const Footer: FunctionComponent<FooterProps> = () => {
+	const { setTheme } = useTheme();
+
 	return (
 		<footer className="w-full border-t">
 			<div className="container mx-auto">
@@ -71,8 +74,12 @@ const Footer: FunctionComponent<FooterProps> = () => {
 							<DropdownMenuContent>
 								<DropdownMenuGroup>
 									<DropdownMenuLabel>My Account</DropdownMenuLabel>
-									<DropdownMenuItem>Profile</DropdownMenuItem>
-									<DropdownMenuItem>Billing</DropdownMenuItem>
+									<DropdownMenuItem onClick={() => setTheme("dark")}>
+										{m.dark_theme()}
+									</DropdownMenuItem>
+									<DropdownMenuItem onClick={() => setTheme("light")}>
+										{m.light_theme()}
+									</DropdownMenuItem>
 								</DropdownMenuGroup>
 								<DropdownMenuGroup>
 									<DropdownMenuSeparator />
