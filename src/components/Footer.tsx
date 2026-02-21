@@ -98,7 +98,7 @@ const Footer: FunctionComponent<FooterProps> = () => {
 					{/* Wrapper: Stacked on xs/sm, vanishes into grid on md */}
 					<div className="flex flex-col items-center sm:items-end gap-4 md:contents">
 						{/* Language Selector (Column 2 on md) */}
-						<div className="w-full max-w-[200px] md:max-w-48 md:justify-self-center">
+						<div className="w-full max-w-50 md:max-w-48 md:justify-self-center">
 							<Select
 								onValueChange={(value) => {
 									const mappedValue = value === "en" ? "en" : "pt-br";

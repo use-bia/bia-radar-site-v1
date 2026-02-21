@@ -11,6 +11,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { routeTree } from "./routeTree.gen";
 
 import "@fontsource/anonymous-pro";
+import { TooltipProvider } from "./components/ui/tooltip";
 
 const storedTheme = localStorage.getItem("theme") as "dark" | "light" | null;
 const theme = storedTheme ?? "dark";
@@ -46,7 +47,9 @@ if (!rootElement.innerHTML) {
 	const root = ReactDOM.createRoot(rootElement);
 	root.render(
 		<ThemeProvider>
-			<RouterProvider router={router} />
+			<TooltipProvider>
+				<RouterProvider router={router} />
+			</TooltipProvider>
 		</ThemeProvider>,
 	);
 }
