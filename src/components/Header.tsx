@@ -23,7 +23,7 @@ export default function Header() {
 	return (
 		<header className="border-b border-border bg-background">
 			{/* Standardized padding to match the footer */}
-			<div className="container mx-auto px-4 py-3 flex w-full justify-between items-center">
+			<div className="container mx-auto px-4 lg:px-8 py-3 flex w-full justify-between items-center">
 				{/* Logo Section */}
 				<Link
 					to="/"

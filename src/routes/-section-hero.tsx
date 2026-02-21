@@ -42,14 +42,17 @@ type SectionHeroProps = {};
 
 const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 	return (
-		<section className="relative w-full flex py-15 justify-center overflow-hidden">
+		<section className="relative w-full flex py-12 xl:py-15 justify-center overflow-hidden">
 			<div
-				className="absolute inset-0 -z-1 bg-size-[95em] bg-center bg-no-repeat opacity-40 dark:opacity-30 pointer-events-none"
-				style={{ backgroundImage: `url(${LottusBg})` }}
+				className="absolute inset-0 -z-1 bg-size-[80em] bg-center bg-no-repeat opacity-40 dark:opacity-20 pointer-events-none"
+				style={{
+					backgroundImage: `url(${LottusBg})`,
+					backgroundPositionX: "5em",
+				}}
 				aria-hidden="true"
 			/>
 
-			<div className="relative px-4 container flex gap-4">
+			<div className="relative px-4 lg:px-8 container flex gap-4 justify-between">
 				<div className="w-fit flex flex-col space-y-1">
 					<ScrollArea className="w-0 min-w-full whitespace-nowrap pb-3">
 						{/* w-max forces this inner container to be exactly as wide as the badges need */}
@@ -74,11 +77,16 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 						<br />
 						{m.reclaim_your_freedom()}!
 					</h1>
+					<p className="w-0 min-w-full mt-2">
+						O poder dos carros autônomos na palma da sua mão. A BIA-RADAR
+						utiliza tecnologia para filtrar o mundo e entregar apenas o que
+						importa: <b>segurança!</b>
+					</p>
 				</div>
 				<ImageBoxComponent
 					imageSrc={StillFrame}
 					imageAlt="Still frame of a person wearing the Bia Radar, showcasing the device in use and highlighting its design and functionality."
-					className="w-120 lg:w-130 xl:w-200 "
+					className="w-120 lg:w-110 xl:w-100 "
 					details={[
 						{
 							title: "Weight",
