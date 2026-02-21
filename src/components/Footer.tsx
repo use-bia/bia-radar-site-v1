@@ -38,8 +38,7 @@ const Footer: FunctionComponent<FooterProps> = () => {
 
 	return (
 		<footer className="w-full border-t">
-			{/* FIXED PADDING: Replaced sm:px-0 with sm:px-6 lg:px-8 so it never touches the screen edges */}
-			<div className="container mx-auto px-2 pt-12 pb-6">
+			<div className="container mx-auto px-4 pt-12 pb-6">
 				{/* Top Layout */}
 				<div className="flex flex-col sm:flex-row justify-between gap-10 sm:gap-4">
 					<div className="flex flex-col items-center sm:items-start text-center sm:text-left">
