@@ -32,7 +32,7 @@ const Footer: FunctionComponent<FooterProps> = () => {
 			<div className="container mx-auto">
 				<div>BIA RADAR</div>
 				<div className="border-t-border/50 border-t grid grid-cols-3 py-4 items-center">
-					<div className="text-muted">
+					<div className="text-muted-foreground">
 						&copy; {new Date().getFullYear()} Neosenti.{" "}
 						{m.designed_for_dignity()}.
 						<br />
@@ -64,7 +64,7 @@ const Footer: FunctionComponent<FooterProps> = () => {
 							<DropdownMenuTrigger asChild>
 								<Button
 									variant="ghost"
-									className="text-muted underline"
+									className="text-muted-foreground underline"
 									size="lg"
 								>
 									<AccessibilityIcon aria-hidden="true" />

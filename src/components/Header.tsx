@@ -39,7 +39,7 @@ export default function Header() {
 					/>
 					<ByNeosenti
 						aria-hidden="true"
-						className="h-[0.5em] w-auto text-muted"
+						className="h-[0.5em] w-auto text-muted-foreground"
 					/>
 				</Link>
 
@@ -56,7 +56,7 @@ export default function Header() {
 								"aria-current": "page",
 							}}
 							inactiveProps={{
-								className: "text-muted",
+								className: "text-muted-foreground",
 							}}
 						>
 							{label}
