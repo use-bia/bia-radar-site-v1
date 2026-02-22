@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import {
 	CloudRainWindIcon,
 	PuzzleIcon,
@@ -6,12 +7,18 @@ import {
 	WeightIcon,
 	WifiOffIcon,
 } from "lucide-react";
-import type { FunctionComponent } from "react";
+import { type FunctionComponent, useState } from "react";
 import LottusBg from "@/assets/lottus.webp";
 import StillFrame from "@/assets/still-frame-bia-radar.webp";
 import ImageBoxComponent from "@/components/ImageBoxComponent";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { m } from "@/paraglide/messages";
 
 type HeroBadges = {
@@ -41,6 +48,8 @@ const heroBadges: HeroBadges[] = [
 type SectionHeroProps = {};
 
 const SectionHero: FunctionComponent<SectionHeroProps> = () => {
+	const [isDialogOpen, setIsDialogOpen] = useState(false);
+
 	return (
 		<section className="relative w-full flex py-12 xl:py-15 justify-center overflow-hidden">
 			<div
@@ -78,15 +87,29 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 						{m.reclaim_your_freedom()}!
 					</h1>
 					<p className="w-0 min-w-full mt-2">
-						O poder dos carros autônomos na palma da sua mão. A BIA-RADAR
-						utiliza tecnologia para filtrar o mundo e entregar apenas o que
-						importa: <b>segurança!</b>
+						{m.hero_section_description()}: <b>{m.safety()}!</b>
 					</p>
+					<div className="flex gap-2 w-0 min-w-full mt-2">
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<Button variant="ghost" onClick={() => setIsDialogOpen(true)}>
+									{m.description()}
+								</Button>
+							</TooltipTrigger>
+							<TooltipContent>
+								<p>{m.open_full_description_of_the_device()}</p>
+							</TooltipContent>
+
+							<Button variant="ghost" asChild>
+								<Link to="/technology">{m.how_it_works()}</Link>
+							</Button>
+						</Tooltip>
+					</div>
 				</div>
 				<ImageBoxComponent
 					imageSrc={StillFrame}
 					imageAlt="Still frame of a person wearing the Bia Radar, showcasing the device in use and highlighting its design and functionality."
-					className="w-120 lg:w-110 xl:w-100 "
+					className="w-120 lg:w-110 xl:w-130 "
 					details={[
 						{
 							title: "Weight",
@@ -103,6 +126,8 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 						title: m.description_of_the_bia_radar_device(),
 						content: <p>bla bla bla bla </p>,
 					}}
+					open={isDialogOpen} // 1. Control the open state
+					onOpenChange={setIsDialogOpen}
 				/>
 			</div>
 		</section>

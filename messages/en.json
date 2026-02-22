@@ -21,5 +21,12 @@
   "full_description": "Full description",
   "open_full_description_of_the_image": "Open full description of the image",
   "close": "Close",
-  "description_of_the_bia_radar_device": "Description of the BIA RADAR device"
+  "description_of_the_bia_radar_device": "Description of the BIA RADAR device",
+  "hero_section_description": "The power of self-driving cars in the palm of your hand. BIA RADAR uses technology to filter the world and deliver only what matters",
+  "safety": "Safety",
+  "description": "Description",
+  "learn_more": "Learn More",
+  "roadmap": "Roadmap",
+  "how_it_works": "How it works",
+  "open_full_description_of_the_device": "Open full description of the device"
 }

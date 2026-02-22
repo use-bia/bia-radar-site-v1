@@ -35,6 +35,8 @@ interface ImageBoxComponentProps {
 	imageAlt: string;
 	imageDetails?: ImageBoxImageDetails;
 	className?: string;
+	open?: boolean;
+	onOpenChange?: (open: boolean) => void;
 }
 
 const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
@@ -43,6 +45,8 @@ const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
 	imageAlt,
 	imageDetails,
 	className,
+	open,
+	onOpenChange,
 }) => {
 	return (
 		<div
@@ -54,7 +58,7 @@ const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
 			{/* The Long Description Dialog Button */}
 			{imageDetails && (
 				<div className="absolute right-0 top-0 z-10">
-					<Dialog>
+					<Dialog open={open} onOpenChange={onOpenChange}>
 						<Tooltip>
 							<TooltipTrigger asChild>
 								<DialogTrigger asChild>
@@ -101,22 +105,20 @@ const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
 
 			{/* Product Specifications formatted as a Definition List */}
 			{details.length > 0 && (
-				<div className="absolute bottom-0 w-full p-6">
+				<div className="absolute bottom-0 w-full p-2 sm:p-4 xl:p-6">
 					{/* <dl> defines the description list */}
-					<dl className="flex justify-between gap-8 m-0 w-full">
+					<dl className="flex justify-between gap-4 xl:gap-8 m-0 w-full">
 						{details.map((detail) => (
 							<div
 								key={`image-detail-${detail.title}`}
-								className="flex-1 border flex items-center gap-3 p-4 bg-muted/70"
+								className="flex-1 border flex items-center gap-3 p-3 xl:p-4 bg-muted/70"
 							>
 								<div aria-hidden="true">{detail.icon}</div>
 								<div>
-									<dt className="text-sm font-bold text-muted-foreground uppercase leading-none">
+									<dt className="text-xs font-bold text-muted-foreground uppercase leading-none">
 										{detail.title}
 									</dt>
-									<dd className="font-bold text-lg leading-tight">
-										{detail.value}
-									</dd>
+									<dd className="font-bold leading-tight">{detail.value}</dd>
 								</div>
 							</div>
 						))}

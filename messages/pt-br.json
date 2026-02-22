@@ -21,5 +21,13 @@
   "full_description": "Descrição completa",
   "open_full_description_of_the_image": "Abrir descrição completa da imagem",
   "close": "Fechar",
-  "description_of_the_bia_radar_device": "Descrição do dispositivo BIA RADAR"
+  "description_of_the_bia_radar_device": "Descrição do dispositivo BIA RADAR",
+  "hero_section_description": "O poder dos carros autônomos na palma da sua mão. A BIA-RADAR utiliza tecnologia para filtrar o mundo e entregar apenas o que importa",
+  "safety": "Segurança",
+  "description": "Descrição",
+  "learn_more": "Saiba Mais",
+  "roadmap": "Cronograma",
+  "how_it_works": "Como funciona",
+  "open_full_description_of_the_device": "Abrir descrição completa do dispositivo"
+
 }
