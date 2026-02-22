@@ -63,5 +63,16 @@
   "expandible_platform_description": "We believe you shouldn't have to adapt to the device, but the other way around. Our modular platform allows BIA to evolve with your needs, whether you're an urban explorer or someone seeking discreet support for everyday life. It's invisible technology that becomes indispensable",
   "more_information_soon": "More information coming soon",
   "join_the_waiting_list_to_not_miss_anything": "Join the waiting list to not miss anything",
-  "be_a_part": "Join us"
+  "be_a_part": "Join us",
+    "humanization": "Humanization",
+  "humanization_id": "humanization_section",
+  "humanization_title": "Take control of your journey",
+  "humanization_description": "In a world of subscriptions and surveillance, we choose the path of ethics. BIA-RADAR is designed to serve you, not to collect your data or create financial dependencies",
+  "humanization_item_1_title": "NO SUBSCRIPTIONS",
+  "humanization_item_1_description": "You purchase the product and <b>it's yours</b>. Period. No 'subscription for life' model because we believe autonomy should not have an expiration date",
+  "humanization_item_2_title": "ABSOLUTE PRIVACY",
+  "humanization_item_2_description": "All AI processing is done locally on the device. Your location and your paths never leave your hands and never touch the cloud",
+  "humanization_item_3_title": "IMPACTFUL AI, NOT JUST A BUZZWORD",
+  "humanization_item_3_description": "Our AI is a tool for real impact, not a marketing gimmick. It filters what's relevant to you, reducing unnecessary alerts and ensuring that the technology serves your experience, not the other way around"
+
 }

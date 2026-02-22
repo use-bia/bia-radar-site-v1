@@ -14,7 +14,7 @@ const SectionObjective: FunctionComponent<SectionObjectiveProps> = () => {
 		<section
 			id={m.objective_section_id()}
 			aria-labelledby={headingId}
-			className="w-full flex py-8 justify-center bg-background"
+			className="w-full flex py-12 justify-center bg-background"
 		>
 			<div className="container mx-auto px-4 lg:px-8 flex flex-col gap-8">
 				{/* Unified Heading */}

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { m } from "@/paraglide/messages";
 import SectionExpandiblePlatform from "./-section-expandible-platformt";
 import SectionHero from "./-section-hero";
+import SectionHumanization from "./-section-humanization";
 import SectionObjective from "./-section-objective";
 
 export const Route = createFileRoute("/")({ component: App });
@@ -12,6 +13,7 @@ function App() {
 			<SectionHero />
 			<SectionObjective />
 			<SectionExpandiblePlatform />
+			<SectionHumanization />
 
 			<section id={m.roadmap_id()}>
 				<h2>Roadmap</h2>

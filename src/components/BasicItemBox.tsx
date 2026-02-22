@@ -1,12 +1,8 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-// 1. Private Context (Not exported!)
-// This ensures developers can't mess with it, it's strictly for internal wiring.
 const BasicItemListContext = React.createContext<boolean>(false);
 
-// 2. The Parent List (<dl>)
-// Inherits all standard HTML properties of a <dl> tag.
 function BasicItemList({ className, ...props }: React.ComponentProps<"dl">) {
 	return (
 		<BasicItemListContext.Provider value={true}>
@@ -43,7 +39,7 @@ function BasicItemBox({
 	return (
 		<div
 			data-slot="basic-item-box"
-			className={cn("border bg-card text-card-foreground", className)}
+			className={cn("border bg-background text-card-foreground", className)}
 			{...props}
 		>
 			<dt
@@ -61,7 +57,6 @@ function BasicItemBox({
 					</div>
 				)}
 
-				{/* 4. Ensure the text padding roughly matches the icon width for a balanced look */}
 				<span className="flex items-center text-lg font-bold py-2 px-3">
 					{title}
 				</span>
