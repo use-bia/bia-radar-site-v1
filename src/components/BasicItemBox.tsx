@@ -67,7 +67,7 @@ function BasicItemBox({
 				</span>
 			</dt>
 
-			<dd className="p-4 ml-0 text-muted-foreground">{children}</dd>
+			<dd className="p-4 ml-0">{children}</dd>
 		</div>
 	);
 }
