@@ -55,5 +55,14 @@
   "objective_item_3_title": "Foco no que importa",
   "objective_item_3_description": "Nossa IA filtra o caos da cidade e reduz alertas inúteis em mais de 70%, deixando sua mente livre para aproveitar o caminho",
   "objective_item_4_title": "Sempre disponível",
-  "objective_item_4_description": "Ganhe tempo de reação com um sistema que responde em 30ms, sem depender de internet ou sinal de celular para te proteger"
+  "objective_item_4_description": "Ganhe tempo de reação com um sistema que responde em 30ms, sem depender de internet ou sinal de celular para te proteger",
+  "objective_universal_fitting": "Encaixe universal",
+  "expandible_platform": "Plataforma expansível",
+  "expandible_platform_id": "expandible_platform_section",
+  "expandible_platform_title": "Inclusivo por natureza, modular por necessidade",
+  "expandible_platform_description": "Acreditamos que você não deve se adaptar ao dispositivo, mas o contrário. Nossa plataforma modular permite que a BIA evolua com as suas necessidades, seja você um explorador urbano ou alguém que busca um suporte discreto para o dia a dia. É tecnologia invisível que se torna indispensável",
+  "more_information_soon": "Mais informações em breve",
+  "join_the_waiting_list_to_not_miss_anything": "Junte-se à lista de espera para não perder nada",
+  "be_a_part": "Fazer parte"
+
 }

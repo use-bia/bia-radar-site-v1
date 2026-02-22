@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { m } from "@/paraglide/messages";
+import SectionExpandiblePlatform from "./-section-expandible-platformt";
 import SectionHero from "./-section-hero";
 import SectionObjective from "./-section-objective";
 
@@ -10,12 +11,8 @@ function App() {
 		<main>
 			<SectionHero />
 			<SectionObjective />
-			<section>
-				<h2>About</h2>
-				<h3>asdf</h3>
-				<div>asdf</div>
-			</section>
-			<div className="bg-blue-600 h-200"></div>
+			<SectionExpandiblePlatform />
+
 			<section id={m.roadmap_id()}>
 				<h2>Roadmap</h2>
 				<h3>asdf</h3>

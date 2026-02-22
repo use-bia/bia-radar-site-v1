@@ -51,10 +51,17 @@
   "objective_item_1_title": "Protection where touch can't reach",
   "objective_item_1_description": "While you map the ground, BIA takes care of what's above, where 40% of cane users experience collisions every month",
   "objective_item_2_title": "Anticipation, not impact",
-  "objective_item_2_description": "Don't wait for the touch to know there's danger. We eliminate the 100% 'detection gap' that regular canes have for elevated obstacles.",
+  "objective_item_2_description": "Don't wait for the touch to know there's danger. We eliminate the 100% 'detection gap' that regular canes have for elevated obstacles",
   "objective_item_3_title": "Focus on what matters",
   "objective_item_3_description": "Our AI filters out the chaos of the city and reduces unnecessary alerts by over 70%, leaving your mind free to enjoy the path",
   "objective_item_4_title": "Always available",
-  "objective_item_4_description": "Gain reaction time with a system that responds in 30ms, without relying on internet or cell signal to protect you"
-
+  "objective_item_4_description": "Gain reaction time with a system that responds in 30ms, without relying on internet or cell signal to protect you",
+  "objective_universal_fitting": "Universal fitting",
+  "expandible_platform": "Expandible platform",
+  "expandible_platform_id": "expandible_platform_section",
+  "expandible_platform_title": "Inclusive by design, modular by necessity",
+  "expandible_platform_description": "We believe you shouldn't have to adapt to the device, but the other way around. Our modular platform allows BIA to evolve with your needs, whether you're an urban explorer or someone seeking discreet support for everyday life. It's invisible technology that becomes indispensable",
+  "more_information_soon": "More information coming soon",
+  "join_the_waiting_list_to_not_miss_anything": "Join the waiting list to not miss anything",
+  "be_a_part": "Join us"
 }

@@ -14,7 +14,7 @@ const SectionObjective: FunctionComponent<SectionObjectiveProps> = () => {
 		<section
 			id={m.objective_section_id()}
 			aria-labelledby={headingId}
-			className="w-full flex py-4 justify-center bg-background"
+			className="w-full flex py-8 justify-center bg-background"
 		>
 			<div className="container mx-auto px-4 lg:px-8 flex flex-col gap-8">
 				{/* Unified Heading */}
@@ -28,7 +28,7 @@ const SectionObjective: FunctionComponent<SectionObjectiveProps> = () => {
 				</h2>
 
 				<p className="text-center max-w-3xl mx-auto">
-					{m.objective_description()}
+					{m.objective_description()}.
 				</p>
 
 				<div className="relative container grid grid-cols-1 lg:grid-cols-5 items-stretch xl:gap-4 2xl:gap-16 gap-y-8">
@@ -44,7 +44,7 @@ const SectionObjective: FunctionComponent<SectionObjectiveProps> = () => {
 							imageClassName="object-contain lg:object-cover xl:object-contain"
 							details={[
 								{
-									title: "Encaixe universal",
+									title: m.objective_universal_fitting(),
 									value: "5-22mm",
 									icon: <DiameterIcon />,
 								},
