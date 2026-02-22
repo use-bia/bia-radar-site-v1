@@ -51,11 +51,10 @@ const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
 	return (
 		<div
 			className={cn(
-				"relative aspect-square backdrop-blur-xs bg-background/60 border overflow-hidden",
+				"relative backdrop-blur-xs bg-background/60 border overflow-hidden",
 				className,
 			)}
 		>
-			{/* The Long Description Dialog Button */}
 			{imageDetails && (
 				<div className="absolute right-0 top-0 z-10">
 					<Dialog open={open} onOpenChange={onOpenChange}>
@@ -96,14 +95,12 @@ const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
 				</div>
 			)}
 
-			{/* The Image */}
 			<img
 				src={imageSrc}
 				alt={imageAlt}
 				className="w-full h-full object-cover"
 			/>
 
-			{/* Product Specifications formatted as a Definition List */}
 			{details.length > 0 && (
 				<div className="absolute bottom-0 w-full p-2 sm:p-4 xl:p-6">
 					{/* <dl> defines the description list */}

@@ -30,19 +30,19 @@ type HeroBadges = {
 
 const heroBadges: HeroBadges[] = [
 	{
-		title: "100% offline",
+		title: m.one_hundred_percent_offline(),
 		icon: <WifiOffIcon className="text-chart-2" aria-hidden="true" />,
 	},
 	{
-		title: "Premio nacional",
+		title: m.national_prize(),
 		icon: <TrophyIcon className="text-chart-3" aria-hidden="true" />,
 	},
 	{
-		title: "À prova d'água",
+		title: m.water_resistant(),
 		icon: <CloudRainWindIcon className="text-chart-1" aria-hidden="true" />,
 	},
 	{
-		title: "Customizável",
+		title: m.customizable(),
 		icon: <PuzzleIcon className="text-chart-4" aria-hidden="true" />,
 	},
 ];
@@ -53,7 +53,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 
 	return (
-		<section className="relative w-full flex py-12 xl:py-15 justify-center overflow-hidden">
+		<section className="relative w-full flex py-4 md:py-12 xl:py-15 justify-center">
 			<div
 				className="absolute inset-0 -z-1 bg-size-[80em] bg-center bg-no-repeat opacity-40 dark:opacity-20 pointer-events-none"
 				style={{
@@ -63,8 +63,8 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 				aria-hidden="true"
 			/>
 
-			<div className="relative px-4 lg:px-8 container flex gap-4 justify-between">
-				<div className="w-fit flex flex-col space-y-1">
+			<div className="relative px-4 lg:px-8 container flex flex-col lg:flex-row gap-12 lg:gap-8 justify-between">
+				<div className="w-full flex flex-col space-y-1">
 					<ScrollArea className="w-0 min-w-full whitespace-nowrap pb-3">
 						{/* w-max forces this inner container to be exactly as wide as the badges need */}
 						<div className="flex gap-2 w-max pb-1">
@@ -81,8 +81,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 						</div>
 						<ScrollBar orientation="horizontal" />
 					</ScrollArea>
-
-					<h1 className="text-6xl">
+					<h1 className="text-5xl sm:text-6xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl">
 						{m.feel_the_journey()}.
 						<br />
 						{m.reclaim_your_freedom()}!
@@ -90,7 +89,6 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 					<p className="w-0 min-w-full mt-2">
 						{m.hero_section_description()}: <b>{m.safety()}!</b>
 					</p>
-
 					<Tooltip>
 						<TooltipTrigger asChild>
 							<ActionButton
@@ -116,7 +114,6 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 							</p>
 						</TooltipContent>
 					</Tooltip>
-
 					<div className="flex gap-4 w-0 min-w-full mt-3">
 						<Tooltip>
 							<TooltipTrigger asChild>
@@ -154,8 +151,8 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 				</div>
 				<ImageBoxComponent
 					imageSrc={StillFrame}
-					imageAlt="Still frame of a person wearing the Bia Radar, showcasing the device in use and highlighting its design and functionality."
-					className="w-120 lg:w-110 xl:w-130 "
+					imageAlt="Still frame of a person wearing the Bia Radar..."
+					className="w-full aspect-square  mx-auto lg:mx-0 lg:max-w-none md:w-lg lg:w-md xl:w-lg shrink-0"
 					details={[
 						{
 							title: "Weight",
@@ -172,7 +169,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 						title: m.description_of_the_bia_radar_device(),
 						content: <p>bla bla bla bla </p>,
 					}}
-					open={isDialogOpen} // 1. Control the open state
+					open={isDialogOpen}
 					onOpenChange={setIsDialogOpen}
 				/>
 			</div>

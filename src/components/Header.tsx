@@ -87,7 +87,12 @@ export default function Header() {
 				<div className="flex md:hidden">
 					<Sheet>
 						<SheetTrigger asChild>
-							<Button variant="ghost" size="icon" aria-label={m.open_menu()}>
+							<Button
+								variant="ghost"
+								className="border-none"
+								size="icon"
+								aria-label={m.open_menu()}
+							>
 								<Menu className="h-6 w-6" aria-hidden="true" />
 							</Button>
 						</SheetTrigger>
