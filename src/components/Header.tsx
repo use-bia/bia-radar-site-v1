@@ -89,7 +89,6 @@ export default function Header() {
 						<SheetTrigger asChild>
 							<Button
 								variant="ghost"
-								className="border-none"
 								size="icon"
 								aria-label={m.open_menu()}
 							>

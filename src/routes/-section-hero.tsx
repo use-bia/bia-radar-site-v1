@@ -53,7 +53,10 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 
 	return (
-		<section className="relative w-full flex py-4 md:py-12 xl:py-15 justify-center overflow-hidden">
+		<section
+			id={m.hero_section_id()}
+			className="relative w-full flex py-4 md:py-12 xl:py-15 justify-center overflow-hidden"
+		>
 			<div
 				className="absolute inset-0 -z-1 bg-size-[80em] bg-center md:bg-position-[calc(50%+5em)_center] bg-no-repeat opacity-40 dark:opacity-20 pointer-events-none transition-all duration-500"
 				style={{
@@ -130,7 +133,10 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 						<div className="flex flex-wrap gap-2 sm:gap-4 w-full justify-between xl:justify-around">
 							<Tooltip>
 								<TooltipTrigger asChild>
-									<Button variant="ghost" onClick={() => setIsDialogOpen(true)}>
+									<Button
+										variant="underline"
+										onClick={() => setIsDialogOpen(true)}
+									>
 										{m.description()}
 									</Button>
 								</TooltipTrigger>
@@ -140,7 +146,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 							</Tooltip>
 							<Tooltip>
 								<TooltipTrigger asChild>
-									<Button variant="ghost" asChild>
+									<Button variant="underline" asChild>
 										<Link to="/technology">{m.how_it_works()}</Link>
 									</Button>
 								</TooltipTrigger>
@@ -150,7 +156,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 							</Tooltip>
 							<Tooltip>
 								<TooltipTrigger asChild>
-									<Button variant="ghost" asChild>
+									<Button variant="underline" asChild>
 										<Link to="/" hash={m.roadmap_id()}>
 											{m.roadmap()}
 										</Link>

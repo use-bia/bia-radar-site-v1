@@ -42,5 +42,10 @@
   "customizable": "Customizable",
   "weight": "Weight",
   "grams": "grams",
-  "precision": "Precision"
+  "precision": "Precision",
+  "hero_section_id": "hero_section",
+  "objective_section_id": "objective_section",
+  "objective": "Objective",
+  "objective_title": "Where touch ends, BIA begins",
+  "objective_description": "Walking shouldn't be an act of courage. BIA RADAR fills the gap that the traditional cane doesn't reach, returning fluidity to movement"
 }

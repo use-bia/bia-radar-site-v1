@@ -42,6 +42,10 @@
   "customizable": "Personalizável",
   "weight": "Peso",
   "grams": "gramas",
-  "precision": "Precisão"
-
+  "precision": "Precisão",
+  "hero_section_id": "hero_section",
+  "objective_section_id": "objective_section",
+  "objective": "Objetivo",
+  "objective_title": "Onde o tato termina, a BIA começa",
+  "objective_description": "Caminhar não deveria ser um ato de coragem. A BIA-RADAR preenche o vazio que a bengala tradicional não alcança, devolvendo a fluidez ao movimento"
 }
