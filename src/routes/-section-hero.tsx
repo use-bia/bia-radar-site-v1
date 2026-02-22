@@ -127,7 +127,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 							</TooltipContent>
 						</Tooltip>
 
-						<div className="flex flex-wrap gap-2 sm:gap-4 w-full lg:justify-between xl:justify-around">
+						<div className="flex flex-wrap gap-2 sm:gap-4 w-full justify-between xl:justify-around">
 							<Tooltip>
 								<TooltipTrigger asChild>
 									<Button variant="ghost" onClick={() => setIsDialogOpen(true)}>
@@ -184,6 +184,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 						]}
 						imageDetails={{
 							title: m.description_of_the_bia_radar_device(),
+							// Falar do tamanho de um cartão de crédito
 							content: <p>bla bla bla bla </p>,
 						}}
 						open={isDialogOpen}
