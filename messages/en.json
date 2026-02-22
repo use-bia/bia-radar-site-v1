@@ -27,6 +27,13 @@
   "description": "Description",
   "learn_more": "Learn More",
   "roadmap": "Roadmap",
+  "roadmap_id": "roadmap",
   "how_it_works": "How it works",
-  "open_full_description_of_the_device": "Open full description of the device"
+  "open_full_description_of_the_device": "Open full description of the device",
+  "i_want_to_be_part_of_it": "I want to be part of it",
+  "waiting_list": "Waiting list",
+  "waiting_list_id": "waiting-list",
+  "join_the_waiting_list_and_get_a_10_percent_discount_on_your_purchase": "Join the waiting list and get a 10% discount on your purchase",
+  "find_out_how_bia_works": "Find out how BIA works",
+  "find_out_how_long_until_bia_is_available": "Find out how long until BIA is available"
 }

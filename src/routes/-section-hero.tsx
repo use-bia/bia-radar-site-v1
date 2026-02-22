@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import {
+	ChevronRightIcon,
 	CloudRainWindIcon,
 	PuzzleIcon,
 	TargetIcon,
@@ -10,6 +11,7 @@ import {
 import { type FunctionComponent, useState } from "react";
 import LottusBg from "@/assets/lottus.webp";
 import StillFrame from "@/assets/still-frame-bia-radar.webp";
+import ActionButton from "@/components/ActionButton";
 import ImageBoxComponent from "@/components/ImageBoxComponent";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -77,7 +79,6 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 								</Badge>
 							))}
 						</div>
-						{/* Explicitly call the horizontal ScrollBar */}
 						<ScrollBar orientation="horizontal" />
 					</ScrollArea>
 
@@ -89,7 +90,34 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 					<p className="w-0 min-w-full mt-2">
 						{m.hero_section_description()}: <b>{m.safety()}!</b>
 					</p>
-					<div className="flex gap-2 w-0 min-w-full mt-2">
+
+					<Tooltip>
+						<TooltipTrigger asChild>
+							<ActionButton
+								icon={<ChevronRightIcon />}
+								asChild
+								className="mt-7"
+							>
+								<Link
+									to="/"
+									hash={m.waiting_list_id()}
+									aria-label={m.i_want_to_be_part_of_it()}
+								>
+									{m.i_want_to_be_part_of_it()}
+									<Badge variant="secondary" className="bg-background">
+										10% OFF
+									</Badge>
+								</Link>
+							</ActionButton>
+						</TooltipTrigger>
+						<TooltipContent>
+							<p>
+								{m.join_the_waiting_list_and_get_a_10_percent_discount_on_your_purchase()}
+							</p>
+						</TooltipContent>
+					</Tooltip>
+
+					<div className="flex gap-4 w-0 min-w-full mt-3">
 						<Tooltip>
 							<TooltipTrigger asChild>
 								<Button variant="ghost" onClick={() => setIsDialogOpen(true)}>
@@ -99,10 +127,28 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 							<TooltipContent>
 								<p>{m.open_full_description_of_the_device()}</p>
 							</TooltipContent>
-
-							<Button variant="ghost" asChild>
-								<Link to="/technology">{m.how_it_works()}</Link>
-							</Button>
+						</Tooltip>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<Button variant="ghost" asChild>
+									<Link to="/technology">{m.how_it_works()}</Link>
+								</Button>
+							</TooltipTrigger>
+							<TooltipContent>
+								<p>{m.find_out_how_bia_works()}</p>
+							</TooltipContent>
+						</Tooltip>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<Button variant="ghost" asChild>
+									<Link to="/" hash={m.roadmap_id()}>
+										{m.roadmap()}
+									</Link>
+								</Button>
+							</TooltipTrigger>
+							<TooltipContent>
+								<p>{m.find_out_how_long_until_bia_is_available()}</p>
+							</TooltipContent>
 						</Tooltip>
 					</div>
 				</div>

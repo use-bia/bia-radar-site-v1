@@ -111,7 +111,7 @@ const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
 						{details.map((detail) => (
 							<div
 								key={`image-detail-${detail.title}`}
-								className="flex-1 border flex items-center gap-3 p-3 xl:p-4 bg-muted/70"
+								className="flex-1 border flex items-center gap-3 p-3 xl:p-4 bg-secondary"
 							>
 								<div aria-hidden="true">{detail.icon}</div>
 								<div>
