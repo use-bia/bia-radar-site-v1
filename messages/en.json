@@ -47,5 +47,14 @@
   "objective_section_id": "objective_section",
   "objective": "Objective",
   "objective_title": "Where touch ends, BIA begins",
-  "objective_description": "Walking shouldn't be an act of courage. BIA RADAR fills the gap that the traditional cane doesn't reach, returning fluidity to movement"
+  "objective_description": "Walking shouldn't be an act of courage. BIA RADAR fills the gap that the traditional cane doesn't reach, returning fluidity to movement",
+  "objective_item_1_title": "Protection where touch can't reach",
+  "objective_item_1_description": "While you map the ground, BIA takes care of what's above, where 40% of cane users experience collisions every month",
+  "objective_item_2_title": "Anticipation, not impact",
+  "objective_item_2_description": "Don't wait for the touch to know there's danger. We eliminate the 100% 'detection gap' that regular canes have for elevated obstacles.",
+  "objective_item_3_title": "Focus on what matters",
+  "objective_item_3_description": "Our AI filters out the chaos of the city and reduces unnecessary alerts by over 70%, leaving your mind free to enjoy the path",
+  "objective_item_4_title": "Always available",
+  "objective_item_4_description": "Gain reaction time with a system that responds in 30ms, without relying on internet or cell signal to protect you"
+
 }

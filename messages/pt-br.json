@@ -47,5 +47,13 @@
   "objective_section_id": "objective_section",
   "objective": "Objetivo",
   "objective_title": "Onde o tato termina, a BIA começa",
-  "objective_description": "Caminhar não deveria ser um ato de coragem. A BIA-RADAR preenche o vazio que a bengala tradicional não alcança, devolvendo a fluidez ao movimento"
+  "objective_description": "Caminhar não deveria ser um ato de coragem. A BIA-RADAR preenche o vazio que a bengala tradicional não alcança, devolvendo a fluidez ao movimento",
+  "objective_item_1_title": "Proteção onde o tato não chega",
+  "objective_item_1_description": "Enquanto você mapeia o chão, a BIA cuida do que está no alto, onde 40% dos usuários de bengala sofrem colisões todos os meses",
+  "objective_item_2_title": "Antecipação, não impacto",
+  "objective_item_2_description": "Não espere pelo toque para saber que há um perigo. Eliminamos o \"vazio de detecção\" de 100% que as bengalas comuns têm para obstáculos elevados",
+  "objective_item_3_title": "Foco no que importa",
+  "objective_item_3_description": "Nossa IA filtra o caos da cidade e reduz alertas inúteis em mais de 70%, deixando sua mente livre para aproveitar o caminho",
+  "objective_item_4_title": "Sempre disponível",
+  "objective_item_4_description": "Ganhe tempo de reação com um sistema que responde em 30ms, sem depender de internet ou sinal de celular para te proteger"
 }

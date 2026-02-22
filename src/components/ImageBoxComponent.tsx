@@ -37,6 +37,7 @@ interface ImageBoxComponentProps {
 	className?: string;
 	open?: boolean;
 	onOpenChange?: (open: boolean) => void;
+	imageClassName?: string;
 }
 
 const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
@@ -47,6 +48,8 @@ const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
 	className,
 	open,
 	onOpenChange,
+	// 2. Set a default class for the image
+	imageClassName = "object-cover",
 }) => {
 	return (
 		<div
@@ -57,6 +60,7 @@ const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
 		>
 			{imageDetails && (
 				<div className="absolute right-0 top-0 z-10">
+					{/* ... Keep all your existing Dialog/Tooltip code untouched ... */}
 					<Dialog open={open} onOpenChange={onOpenChange}>
 						<Tooltip>
 							<TooltipTrigger asChild>
@@ -79,7 +83,6 @@ const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
 							<DialogHeader>
 								<DialogTitle>{imageDetails.title}</DialogTitle>
 							</DialogHeader>
-							{/* The deep description content rendered safely inside the dialog */}
 							<div className="text-sm text-muted-foreground">
 								{imageDetails.content}
 							</div>
@@ -98,12 +101,11 @@ const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
 			<img
 				src={imageSrc}
 				alt={imageAlt}
-				className="w-full h-full object-cover"
+				className={cn("absolute inset-0 w-full h-full z-0", imageClassName)}
 			/>
 
 			{details.length > 0 && (
-				<div className="absolute bottom-0 w-full p-2 sm:p-4 xl:p-6">
-					{/* <dl> defines the description list */}
+				<div className="absolute bottom-0 z-10 w-full p-2 sm:p-4 xl:p-6">
 					<dl className="flex justify-between gap-4 xl:gap-8 m-0 w-full">
 						{details.map((detail) => (
 							<div
