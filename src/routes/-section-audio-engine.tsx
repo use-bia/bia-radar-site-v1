@@ -1,4 +1,4 @@
-import { PlayIcon } from "lucide-react";
+import { PlayIcon, Volume2Icon } from "lucide-react";
 import { type FunctionComponent, useEffect, useId, useState } from "react";
 import { parseBold } from "@/-helper-tsx";
 import ActionButton from "@/components/ActionButton";
@@ -107,17 +107,28 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 						</div>
 					</section>
 				</div>
-				<div>
+				<div className="p-8">
+					{/* The clickable is only for visual users, to provide a better ux, it will do the same as the action button */}
+					{/* To reduce noise for screen readers it is hidden and also not selectable */}
 					<Button
-						variant="outline"
+						variant="ghost"
 						onClick={() => {
 							if (selectedAudioLanguage === "pt-br")
 								playIntroductionPortuguese();
 							else if (selectedAudioLanguage === "en")
 								playIntroductionEnglish();
 						}}
+						className="rounded-full h-full aspect-square border-4"
+						aria-hidden="true"
+						tabIndex={-1}
 					>
-						{m.audio_engine_listen()}
+						<Volume2Icon
+							className="text-border"
+							style={{
+								width: "5em",
+								height: "5em",
+							}}
+						/>
 					</Button>
 				</div>
 			</div>
