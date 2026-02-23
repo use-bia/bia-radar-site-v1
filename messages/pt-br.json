@@ -78,7 +78,7 @@
   "audio_engine_id": "audio_engine_section",
   "audio_engine_title": "A Bia fala a sua língua",
   "audio_engine_description": "Com menus totalmente dublados e o comando \"Ok BIA\" para localização imediata, o dispositivo respeita sua autonomia. <b>Sem aplicativos complexos, sem nuvem, sem latência</b>",
-  "audio_engine_listen": "Escutar clip de introdução BIA-RADAR",
+  "audio_engine_listen": "Escutar clip de introdução",
   "portuguese": "Português",
   "english": "Inglês",
   "change_reproduction_language_to": "Mudar idioma de reprodução para {language}",
