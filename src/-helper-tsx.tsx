@@ -1,14 +1,14 @@
 import type { ReactNode } from "react";
 
-export const parseBold = (text: string): ReactNode[] => {
-	const parts = text.split(/(<b>.*?<\/b>)/g);
+export const parseBold = (text: string): ReactNode => {
+	// 1. Strip the <b> tags to create one continuous string for screen readers
+	const pureText = text.replace(/<b>(.*?)<\/b>/g, "$1");
 
-	return parts.map((part, index) => {
+	// 2. Parse the visual content as you normally would
+	const parts = text.split(/(<b>.*?<\/b>)/g);
+	const visualContent = parts.map((part, index) => {
 		if (part.startsWith("<b>") && part.endsWith("</b>")) {
 			const content = part.slice(3, -4);
-
-			// Combine the string content and index for a uniquely stable key
-			// that bypasses the Biome/ESLint array index warning.
 			return (
 				// biome-ignore lint: The content is static and won't change, so using it in the key is safe.
 				<strong key={`bold-${content}-${index}`} className="font-bold">
@@ -17,9 +17,14 @@ export const parseBold = (text: string): ReactNode[] => {
 			);
 		}
 
-		// React doesn't require keys for raw text nodes in an array,
-		// but if the linter complains about the text node too, you can wrap
-		// it in a fragment: <React.Fragment key={`text-${index}`}>{part}</React.Fragment>
 		return part;
 	});
+
+	// 3. Serve the visual content to sighted users, and the pure text to screen readers
+	return (
+		<span>
+			<span aria-hidden="true">{visualContent}</span>
+			<span className="sr-only">{pureText}</span>
+		</span>
+	);
 };

@@ -35,7 +35,7 @@ const SectionObjective: FunctionComponent<SectionObjectiveProps> = () => {
 					<div className="lg:col-span-2 w-full flex min-h-100 sm:min-h-130 lg:min-h-0 lg:h-full">
 						<ImageBoxComponent
 							imageSrc={BiaOnCane}
-							imageAlt="Still frame of a person wearing the Bia Radar..."
+							imageAlt={m.objective_image_alt()}
 							className="w-full h-full shrink-0 lg:min-h-0"
 							imageDetails={{
 								title: m.description_of_the_bia_radar_device(),
@@ -45,7 +45,7 @@ const SectionObjective: FunctionComponent<SectionObjectiveProps> = () => {
 							details={[
 								{
 									title: m.objective_universal_fitting(),
-									value: "5-22mm",
+									value: m.objective_image_detail_1(),
 									icon: <DiameterIcon />,
 								},
 							]}

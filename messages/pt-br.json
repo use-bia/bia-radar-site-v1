@@ -22,7 +22,6 @@
   "open_full_description_of_the_image": "Abrir descrição completa da imagem",
   "close": "Fechar",
   "description_of_the_bia_radar_device": "Descrição do dispositivo BIA RADAR",
-  "hero_section_description": "O poder dos carros autônomos na palma da sua mão. A BIA-RADAR utiliza tecnologia para filtrar o mundo e entregar apenas o que importa",
   "safety": "Segurança",
   "description": "Descrição",
   "learn_more": "Saiba Mais",
@@ -43,7 +42,10 @@
   "weight": "Peso",
   "grams": "gramas",
   "precision": "Precisão",
+  "hero_section_description": "O poder dos carros autônomos na palma da sua mão. A BIA-RADAR utiliza tecnologia para filtrar o mundo e entregar apenas o que importa",
   "hero_section_id": "hero_section",
+  "hero_section_image_alt": "Dispositivo BIA RADAR inclinado.",
+  "hero_section_device_features": "Recursos do dispositivo",
   "objective_section_id": "objective_section",
   "objective": "Objetivo",
   "objective_title": "Onde o tato termina, a BIA começa",
@@ -57,6 +59,8 @@
   "objective_item_4_title": "Sempre disponível",
   "objective_item_4_description": "Ganhe tempo de reação com um sistema que responde em 30ms, sem depender de internet ou sinal de celular para te proteger",
   "objective_universal_fitting": "Encaixe universal",
+  "objective_image_alt": "Renderização 3D da BIA Radar encaixada à uma bengala tradicional.",
+  "objective_image_detail_1": "5 à 22mm",
   "expandible_platform": "Plataforma expansível",
   "expandible_platform_id": "expandible_platform_section",
   "expandible_platform_title": "Inclusivo por natureza, modular por necessidade",
@@ -86,5 +90,6 @@
   "preview_description": "Este site está em construção. Por favor, insira o código de acesso",
   "preview_input_placeholder": "Insira o Código...",
   "authorized_personnel_only": "Somente pessoal autorizado",
-  "lock_site": "Trancar site"
+  "lock_site": "Trancar site",
+  "try_now": "Testar agora"
 }

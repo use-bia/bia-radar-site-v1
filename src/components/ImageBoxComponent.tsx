@@ -48,7 +48,6 @@ const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
 	className,
 	open,
 	onOpenChange,
-	// 2. Set a default class for the image
 	imageClassName = "object-cover",
 }) => {
 	return (
@@ -58,9 +57,16 @@ const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
 				className,
 			)}
 		>
+			{/* 1. IMAGE FIRST: Read first by screen readers, but bypassed by the Tab key */}
+			<img
+				src={imageSrc}
+				alt={imageAlt}
+				className={cn("absolute inset-0 w-full h-full z-0", imageClassName)}
+			/>
+
+			{/* 2. BUTTON SECOND: Receives the first actual keyboard focus */}
 			{imageDetails && (
 				<div className="absolute right-0 top-0 z-10">
-					{/* ... Keep all your existing Dialog/Tooltip code untouched ... */}
 					<Dialog open={open} onOpenChange={onOpenChange}>
 						<Tooltip>
 							<TooltipTrigger asChild>
@@ -98,27 +104,33 @@ const ImageBoxComponent: FunctionComponent<ImageBoxComponentProps> = ({
 				</div>
 			)}
 
-			<img
-				src={imageSrc}
-				alt={imageAlt}
-				className={cn("absolute inset-0 w-full h-full z-0", imageClassName)}
-			/>
-
+			{/* 3. DETAILS LIST LAST */}
 			{details.length > 0 && (
 				<div className="absolute bottom-0 z-10 w-full p-2 sm:p-4 xl:p-6">
 					<dl className="flex justify-between gap-4 xl:gap-8 m-0 w-full">
 						{details.map((detail) => (
 							<div
 								key={`image-detail-${detail.title}`}
-								className="flex-1 border flex items-center gap-3 p-3 xl:p-4 bg-secondary"
+								// 1. Changed to CSS Grid to control layout without extra <div> wrappers
+								className="flex-1 border grid grid-cols-[auto_1fr] gap-x-3 p-3 xl:p-4 bg-secondary"
 							>
-								<div aria-hidden="true">{detail.icon}</div>
-								<div>
-									<dt className="text-xs font-bold text-muted-foreground uppercase leading-none">
-										{detail.title}
-									</dt>
-									<dd className="font-bold leading-tight">{detail.value}</dd>
-								</div>
+								{/* 2. The icon becomes a decorative <dt> spanning both rows */}
+								<dt
+									className="col-start-1 row-span-2 flex items-center justify-center"
+									aria-hidden="true"
+								>
+									{detail.icon}
+								</dt>
+
+								{/* 3. The Title is the actual readable <dt> */}
+								<dt className="col-start-2 row-start-1 text-xs font-bold text-muted-foreground uppercase leading-none self-end pb-0.5">
+									{detail.title}
+								</dt>
+
+								{/* 4. The Value is the <dd> */}
+								<dd className="col-start-2 row-start-2 font-bold leading-tight self-start pt-0.5">
+									{detail.value}
+								</dd>
 							</div>
 						))}
 					</dl>

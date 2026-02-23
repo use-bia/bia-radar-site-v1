@@ -65,24 +65,25 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 				aria-hidden="true"
 			/>
 
-			{/* Changed from Flex to Grid for explicit placement */}
 			<div className="relative px-4 lg:px-8 container grid grid-cols-1 md:grid-cols-2 gap-y-8 md:gap-x-8 lg:gap-8">
-				{/* 1. HEADER (Badges + Title) */}
-				{/* md: spans both cols | lg: spans 1 col top-left */}
 				<div className="md:col-span-2 lg:col-span-1 lg:col-start-1 lg:row-start-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4">
 					<ScrollArea className="w-full whitespace-nowrap pb-3">
-						<div className="flex gap-2 w-max pb-1 mx-auto lg:mx-0">
+						<ul
+							className="flex gap-2 w-max pb-1 mx-auto lg:mx-0 m-0 p-0"
+							aria-label={m.hero_section_device_features()}
+						>
 							{heroBadges.map((badge) => (
-								<Badge
-									key={badge.title}
-									variant="secondary"
-									className="gap-2 bg-muted shrink-0"
-								>
-									{badge.icon}
-									{badge.title}
-								</Badge>
+								<li key={badge.title} className="list-none">
+									<Badge
+										variant="secondary"
+										className="gap-2 bg-muted shrink-0"
+									>
+										{badge.icon}
+										{badge.title}
+									</Badge>
+								</li>
 							))}
-						</div>
+						</ul>
 						<ScrollBar orientation="horizontal" />
 					</ScrollArea>
 					<h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl 2xl:text-7xl">
@@ -174,7 +175,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 				<div className="md:col-start-2 md:row-start-2 md:row-span-1 lg:col-start-2 lg:row-start-1 lg:row-span-2 flex justify-center lg:justify-end md:items-start lg:items-center w-full">
 					<ImageBoxComponent
 						imageSrc={StillFrame}
-						imageAlt="Still frame of a person wearing the Bia Radar..."
+						imageAlt={m.hero_section_image_alt()}
 						className="w-full h-auto aspect-square md:aspect-6/7 xl:aspect-square lg:w-auto lg:h-128 xl:h-xl 2xl:h-xl mx-auto lg:mx-0 shrink-0"
 						details={[
 							{
