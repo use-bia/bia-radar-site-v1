@@ -73,6 +73,13 @@
   "humanization_item_2_title": "ABSOLUTE PRIVACY",
   "humanization_item_2_description": "All AI processing is done locally on the device. Your location and your paths never leave your hands and never touch the cloud",
   "humanization_item_3_title": "IMPACTFUL AI, NOT JUST A BUZZWORD",
-  "humanization_item_3_description": "Our AI is a tool for real impact, not a marketing gimmick. It filters what's relevant to you, reducing unnecessary alerts and ensuring that the technology serves your experience, not the other way around"
-
+  "humanization_item_3_description": "Our AI is a tool for real impact, not a marketing gimmick. It filters what's relevant to you, reducing unnecessary alerts and ensuring that the technology serves your experience, not the other way around",
+  "audio_engine": "Audio Engine",
+  "audio_engine_id": "audio_engine_section",
+  "audio_engine_title": "Bia speaks your language",
+  "audio_engine_description": "With fully dubbed menus and the \"Ok BIA\" command for immediate location, the device respects your autonomy. <b>No complex apps, no cloud, no latency</b>",
+  "audio_engine_listen": "Listen to BIA-RADAR intro clip",
+  "portuguese": "Portuguese",
+  "english": "English",
+  "change_reproduction_language_to": "Change reproduction language to {language}"
 }

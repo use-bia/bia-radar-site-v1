@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { m } from "@/paraglide/messages";
+import SectionAudioEngine from "./-section-audio-engine";
 import SectionExpandiblePlatform from "./-section-expandible-platformt";
 import SectionHero from "./-section-hero";
 import SectionHumanization from "./-section-humanization";
@@ -14,6 +15,7 @@ function App() {
 			<SectionObjective />
 			<SectionExpandiblePlatform />
 			<SectionHumanization />
+			<SectionAudioEngine />
 
 			<section id={m.roadmap_id()}>
 				<h2>Roadmap</h2>
