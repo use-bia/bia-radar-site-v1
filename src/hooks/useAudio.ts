@@ -9,7 +9,6 @@ export function useAudio(name: SoundName) {
 		const audio = audioEngine.getAudio(name);
 		if (!audio) return;
 
-		// Native audio event handlers
 		const handlePlay = () => setIsPlaying(true);
 		const handleEnd = () => setIsPlaying(false);
 
@@ -28,5 +27,14 @@ export function useAudio(name: SoundName) {
 		audioEngine.play(name);
 	}, [name]);
 
-	return { play, isPlaying };
+	// NEW: Stop method to pause and reset the audio
+	const stop = useCallback(() => {
+		const audio = audioEngine.getAudio(name);
+		if (audio) {
+			audio.pause();
+			audio.currentTime = 0;
+		}
+	}, [name]);
+
+	return { play, stop, isPlaying };
 }

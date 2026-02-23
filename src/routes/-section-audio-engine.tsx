@@ -15,6 +15,7 @@ type SectionAudioEngineProps = Record<string, never>;
 const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 	const [selectedAudioLanguage, setSelectedAudioLanguage] =
 		useState<Locale>("pt-br");
+	const [playTrigger, setPlayTrigger] = useState(0);
 	const locale = getLocale();
 
 	useEffect(() => {
@@ -28,48 +29,62 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 	const headingId = useId();
 	const subHeadingId = useId();
 
-	// Using our updated hook to grab the play function AND the isPlaying state
-	const { play: playPt, isPlaying: isPlayingPt } = useAudio(
-		"bia_introduction_portuguese",
-	);
-	const { play: playEn, isPlaying: isPlayingEn } = useAudio(
-		"bia_introduction_english",
-	);
+	const {
+		play: playPt,
+		stop: stopPt,
+		isPlaying: isPlayingPt,
+	} = useAudio("bia_introduction_portuguese");
+	const {
+		play: playEn,
+		stop: stopEn,
+		isPlaying: isPlayingEn,
+	} = useAudio("bia_introduction_english");
 
-	// If either language is currently playing, trigger the visualizer
 	const isAnyPlaying = isPlayingPt || isPlayingEn;
+
+	const handleLanguageChange = (newLanguage: Locale) => {
+		stopPt();
+		stopEn();
+		setSelectedAudioLanguage(newLanguage);
+	};
 
 	return (
 		<section
 			id={m.audio_engine_id()}
 			aria-labelledby={headingId}
-			className="relative w-full py-12 flex justify-center bg-background-secondary"
+			className="relative w-full py-12 flex justify-center bg-background-secondary overflow-hidden"
 		>
-			<div className="container mx-auto px-4 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-12">
-				{/* LEFT COLUMN: Controls */}
-				<div className="flex flex-col">
-					<h2 id={headingId} className="flex flex-col text-center md:text-left">
+			{/* 1. Main Container: Removed justify-center so items align left by default */}
+			<div className="container mx-auto px-4 lg:px-8 flex flex-col sm:flex-row items-center gap-4 lg:gap-8 xl:gap-12 w-full">
+				{/* 2. Left Column: Removed flex-1. It now takes up a maximum width but won't grow infinitely */}
+				<div className="flex flex-col items-center sm:items-start text-center sm:text-left w-full sm:max-w-xl lg:max-w-3xl shrink">
+					<h2 id={headingId} className="flex flex-col">
 						<span className="uppercase text-muted-foreground text-base font-normal">
 							{m.audio_engine()}
 							<span className="sr-only">:</span>
 						</span>
-						<span className="text-3xl md:text-4xl xl:text-5xl font-bold">
+						<span className="text-3xl sm:text-4xl xl:text-5xl font-bold">
 							{m.audio_engine_title()}
 						</span>
 					</h2>
 
 					<p className="mt-6">{parseBold(m.audio_engine_description())}.</p>
-					<Separator className="mt-6 mb-4" />
 
-					<section aria-labelledby={subHeadingId} className="space-y-4">
+					<Separator className="mt-6 mb-4 w-full" />
+
+					<section
+						aria-labelledby={subHeadingId}
+						className="flex flex-col items-center sm:items-start space-y-4 w-full"
+					>
 						<h3 id={subHeadingId} className="uppercase text-muted-foreground">
 							{m.try_now()}
 						</h3>
-						<div className="space-y-4">
-							<div className="flex gap-4">
+
+						<div className="flex flex-col items-center sm:items-start space-y-4">
+							<div className="flex flex-wrap justify-center sm:justify-start gap-4">
 								<Button
 									variant="ghost"
-									onClick={() => setSelectedAudioLanguage("pt-br")}
+									onClick={() => handleLanguageChange("pt-br")}
 									size="lg"
 									aria-label={m.change_reproduction_language_to({
 										language: m.portuguese(),
@@ -85,7 +100,7 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 								</Button>
 								<Button
 									variant="ghost"
-									onClick={() => setSelectedAudioLanguage("en")}
+									onClick={() => handleLanguageChange("en")}
 									size="lg"
 									aria-label={m.change_reproduction_language_to({
 										language: m.english(),
@@ -100,10 +115,12 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 									{m.english()}
 								</Button>
 							</div>
+
 							<ActionButton
 								icon={<PlayIcon />}
 								isIconAtStart
 								onClick={() => {
+									setPlayTrigger((prev) => prev + 1);
 									if (selectedAudioLanguage === "pt-br") playPt();
 									else if (selectedAudioLanguage === "en") playEn();
 								}}
@@ -114,22 +131,11 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 					</section>
 				</div>
 
-				{/* RIGHT COLUMN: Visualizer (Strictly visual, no interactions) */}
-				<div className="p-8 flex items-center justify-center">
-					<AudioVisualizer isPlaying={isAnyPlaying} />
+				{/* 3. Right Column: Added flex-1 to fill remaining space, and justify-center to center the visualizer inside it */}
+				<div className="flex flex-1 items-center justify-center p-4 w-full min-w-[250px] mt-8 sm:mt-0">
+					<AudioVisualizer isPlaying={isAnyPlaying} playTrigger={playTrigger} />
 				</div>
 			</div>
-
-			{/* Inline keyframes specifically for the sound wave bounce */}
-			<style>{`
-                @keyframes soundWave {
-                    0%, 100% { transform: scaleY(0.3); }
-                    50% { transform: scaleY(1); }
-                }
-                .animate-sound-wave {
-                    animation: soundWave ease-in-out infinite;
-                }
-            `}</style>
 		</section>
 	);
 };

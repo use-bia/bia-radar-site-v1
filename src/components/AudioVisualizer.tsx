@@ -1,30 +1,58 @@
 import { Volume2Icon } from "lucide-react";
-import { type FunctionComponent, useEffect, useState } from "react";
+import { type FunctionComponent, useEffect, useRef } from "react";
+import { audioEngine } from "@/audio/audioEngine";
 import { cn } from "@/lib/utils";
 
 interface AudioVisualizerProps {
 	isPlaying: boolean;
+	playTrigger: number;
 }
 
-const WAVE_BARS = [
-	{ id: "wave-bar-1", delay: "0s", duration: "0.8s" },
-	{ id: "wave-bar-2", delay: "-0.15s", duration: "1.0s" },
-	{ id: "wave-bar-3", delay: "-0.3s", duration: "1.2s" },
-	{ id: "wave-bar-4", delay: "-0.45s", duration: "0.8s" },
-	{ id: "wave-bar-5", delay: "-0.6s", duration: "1.0s" },
-];
+// We select 5 specific frequency bins out of the 16 available (from low pitch to high pitch)
+const BINS = [0, 2, 4, 6, 10];
 
 const AudioVisualizer: FunctionComponent<AudioVisualizerProps> = ({
 	isPlaying,
+	playTrigger,
 }) => {
-	const [showRipple, setShowRipple] = useState(false);
+	const barRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+	// Notice: The messy ripple useEffect is completely gone!
 
 	useEffect(() => {
-		if (isPlaying) {
-			setShowRipple(true);
-			const timeout = setTimeout(() => setShowRipple(false), 1000);
-			return () => clearTimeout(timeout);
+		if (!isPlaying) {
+			barRefs.current.forEach((bar) => {
+				if (bar) bar.style.transform = "scaleY(0.2)";
+			});
+			return;
 		}
+
+		let animationFrameId: number;
+
+		const updateVisualizer = () => {
+			if (audioEngine.analyser) {
+				const dataArray = new Uint8Array(
+					audioEngine.analyser.frequencyBinCount,
+				);
+				audioEngine.analyser.getByteFrequencyData(dataArray);
+
+				BINS.forEach((binIndex, i) => {
+					const value = dataArray[binIndex] || 0;
+					const scale = Math.max(0.2, value / 255);
+
+					if (barRefs.current[i]) {
+						barRefs.current[i].style.transform = `scaleY(${scale})`;
+					}
+				});
+			}
+			animationFrameId = requestAnimationFrame(updateVisualizer);
+		};
+
+		updateVisualizer();
+
+		return () => {
+			cancelAnimationFrame(animationFrameId);
+		};
 	}, [isPlaying]);
 
 	return (
@@ -32,14 +60,16 @@ const AudioVisualizer: FunctionComponent<AudioVisualizerProps> = ({
 			className="relative flex items-center justify-center w-full max-w-60 aspect-square mx-auto pointer-events-none select-none"
 			aria-hidden="true"
 		>
-			{/* The Ripple / Drop Effect */}
-			{showRipple && (
-				<div className="absolute inset-0 rounded-full border border-primary animate-ripple" />
+			{/* 2. The Ripple: Uses the playTrigger as a unique key to force a restart */}
+			{isPlaying && playTrigger > 0 && (
+				<div
+					key={`ripple-${playTrigger}`}
+					className="absolute inset-0 rounded-full border border-primary animate-ripple"
+				/>
 			)}
 
 			{/* The Main Circular Container */}
 			<div className="relative flex items-center justify-center w-full h-full rounded-full border-4 border-border bg-background overflow-hidden">
-				{/* 1. The Speaker Icon */}
 				<div
 					className={cn(
 						"absolute transition-all duration-500 ease-in-out",
@@ -49,41 +79,29 @@ const AudioVisualizer: FunctionComponent<AudioVisualizerProps> = ({
 					<Volume2Icon className="w-20 h-20 text-border" />
 				</div>
 
-				{/* 2. The Sound Waves */}
 				<div
 					className={cn(
 						"absolute flex items-center justify-center gap-1.5 w-full h-1/3 transition-all duration-500 ease-in-out",
 						isPlaying ? "opacity-100 scale-100" : "opacity-0 scale-150",
 					)}
 				>
-					{/* 2. Map over the static array, using the explicit ID as the key */}
-					{WAVE_BARS.map((bar) => (
+					{BINS.map((binIndex, i) => (
 						<div
-							key={bar.id}
-							className={cn(
-								// 3. Changed bg-primary to bg-border
-								"w-3 rounded-full bg-border transition-all duration-300",
-								isPlaying ? "h-full animate-sound-wave" : "h-2",
-							)}
+							key={`wave-bar-${binIndex}`}
+							ref={(el) => {
+								barRefs.current[i] = el;
+							}}
+							className="w-3 rounded-full bg-border h-full"
 							style={{
-								animationDelay: bar.delay,
-								animationDuration: bar.duration,
+								transform: "scaleY(0.2)",
+								transition: "transform 50ms ease-out",
 							}}
 						/>
 					))}
 				</div>
 			</div>
 
-			{/* Local Keyframes for Waves and Ripple */}
 			<style>{`
-                @keyframes soundWave {
-                    0%, 100% { transform: scaleY(0.3); }
-                    50% { transform: scaleY(1); }
-                }
-                .animate-sound-wave {
-                    animation: soundWave ease-in-out infinite;
-                }
-                
                 @keyframes rippleEffect {
                     0% { transform: scale(1); opacity: 0.8; }
                     100% { transform: scale(1.5); opacity: 0; }
