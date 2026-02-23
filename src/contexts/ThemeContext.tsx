@@ -18,9 +18,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 	// 2. Initialize state from localStorage or defaults
 	const [theme, setThemeState] = useState<Theme>(() => {
 		if (typeof window !== "undefined") {
-			return (localStorage.getItem("theme") as Theme) || "light";
+			return (localStorage.getItem("theme") as Theme) || "dark";
 		}
-		return "light";
+		return "dark";
 	});
 
 	const [contrastColor, setContrastColorState] = useState<ContrastColor>(() => {
