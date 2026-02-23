@@ -47,7 +47,7 @@ const heroBadges: HeroBadges[] = [
 	},
 ];
 
-type SectionHeroProps = {};
+type SectionHeroProps = Record<string, never>;
 
 const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 	const [isDialogOpen, setIsDialogOpen] = useState(false);

@@ -5,7 +5,7 @@ import { BasicItemBox, BasicItemList } from "@/components/BasicItemBox";
 import ImageBoxComponent from "@/components/ImageBoxComponent";
 import { m } from "@/paraglide/messages";
 
-type SectionObjectiveProps = {};
+type SectionObjectiveProps = Record<string, never>;
 
 const SectionObjective: FunctionComponent<SectionObjectiveProps> = () => {
 	const headingId = useId();

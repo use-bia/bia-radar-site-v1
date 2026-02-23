@@ -4,7 +4,7 @@ import { parseBold } from "@/-helper-tsx";
 import { BasicItemBox, BasicItemList } from "@/components/BasicItemBox";
 import { m } from "@/paraglide/messages";
 
-type SectionHumanizationProps = {};
+type SectionHumanizationProps = Record<string, never>;
 
 const SectionHumanization: FunctionComponent<SectionHumanizationProps> = () => {
 	const headingId = useId();

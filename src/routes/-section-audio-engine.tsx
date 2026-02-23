@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { m } from "@/paraglide/messages";
 import { getLocale, type Locale } from "@/paraglide/runtime";
 
-type SectionAudioEngineProps = {};
+type SectionAudioEngineProps = Record<string, never>;
 
 const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 	const [selectedAudioLanguage, setSelectedAudioLanguage] =

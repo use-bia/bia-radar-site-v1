@@ -1,10 +1,11 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import PreviewGate from "@/components/PreviewGate";
 
 import "../styles.css";
-import Footer from "@/components/Footer";
 
 export const Route = createRootRoute({
 	component: RootComponent,
@@ -12,9 +13,11 @@ export const Route = createRootRoute({
 
 function RootComponent() {
 	return (
-		<>
+		<div className="min-h-screen relative">
 			<Header />
-			<Outlet />
+			<PreviewGate>
+				<Outlet />
+			</PreviewGate>
 			<Footer />
 			<TanStackDevtools
 				config={{
@@ -27,6 +30,6 @@ function RootComponent() {
 					},
 				]}
 			/>
-		</>
+		</div>
 	);
 }

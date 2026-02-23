@@ -4,7 +4,7 @@ import UniverseBg from "@/assets/universe.webp";
 import { Button } from "@/components/ui/button";
 import { m } from "@/paraglide/messages";
 
-type SectionExpandiblePlatformProps = {};
+type SectionExpandiblePlatformProps = Record<string, never>;
 
 const SectionExpandiblePlatform: FunctionComponent<
 	SectionExpandiblePlatformProps

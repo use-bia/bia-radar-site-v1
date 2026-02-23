@@ -77,3 +77,7 @@ pnpm dlx @biomejs/biome check --write .
 
 ## Image Optimization
 use [Squoosh](https://squoosh.app/) to optimize images before adding them to the project. This helps reduce file sizes and improve load times without sacrificing quality.
+
+## Favicons
+
+Use [RealFaviconGenerator](https://realfavicongenerator.net/) to create favicons for your project.

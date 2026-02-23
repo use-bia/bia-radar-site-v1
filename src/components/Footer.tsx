@@ -1,5 +1,5 @@
 import { Link, linkOptions } from "@tanstack/react-router";
-import { AccessibilityIcon } from "lucide-react";
+import { AccessibilityIcon, LockIcon } from "lucide-react"; // Added LockIcon
 import type { FunctionComponent } from "react";
 import BiaLogo from "@/assets/bia-radar-logo.svg?react";
 import ByNeosenti from "@/assets/by-neosenti.svg?react";
@@ -31,10 +31,16 @@ const options = linkOptions([
 	{ to: "/store", label: m.store() },
 ]);
 
-type FooterProps = {};
+type FooterProps = Record<string, never>;
 
 const Footer: FunctionComponent<FooterProps> = () => {
 	const { setTheme } = useTheme();
+
+	// 1. Add the clear function
+	const handleLockSite = () => {
+		localStorage.removeItem("preview_auth_token");
+		window.location.reload(); // Refresh to trigger the gate immediately
+	};
 
 	return (
 		<footer className="w-full border-t">
@@ -120,8 +126,18 @@ const Footer: FunctionComponent<FooterProps> = () => {
 							</Select>
 						</div>
 
-						{/* Accessibility Button (Column 3 on md) */}
-						<div className="md:justify-self-end">
+						{/* 2. Grouped the new Lock Site button with the Accessibility Button (Column 3 on md) */}
+						<div className="flex flex-wrap items-center justify-center gap-2 md:justify-self-end">
+							<Button
+								variant="ghost"
+								onClick={handleLockSite}
+								className="text-muted-foreground underline whitespace-nowrap px-4"
+								aria-label="Lock Site Preview"
+							>
+								<LockIcon aria-hidden="true" className="mr-2 h-4 w-4" />
+								{m.lock_site()}
+							</Button>
+
 							<DropdownMenu>
 								<DropdownMenuTrigger asChild>
 									<Button

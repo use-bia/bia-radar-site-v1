@@ -81,5 +81,10 @@
   "audio_engine_listen": "Listen to BIA-RADAR intro clip",
   "portuguese": "Portuguese",
   "english": "English",
-  "change_reproduction_language_to": "Change reproduction language to {language}"
+  "change_reproduction_language_to": "Change reproduction language to {language}",
+  "preview_title": "Private Preview",
+  "preview_description": "This site is currently under construction. Please enter the access code",
+  "preview_input_placeholder": "Enter Code...",
+  "authorized_personnel_only": "Authorized Personnel Only",
+  "lock_site": "Lock site"
 }
