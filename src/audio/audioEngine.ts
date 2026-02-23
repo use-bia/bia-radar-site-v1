@@ -46,6 +46,10 @@ class AudioEngine {
 			a.volume = value;
 		});
 	}
+
+	getAudio(name: SoundName): HTMLAudioElement | undefined {
+		return this.sounds.get(name);
+	}
 }
 
 export const audioEngine = new AudioEngine();

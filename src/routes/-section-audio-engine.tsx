@@ -1,7 +1,8 @@
-import { PlayIcon, Volume2Icon } from "lucide-react";
+import { PlayIcon } from "lucide-react";
 import { type FunctionComponent, useEffect, useId, useState } from "react";
 import { parseBold } from "@/-helper-tsx";
 import ActionButton from "@/components/ActionButton";
+import AudioVisualizer from "@/components/AudioVisualizer";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useAudio } from "@/hooks/useAudio";
@@ -26,8 +27,17 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 
 	const headingId = useId();
 	const subHeadingId = useId();
-	const playIntroductionPortuguese = useAudio("bia_introduction_portuguese");
-	const playIntroductionEnglish = useAudio("bia_introduction_english");
+
+	// Using our updated hook to grab the play function AND the isPlaying state
+	const { play: playPt, isPlaying: isPlayingPt } = useAudio(
+		"bia_introduction_portuguese",
+	);
+	const { play: playEn, isPlaying: isPlayingEn } = useAudio(
+		"bia_introduction_english",
+	);
+
+	// If either language is currently playing, trigger the visualizer
+	const isAnyPlaying = isPlayingPt || isPlayingEn;
 
 	return (
 		<section
@@ -36,6 +46,7 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 			className="relative w-full py-12 flex justify-center bg-background-secondary"
 		>
 			<div className="container mx-auto px-4 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-12">
+				{/* LEFT COLUMN: Controls */}
 				<div className="flex flex-col">
 					<h2 id={headingId} className="flex flex-col text-center md:text-left">
 						<span className="uppercase text-muted-foreground text-base font-normal">
@@ -49,6 +60,7 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 
 					<p className="mt-6">{parseBold(m.audio_engine_description())}.</p>
 					<Separator className="mt-6 mb-4" />
+
 					<section aria-labelledby={subHeadingId} className="space-y-4">
 						<h3 id={subHeadingId} className="uppercase text-muted-foreground">
 							{m.try_now()}
@@ -57,9 +69,7 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 							<div className="flex gap-4">
 								<Button
 									variant="ghost"
-									onClick={() => {
-										setSelectedAudioLanguage("pt-br");
-									}}
+									onClick={() => setSelectedAudioLanguage("pt-br")}
 									size="lg"
 									aria-label={m.change_reproduction_language_to({
 										language: m.portuguese(),
@@ -75,9 +85,7 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 								</Button>
 								<Button
 									variant="ghost"
-									onClick={() => {
-										setSelectedAudioLanguage("en");
-									}}
+									onClick={() => setSelectedAudioLanguage("en")}
 									size="lg"
 									aria-label={m.change_reproduction_language_to({
 										language: m.english(),
@@ -96,10 +104,8 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 								icon={<PlayIcon />}
 								isIconAtStart
 								onClick={() => {
-									if (selectedAudioLanguage === "pt-br")
-										playIntroductionPortuguese();
-									else if (selectedAudioLanguage === "en")
-										playIntroductionEnglish();
+									if (selectedAudioLanguage === "pt-br") playPt();
+									else if (selectedAudioLanguage === "en") playEn();
 								}}
 							>
 								{m.audio_engine_listen()}
@@ -107,31 +113,23 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 						</div>
 					</section>
 				</div>
-				<div className="p-8">
-					{/* The clickable is only for visual users, to provide a better ux, it will do the same as the action button */}
-					{/* To reduce noise for screen readers it is hidden and also not selectable */}
-					<Button
-						variant="ghost"
-						onClick={() => {
-							if (selectedAudioLanguage === "pt-br")
-								playIntroductionPortuguese();
-							else if (selectedAudioLanguage === "en")
-								playIntroductionEnglish();
-						}}
-						className="rounded-full h-full aspect-square border-4"
-						aria-hidden="true"
-						tabIndex={-1}
-					>
-						<Volume2Icon
-							className="text-border"
-							style={{
-								width: "5em",
-								height: "5em",
-							}}
-						/>
-					</Button>
+
+				{/* RIGHT COLUMN: Visualizer (Strictly visual, no interactions) */}
+				<div className="p-8 flex items-center justify-center">
+					<AudioVisualizer isPlaying={isAnyPlaying} />
 				</div>
 			</div>
+
+			{/* Inline keyframes specifically for the sound wave bounce */}
+			<style>{`
+                @keyframes soundWave {
+                    0%, 100% { transform: scaleY(0.3); }
+                    50% { transform: scaleY(1); }
+                }
+                .animate-sound-wave {
+                    animation: soundWave ease-in-out infinite;
+                }
+            `}</style>
 		</section>
 	);
 };
