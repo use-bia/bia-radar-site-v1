@@ -20,6 +20,7 @@ const SectionHumanization: FunctionComponent<SectionHumanizationProps> = () => {
 					<h2 id={headingId} className="flex flex-col text-center md:text-left">
 						<span className="uppercase text-muted-foreground text-base font-normal">
 							{m.humanization()}
+							<span className="sr-only">:</span>
 						</span>
 						<span className="text-3xl md:text-4xl xl:text-5xl font-bold">
 							{m.humanization_title()}
