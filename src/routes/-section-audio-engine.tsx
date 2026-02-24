@@ -82,7 +82,7 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 							{m.try_now()}
 						</h3>
 
-						<div className="flex flex-col items-center sm:items-start space-y-4">
+						<div className="flex flex-col w-full items-center sm:items-start space-y-4">
 							<div className="flex flex-wrap justify-center sm:justify-start gap-4">
 								<Button
 									variant="ghost"
@@ -121,6 +121,7 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 							<ActionButton
 								icon={<PlayIcon />}
 								isIconAtStart
+								className="w-full max-w-md"
 								onClick={() => {
 									setPlayTrigger((prev) => prev + 1);
 									if (selectedAudioLanguage === "pt-br") playPt();
