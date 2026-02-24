@@ -99,5 +99,6 @@
   "recognition_quote": "We create new senses to restore autonomy and dignity",
   "recognition_quote_sub": "For Greater Freedom",
   "support": "Support",
-  "creators": "Creators"
+  "created_by": "Created by",
+  "visit_xxx_opens_in_new_tab": "Visit {name} (opens in new tab)"
 }

@@ -1,33 +1,47 @@
 import { type FunctionComponent, useId } from "react";
 import { parseBold } from "@/-helper-tsx";
+import LogoAbdi from "@/assets/logo-abdi.svg?react";
+import LogoHubtec from "@/assets/logo-hubtec.svg?react";
+import LogoNeosenti from "@/assets/logo-neosenti.svg?react";
 import { m } from "@/paraglide/messages";
 
 const supporters = [
 	{
-		name: "ABDI",
-		type: "support",
-		logo_light_mode: "/assets/supporters/abdi-light.png",
-		logo_dark_mode: "/assets/supporters/abdi-dark.png",
+		type: m.support(),
+		logo: (
+			<LogoAbdi
+				aria-hidden="true"
+				className="h-[6em] sm:h-[5em] lg:h-[5em] xl:h-[6em] w-auto text-foreground"
+			/>
+		),
 		url: "https://abdi.com.br/",
-		alt: "Logo da ABDI",
+		alt: "ABDI",
 	},
 	{
-		name: "HubTec",
-		type: "support",
-		logo_light_mode: "/assets/supporters/hubtec-light.png",
-		logo_dark_mode: "/assets/supporters/hubtec-dark.png",
-		url: "https://hubtec.com.br/",
-		alt: "Logo da HubTec",
+		type: m.support(),
+		logo: (
+			<LogoHubtec
+				aria-hidden="true"
+				className="h-[4em] sm:h-[3.5em] lg:h-[4em] xl:h-[4em] w-auto text-foreground"
+			/>
+		),
+		url: "https://www.abdi.com.br/hubtec/",
+		alt: "HubTec",
 	},
 	{
 		name: "neosenti",
-		type: "creator",
-		logo_light_mode: "/assets/creators/neosenti-light.png",
-		logo_dark_mode: "/assets/creators/neosenti-dark.png",
+		type: m.created_by(),
+		logo: (
+			<LogoNeosenti
+				aria-hidden="true"
+				className="h-[4em] sm:h-[3em] md:h-[4em] lg:h-[4em] xl:h-[3em] w-auto text-foreground"
+			/>
+		),
 		url: "https://neosenti.com/",
-		alt: "Logo da Neosenti",
+		alt: "Neosenti",
 	},
 ];
+
 type SectionRecognitionProps = Record<string, never>;
 
 const SectionRecognition: FunctionComponent<SectionRecognitionProps> = () => {
@@ -39,7 +53,7 @@ const SectionRecognition: FunctionComponent<SectionRecognitionProps> = () => {
 			aria-labelledby={headingId}
 			className="relative w-full py-12 flex flex-col justify-center bg-background overflow-hidden"
 		>
-			<h2 id={headingId} className="flex flex-col text-center">
+			<h2 id={headingId} className="flex flex-col text-center mb-8">
 				<span className="uppercase text-muted-foreground text-base font-normal">
 					{m.expertize_and_recognition()}
 					<span className="sr-only">:</span>
@@ -48,9 +62,10 @@ const SectionRecognition: FunctionComponent<SectionRecognitionProps> = () => {
 					{m.recognition_title()}
 				</span>
 			</h2>
-			<div className="container mx-auto px-4 lg:px-8 flex flex-col sm:flex-row items-center gap-4 lg:gap-8 xl:gap-12 w-full">
-				{/* 2. Left Column */}
-				<div className="flex flex-col items-center sm:items-start text-center sm:text-left w-full sm:max-w-xl lg:max-w-3xl shrink">
+
+			<div className="container mx-auto px-4 lg:px-8 grid grid-cols-1 md:grid-cols-2 items-center gap-2 xl:gap-12 w-full">
+				{/* 1. Left Column */}
+				<div className="flex flex-col items-center md:items-start text-center md:text-left w-full">
 					<p className="my-6">{parseBold(m.recognition_description())}.</p>
 
 					<blockquote className="border-l-2 border-primary p-2 pl-6">
@@ -63,8 +78,32 @@ const SectionRecognition: FunctionComponent<SectionRecognitionProps> = () => {
 					</blockquote>
 				</div>
 
-				{/* 3. Right Column */}
-				<div className="flex flex-1 items-center justify-center p-4 w-full min-w-62.5 mt-8 sm:mt-0"></div>
+				{/* 2. Right Column (Logos) */}
+				<div className="flex flex-1 items-center justify-center p-4 w-full mt-8 md:mt-0">
+					{/* The Grid: 2 cols (xs) -> 3 cols (sm) -> 2 cols (md) -> 3 cols (lg+) */}
+					<ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-14 w-full">
+						{supporters.map(({ type, logo, url, alt }) => (
+							<li
+								key={`supporter-${alt}`}
+								// The magic happens here with `last:col-span-*`
+								className="flex flex-col items-center col-span-1 last:col-span-2 sm:last:col-span-1 md:last:col-span-2 xl:last:col-span-1"
+							>
+								<span className="text-muted-foreground uppercase mb-2 text-sm text-center">
+									{type}
+								</span>
+								<a
+									href={url}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="h-full items-center flex transition-opacity hover:opacity-80"
+									aria-label={m.visit_xxx_opens_in_new_tab({ name: alt })}
+								>
+									{logo}
+								</a>
+							</li>
+						))}
+					</ul>
+				</div>
 			</div>
 		</section>
 	);
