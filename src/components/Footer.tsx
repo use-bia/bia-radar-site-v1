@@ -1,7 +1,7 @@
 import { Link, linkOptions } from "@tanstack/react-router";
 import { AccessibilityIcon, LockIcon } from "lucide-react"; // Added LockIcon
 import type { FunctionComponent } from "react";
-import { parseBold } from "@/-helper-tsx";
+import { parseFormattedText } from "@/-helper-tsx";
 import BiaLogo from "@/assets/bia-radar-logo.svg?react";
 import ByNeosenti from "@/assets/by-neosenti.svg?react";
 import {
@@ -67,7 +67,7 @@ const Footer: FunctionComponent<FooterProps> = () => {
 						<p className="text-muted-foreground mt-4">
 							{m.revolutionizing_mobility_with_new_senses()}
 							<br />
-							{parseBold(m.developed_proudly_in_brazil())}{" "}
+							{parseFormattedText(m.developed_proudly_in_brazil())}{" "}
 							<strong>{m.brazil()}!</strong>
 						</p>
 					</div>

@@ -115,7 +115,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 									<Link
 										to="/"
 										hash={m.waiting_list_id()}
-										aria-label={m.i_want_to_be_part_of_it()}
+										aria-label={m.join_the_waiting_list_and_get_a_10_percent_discount_on_your_purchase()}
 									>
 										{m.i_want_to_be_part_of_it()}
 										<Badge variant="secondary" className="bg-background">

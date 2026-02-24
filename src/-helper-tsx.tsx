@@ -1,11 +1,14 @@
 import type { ReactNode } from "react";
 
-export const parseBold = (text: string): ReactNode => {
-	// 1. Strip the <b> tags to create one continuous string for screen readers
-	const pureText = text.replace(/<b>(.*?)<\/b>/g, "$1");
+export const parseFormattedText = (text: string): ReactNode => {
+	// 1. Strip the <b> and <u> tags to create one continuous string for screen readers
+	// Using a simpler regex that just strips opening/closing b and u tags
+	const pureText = text.replace(/<\/?(?:b|u)>/g, "");
 
 	// 2. Parse the visual content as you normally would
-	const parts = text.split(/(<b>.*?<\/b>)/g);
+	// Split by either <b>...</b> OR <u>...</u>
+	const parts = text.split(/(<b>.*?<\/b>|<u>.*?<\/u>)/g);
+
 	const visualContent = parts.map((part, index) => {
 		if (part.startsWith("<b>") && part.endsWith("</b>")) {
 			const content = part.slice(3, -4);
@@ -14,6 +17,16 @@ export const parseBold = (text: string): ReactNode => {
 				<strong key={`bold-${content}-${index}`} className="font-bold">
 					{content}
 				</strong>
+			);
+		}
+
+		if (part.startsWith("<u>") && part.endsWith("</u>")) {
+			const content = part.slice(3, -4);
+			return (
+				// biome-ignore lint: The content is static and won't change, so using it in the key is safe.
+				<u key={`underline-${content}-${index}`} className="underline">
+					{content}
+				</u>
 			);
 		}
 

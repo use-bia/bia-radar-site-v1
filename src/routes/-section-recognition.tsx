@@ -1,5 +1,5 @@
 import { type FunctionComponent, useId } from "react";
-import { parseBold } from "@/-helper-tsx";
+import { parseFormattedText } from "@/-helper-tsx";
 import LogoAbdi from "@/assets/logo-abdi.svg?react";
 import LogoHubtec from "@/assets/logo-hubtec.svg?react";
 import LogoNeosenti from "@/assets/logo-neosenti.svg?react";
@@ -65,8 +65,10 @@ const SectionRecognition: FunctionComponent<SectionRecognitionProps> = () => {
 
 			<div className="container mx-auto px-4 lg:px-8 grid grid-cols-1 md:grid-cols-2 items-center gap-2 xl:gap-12 w-full">
 				{/* 1. Left Column */}
-				<div className="flex flex-col items-center md:items-start text-center md:text-left w-full">
-					<p className="my-6">{parseBold(m.recognition_description())}.</p>
+				<div className="flex flex-col items-center md:items-start md:text-left w-full">
+					<p className="my-6 text-center md:text-left">
+						{parseFormattedText(m.recognition_description())}.
+					</p>
 
 					<blockquote className="border-l-2 border-primary p-2 pl-6">
 						<p className="text-xl font-bold">“{m.recognition_quote()}.”</p>
@@ -88,7 +90,7 @@ const SectionRecognition: FunctionComponent<SectionRecognitionProps> = () => {
 								// The magic happens here with `last:col-span-*`
 								className="flex flex-col items-center col-span-1 last:col-span-2 sm:last:col-span-1 md:last:col-span-2 xl:last:col-span-1"
 							>
-								<span className="text-muted-foreground uppercase mb-2 text-sm text-center">
+								<span className="text-muted-foreground uppercase font-bold mb-2 text-sm text-center">
 									{type}
 								</span>
 								<a

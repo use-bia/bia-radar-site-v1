@@ -1,6 +1,6 @@
 import { BrainCircuitIcon, HandCoinsIcon, HeartIcon } from "lucide-react";
 import { type FunctionComponent, useId } from "react";
-import { parseBold } from "@/-helper-tsx";
+import { parseFormattedText } from "@/-helper-tsx";
 import { BasicItemBox, BasicItemList } from "@/components/BasicItemBox";
 import { m } from "@/paraglide/messages";
 
@@ -35,19 +35,19 @@ const SectionHumanization: FunctionComponent<SectionHumanizationProps> = () => {
 						title={m.humanization_item_3_title()}
 						icon={<BrainCircuitIcon />}
 					>
-						{parseBold(m.humanization_item_3_description())}.
+						{parseFormattedText(m.humanization_item_3_description())}.
 					</BasicItemBox>
 					<BasicItemBox
 						title={m.humanization_item_1_title()}
 						icon={<HandCoinsIcon />}
 					>
-						{parseBold(m.humanization_item_1_description())}.
+						{parseFormattedText(m.humanization_item_1_description())}.
 					</BasicItemBox>
 					<BasicItemBox
 						title={m.humanization_item_2_title()}
 						icon={<HeartIcon />}
 					>
-						{parseBold(m.humanization_item_2_description())}.
+						{parseFormattedText(m.humanization_item_2_description())}.
 					</BasicItemBox>
 				</BasicItemList>
 			</div>

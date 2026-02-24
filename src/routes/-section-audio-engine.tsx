@@ -1,6 +1,6 @@
 import { PlayIcon } from "lucide-react";
 import { type FunctionComponent, useEffect, useId, useState } from "react";
-import { parseBold } from "@/-helper-tsx";
+import { parseFormattedText } from "@/-helper-tsx";
 import ActionButton from "@/components/ActionButton";
 import AudioVisualizer from "@/components/AudioVisualizer";
 import { Button } from "@/components/ui/button";
@@ -68,7 +68,9 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 						</span>
 					</h2>
 
-					<p className="mt-6">{parseBold(m.audio_engine_description())}.</p>
+					<p className="mt-6">
+						{parseFormattedText(m.audio_engine_description())}.
+					</p>
 
 					<Separator className="mt-6 mb-4 w-full" />
 

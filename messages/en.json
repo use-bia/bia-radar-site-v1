@@ -25,13 +25,10 @@
   "safety": "Safety",
   "description": "Description",
   "learn_more": "Learn More",
-  "roadmap": "Roadmap",
-  "roadmap_id": "roadmap",
   "how_it_works": "How it works",
   "open_full_description_of_the_device": "Open full description of the device",
   "i_want_to_be_part_of_it": "I want to be part of it",
-  "waiting_list": "Waiting list",
-  "waiting_list_id": "waiting-list",
+  "join_the_waiting_list": "Join the waiting list",
   "join_the_waiting_list_and_get_a_10_percent_discount_on_your_purchase": "Join the waiting list and get a 10% discount on your purchase",
   "find_out_how_bia_works": "Find out how BIA works",
   "find_out_how_long_until_bia_is_available": "Find out how long until BIA is available",
@@ -100,5 +97,15 @@
   "recognition_quote_sub": "For Greater Freedom",
   "support": "Support",
   "created_by": "Created by",
-  "visit_xxx_opens_in_new_tab": "Visit {name} (opens in new tab)"
+  "visit_xxx_opens_in_new_tab": "Visit {name} (opens in new tab)",
+  "heading_to_launch": "Heading to launch",
+  "roadmap": "Roadmap",
+  "roadmap_id": "roadmap",
+  "roadmap_title": "Your Journey Starts Here",
+  "roadmap_be_a_distributor": "Become a distributor",
+  "roadmap_distributors": "Distributors",
+  "roadmap_price_note": "Retail price will be announced soon, join the <u>waiting list</u> to not miss anything",
+  "waiting_list": "Waiting list",
+  "waiting_list_id": "waiting-list"
+
 }

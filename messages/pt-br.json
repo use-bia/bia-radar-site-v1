@@ -25,13 +25,10 @@
   "safety": "Segurança",
   "description": "Descrição",
   "learn_more": "Saiba Mais",
-  "roadmap": "Cronograma",
-  "roadmap_id": "roadmap",
   "how_it_works": "Como funciona",
   "open_full_description_of_the_device": "Abrir descrição completa do dispositivo",
   "i_want_to_be_part_of_it": "Quero fazer parte",
-  "waiting_list": "Lista de espera",
-  "waiting_list_id": "waiting-list",
+  "join_the_waiting_list": "Junte-se à lista de espera",
   "join_the_waiting_list_and_get_a_10_percent_discount_on_your_purchase": "Junte-se à lista de espera e obtenha um desconto de 10% na sua compra",
   "find_out_how_bia_works": "Descubra como a BIA funciona",
   "find_out_how_long_until_bia_is_available": "Descubra quanto tempo falta para a BIA estar disponível",
@@ -100,6 +97,16 @@
   "recognition_quote_sub": "Por Mais Liberdade",
   "support": "Apoio",
   "created_by": "Criado por",
-  "visit_xxx_opens_in_new_tab": "Visitar {name} (abre em nova aba)"
+  "visit_xxx_opens_in_new_tab": "Visitar {name} (abre em nova aba)",
+  "heading_to_launch": "Rumo ao lançamento",
+  "coming_soon": "Em breve",
+  "roadmap": "Cronograma",
+  "roadmap_id": "roadmap",
+  "roadmap_title": "Sua Jornada Começa Aqui",
+  "roadmap_become_a_distributor": "Seja um distribuidor",
+  "roadmap_distributors": "Distribuidores",
+  "roadmap_price_note": "Preço de venda será divulgado em breve, junte-se à <u>lista de espera</u> para não perder nada",
+  "waiting_list": "Lista de espera",
+  "waiting_list_id": "waiting-list"
 
 }
