@@ -40,7 +40,7 @@ const ActionButton = forwardRef<HTMLButtonElement, ActionButtonProps>(
 		const innerContent = (
 			<>
 				{isIconAtStart && icon && IconBlock}
-				<div className="w-full flex px-5 items-center justify-center gap-2 font-bold">
+				<div className="w-full flex px-3 items-center justify-center gap-2 font-bold">
 					{childContent}
 				</div>
 				{!isIconAtStart && icon && IconBlock}

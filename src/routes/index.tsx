@@ -21,6 +21,7 @@ function App() {
 			<SectionHumanization />
 			<SectionAudioEngine />
 			<SectionRoadmap />
+			<Separator />
 			<SectionRecognition />
 
 			<section id={m.waiting_list_id()}>WAITING</section>
