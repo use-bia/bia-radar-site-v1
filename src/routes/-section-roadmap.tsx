@@ -40,7 +40,7 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 					<div className="relative border border-primary pt-10 mt-8 w-full flex flex-col overflow-hidden">
 						<div className="w-full h-auto py-12 md:py-12 px-6 lg:px-10 flex justify-center">
 							<PricePlaceholder
-								className="w-full max-w-full h-auto"
+								className="w-full max-w-full h-auto text-foreground"
 								aria-label={m.roadmap_price_alt()}
 							/>
 						</div>
@@ -86,6 +86,11 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 							to="/"
 							hash={m.waiting_list_id()}
 							className="hover:underline hover:text-primary transition-colors"
+							onClick={() => {
+								document
+									.getElementById(m.waiting_list_id())
+									?.scrollIntoView({ behavior: "smooth" });
+							}}
 						>
 							* {parseFormattedText(m.roadmap_price_note())}.
 						</Link>

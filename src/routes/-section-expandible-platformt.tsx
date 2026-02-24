@@ -18,7 +18,7 @@ const SectionExpandiblePlatform: FunctionComponent<
 			className="relative w-full flex py-12 justify-center"
 		>
 			<div
-				className="absolute inset-0 -z-1 bg-size-[80em] bg-center md:bg-position-[calc(50%+15em)_center] bg-no-repeat opacity-40 dark:opacity-20 pointer-events-none transition-all duration-500"
+				className="absolute inset-0 -z-1 bg-size-[80em] bg-center md:bg-position-[calc(50%+15em)_center] bg-no-repeat opacity-20 dark:opacity-20 pointer-events-none transition-all duration-500"
 				style={{
 					backgroundImage: `url(${UniverseBg})`,
 				}}

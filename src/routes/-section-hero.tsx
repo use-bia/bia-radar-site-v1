@@ -58,7 +58,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 			className="relative w-full flex py-4 md:py-12 xl:py-15 justify-center overflow-hidden"
 		>
 			<div
-				className="absolute inset-0 -z-1 bg-size-[80em] bg-center md:bg-position-[calc(50%+5em)_center] bg-no-repeat opacity-40 dark:opacity-20 pointer-events-none transition-all duration-500"
+				className="absolute inset-0 -z-1 bg-size-[80em] bg-center md:bg-position-[calc(50%+5em)_center] bg-no-repeat opacity-15 dark:opacity-20 pointer-events-none transition-all duration-500"
 				style={{
 					backgroundImage: `url(${LottusBg})`,
 				}}
