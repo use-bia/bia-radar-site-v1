@@ -132,7 +132,7 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 				</div>
 
 				{/* 3. Right Column: Added flex-1 to fill remaining space, and justify-center to center the visualizer inside it */}
-				<div className="flex flex-1 items-center justify-center p-4 w-full min-w-[250px] mt-8 sm:mt-0">
+				<div className="flex flex-1 items-center justify-center p-4 w-full min-w-62.5 mt-8 sm:mt-0">
 					<AudioVisualizer isPlaying={isAnyPlaying} playTrigger={playTrigger} />
 				</div>
 			</div>
