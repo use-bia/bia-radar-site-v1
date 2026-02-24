@@ -111,6 +111,11 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 									icon={<ChevronRightIcon />}
 									asChild
 									className="md:w-full xl:w-auto"
+									onClick={() => {
+										document
+											.getElementById(m.waiting_list_id())
+											?.scrollIntoView({ behavior: "smooth" });
+									}}
 								>
 									<Link
 										to="/"
@@ -157,7 +162,15 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 							</Tooltip>
 							<Tooltip>
 								<TooltipTrigger asChild>
-									<Button variant="underline" asChild>
+									<Button
+										variant="underline"
+										asChild
+										onClick={() => {
+											document
+												.getElementById(m.roadmap_id())
+												?.scrollIntoView({ behavior: "smooth" });
+										}}
+									>
 										<Link to="/" hash={m.roadmap_id()}>
 											{m.roadmap()}
 										</Link>

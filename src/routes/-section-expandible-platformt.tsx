@@ -67,6 +67,11 @@ const SectionExpandiblePlatform: FunctionComponent<
 					<Button
 						variant="default"
 						className="my-4 uppercase font-bold w-full max-w-xs flex items-center justify-center gap-2"
+						onClick={() => {
+							document
+								.getElementById(m.waiting_list_id())
+								?.scrollIntoView({ behavior: "smooth" });
+						}}
 					>
 						<span>{m.be_a_part()}</span>
 						<ArrowRightIcon aria-hidden="true" className="w-5 h-5 shrink-0" />

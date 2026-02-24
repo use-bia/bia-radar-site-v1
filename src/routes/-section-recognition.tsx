@@ -51,7 +51,7 @@ const SectionRecognition: FunctionComponent<SectionRecognitionProps> = () => {
 		<section
 			id={m.recognition_id()}
 			aria-labelledby={headingId}
-			className="relative w-full py-12 flex flex-col justify-center bg-background overflow-hidden"
+			className="relative w-full py-12 flex flex-col justify-center bg-background"
 		>
 			<h2 id={headingId} className="flex flex-col text-center mb-8">
 				<span className="uppercase text-muted-foreground text-base font-normal">

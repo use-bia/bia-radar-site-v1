@@ -39,7 +39,10 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 
 					<div className="relative border border-primary pt-10 mt-8 w-full flex flex-col overflow-hidden">
 						<div className="w-full h-auto py-12 md:py-12 px-6 lg:px-10 flex justify-center">
-							<PricePlaceholder className="w-full max-w-full h-auto" />
+							<PricePlaceholder
+								className="w-full max-w-full h-auto"
+								aria-label={m.roadmap_price_alt()}
+							/>
 						</div>
 
 						<div className="absolute top-0 right-0 bg-primary">
@@ -48,7 +51,6 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 							</p>
 						</div>
 
-						{/* --- UPDATED PRICING BOTTOM SECTION --- */}
 						<div className="bg-secondary flex border-t border-primary p-6 sm:px-8 md:px-4 lg:px-8 sm:py-6 gap-4 items-center justify-between flex-col sm:flex-row md:flex-col lg:flex-row">
 							<div className="flex flex-col gap-1 items-center sm:items-start md:items-center lg:items-start text-center sm:text-left md:text-center lg:text-left">
 								<p className="uppercase text-sm sm:text-base text-muted-foreground">
@@ -60,6 +62,12 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 								<ActionButton
 									icon={<PackageIcon />}
 									className="w-full sm:w-auto md:w-full lg:w-auto"
+									asChild
+									onClick={() => {
+										document
+											.getElementById(m.waiting_list_id())
+											?.scrollIntoView({ behavior: "smooth" });
+									}}
 								>
 									<Link
 										to="/"
@@ -71,7 +79,6 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 								</ActionButton>
 							</div>
 						</div>
-						{/* --- END UPDATED SECTION --- */}
 					</div>
 
 					<p className="mt-3 w-full text-xs sm:text-sm text-muted-foreground text-center px-2 md:px-0">

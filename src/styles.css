@@ -131,4 +131,13 @@
     /* Removed "grayscale", as "antialiased" handles the font smoothing perfectly on its own */
     @apply m-0 bg-background text-foreground font-sans antialiased tracking-wide leading-tight;
   }
+  html {
+    scroll-behavior: smooth;
+  }
+
+  [class*="overflow-y-auto"], 
+  [class*="overflow-auto"] {
+    scroll-behavior: smooth;
+  }
+
 }
