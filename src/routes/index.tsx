@@ -5,6 +5,7 @@ import SectionExpandiblePlatform from "./-section-expandible-platformt";
 import SectionHero from "./-section-hero";
 import SectionHumanization from "./-section-humanization";
 import SectionObjective from "./-section-objective";
+import SectionRecognition from "./-section-recognition";
 
 export const Route = createFileRoute("/")({ component: App });
 
@@ -16,6 +17,7 @@ function App() {
 			<SectionExpandiblePlatform />
 			<SectionHumanization />
 			<SectionAudioEngine />
+			<SectionRecognition />
 
 			<section id={m.roadmap_id()}>
 				<h2>Roadmap</h2>

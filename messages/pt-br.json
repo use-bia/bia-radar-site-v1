@@ -91,5 +91,14 @@
   "preview_input_placeholder": "Insira o Código...",
   "authorized_personnel_only": "Somente pessoal autorizado",
   "lock_site": "Trancar site",
-  "try_now": "Testar agora"
+  "try_now": "Testar agora",
+  "expertize_and_recognition": "Autoridade & Reconhecimento",
+  "recognition_id": "recognition_section",
+  "recognition_title": "Orgulho em criar autonomia",
+  "recognition_description": "Nascemos de um desafio nacional de inovação para resolver um problema real. <b>Reconhecida e premiada</b> pela <b>ABDI</b> e <b>HubTec</b>, a BIA-RADAR é tecnologia brasileira feita para devolver o que há de mais valioso: a dignidade",
+  "recognition_quote": "Criamos novos sentidos para devolver autonomia e dignidade",
+  "recognition_quote_sub": "Por Mais Liberdade",
+  "support": "Apoio",
+  "creators": "Criadores"
+
 }

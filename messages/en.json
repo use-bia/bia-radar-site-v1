@@ -91,5 +91,13 @@
   "preview_input_placeholder": "Enter Code...",
   "authorized_personnel_only": "Authorized Personnel Only",
   "lock_site": "Lock site",
-  "try_now": "Try now"
+  "try_now": "Try now",
+  "expertize_and_recognition": "Expertise & Recognition",
+  "recognition_id": "recognition_section",
+  "recognition_title": "Proud to Create Autonomy",
+  "recognition_description": "Born from a national innovation competition to solve a real problem. <b>Recognized and awarded</b> by <b>ABDI</b> and <b>HubTec</b>, BIA-RADAR is Brazilian technology designed to restore what matters most: dignity",
+  "recognition_quote": "We create new senses to restore autonomy and dignity",
+  "recognition_quote_sub": "For Greater Freedom",
+  "support": "Support",
+  "creators": "Creators"
 }
