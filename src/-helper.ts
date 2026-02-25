@@ -82,5 +82,5 @@ export const generateLoremIpsum = (count = 5): string => {
 	const joined = result.join(" ");
 
 	// Capitalize the first letter and add a period for a "finished" look
-	return joined.charAt(0).toUpperCase() + joined.slice(1) + ".";
+	return `${joined.charAt(0).toUpperCase() + joined.slice(1)}.`;
 };

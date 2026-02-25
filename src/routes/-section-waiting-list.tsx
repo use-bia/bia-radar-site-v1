@@ -27,9 +27,10 @@ import { getLocale } from "@/paraglide/runtime";
 function guessCountryFromBrowser(): Country | undefined {
 	try {
 		// e.g., returns "en-US", "pt-BR", "es-MX", or just "en"
-		const userLocale = navigator.language || (navigator as any).userLanguage;
+		// @ts-expect-error - This is a widely supported API, but TypeScript's lib.dom.d.ts might not have it yet.
+		const userLocale = navigator.language || navigator.userLanguage;
 
-		if (userLocale && userLocale.includes("-")) {
+		if (userLocale?.includes("-")) {
 			// Split "pt-BR" into ["pt", "BR"] and grab the "BR"
 			const region = userLocale.split("-")[1].toUpperCase();
 
@@ -55,9 +56,7 @@ const SectionWaitingList: FunctionComponent<SectionWaitingListProps> = () => {
 	const honeypotId = useId();
 
 	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [submitStatus, setSubmitStatus] = useState<
-		"idle" | "success" | "error"
-	>("idle");
+	const [submitStatus] = useState<"idle" | "success" | "error">("idle");
 
 	const [phone, setPhone] = useState<string | undefined>();
 	const [phoneError, setPhoneError] = useState(false);
