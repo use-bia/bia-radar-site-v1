@@ -34,6 +34,16 @@ const config = defineConfig({
 			"https://script.google.com/macros/s/AKfycbzoWBo9OnhwwS6p4kidnTOWkjM7bVqeGRPmBAMS3882S3Rn2L-kK4NJ5A8hA4oMf2TJ/exec",
 		),
 	},
+	build: {
+		rollupOptions: {
+			output: {
+				manualChunks: {
+					"phone-input": ["react-phone-number-input"],
+					framework: ["react", "react-dom", "@tanstack/react-router"],
+				},
+			},
+		},
+	},
 });
 
 export default config;
