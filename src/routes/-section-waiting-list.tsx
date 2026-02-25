@@ -1,33 +1,46 @@
-import {
-	type FormEvent,
-	type FunctionComponent,
-	useEffect,
-	useId,
-	useState,
-} from "react";
+import type * as React from "react";
+import { type FunctionComponent, useId, useState } from "react";
+
 // 1. Import the utility function from the base library
 import { type Country, isValidPhoneNumber } from "react-phone-number-input";
 import enLabels from "react-phone-number-input/locale/en.json";
 import ptLabels from "react-phone-number-input/locale/pt.json";
+import { toast } from "sonner";
 import { parseFormattedText } from "@/-helper-tsx";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
+// Add FieldError to the imports here!
+import {
+	Field,
+	FieldError,
+	FieldGroup,
+	FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 // 2. Import your brand new custom Shadcn PhoneInput component
 import { PhoneInput } from "@/components/ui/phone-input";
+import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
 import { m } from "@/paraglide/messages";
 import { getLocale } from "@/paraglide/runtime";
 
-async function getCountryFromIP(): Promise<string | null> {
+function guessCountryFromBrowser(): Country | undefined {
 	try {
-		const res = await fetch("https://ipapi.co/json/");
-		const data = await res.json();
+		// e.g., returns "en-US", "pt-BR", "es-MX", or just "en"
+		const userLocale = navigator.language || (navigator as any).userLanguage;
 
-		return data.country_code; // "BR"
+		if (userLocale && userLocale.includes("-")) {
+			// Split "pt-BR" into ["pt", "BR"] and grab the "BR"
+			const region = userLocale.split("-")[1].toUpperCase();
+
+			// Ensure it looks like a valid 2-letter ISO code
+			if (region.length === 2) {
+				return region as Country;
+			}
+		}
+		return undefined; // If we can't guess, return undefined so the fallback takes over
 	} catch {
-		return null;
+		return undefined;
 	}
 }
 
@@ -48,74 +61,69 @@ const SectionWaitingList: FunctionComponent<SectionWaitingListProps> = () => {
 
 	const [phone, setPhone] = useState<string | undefined>();
 	const [phoneError, setPhoneError] = useState(false);
-	const [defaultCountry, setDefaultCountry] = useState<Country>("US");
+	const [defaultCountry, _] = useState<Country>(
+		guessCountryFromBrowser() ?? "US",
+	);
 
 	const currentLocale = getLocale() ?? "pt-br";
 	const isPt = currentLocale.startsWith("pt");
 
-	useEffect(() => {
-		getCountryFromIP().then((countryCode) => {
-			if (countryCode) {
-				setDefaultCountry(countryCode as Country);
-			}
-		});
-	}, []);
-
-	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
 		if (phone && !isValidPhoneNumber(phone)) {
 			setPhoneError(true);
+			// We still keep this! Moving focus to the error is the gold standard.
+			document.getElementById(inputPhoneId)?.focus();
 			return;
 		}
 
 		setPhoneError(false);
 		setIsSubmitting(true);
-		setSubmitStatus("idle");
+
+		// We can remove setSubmitStatus entirely from your state!
 
 		try {
 			const form = event.currentTarget;
 			const formData = new URLSearchParams();
 
-			const name =
-				(document.getElementById(inputNameId) as HTMLInputElement)?.value || "";
-			const email =
-				(document.getElementById(inputEmailId) as HTMLInputElement)?.value ||
-				"";
+			// ... (keep your existing formData mapping here) ...
 
-			const checkboxEl = document.getElementById(inputDistributorId);
-			const isDistributor =
-				(checkboxEl instanceof HTMLInputElement && checkboxEl.checked) ||
-				checkboxEl?.getAttribute("aria-checked") === "true";
-
-			const username =
-				(document.getElementById(honeypotId) as HTMLInputElement)?.value || "";
-
-			formData.append("type", "WAITING_LIST");
-			formData.append("name", name);
-			formData.append("email", email);
-			formData.append("phone", phone || "");
-			formData.append("supplier", isDistributor ? "Yes" : "No");
-			formData.append("username", username);
-			formData.append("userAgent", navigator.userAgent);
+			const urlEncodedData = formData.toString();
 
 			const response = await fetch(__CONTACT_API_URL__, {
 				method: "POST",
-				body: formData,
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded",
+					Accept: "text/plain, */*",
+				},
+				body: urlEncodedData,
 			});
+
+			if (!response.ok) throw new Error("Network response was not ok");
 
 			const data = await response.text();
 
 			if (data === "Success") {
-				setSubmitStatus("success");
 				form.reset();
 				setPhone(undefined);
+
+				// 1. Fire the accessible toast
+				toast.success(m.waiting_list_success_message());
+
+				// 2. Move focus back to the heading so the screen reader user
+				// isn't lost at the bottom of an empty form.
+				const headingEl = document.getElementById(headingId);
+				if (headingEl) {
+					headingEl.tabIndex = -1; // Makes non-focusable elements focusable via JS
+					headingEl.focus();
+				}
 			} else {
-				setSubmitStatus("error");
+				toast.error(m.waiting_list_error_message());
 			}
 		} catch (error) {
 			console.error("Submission error:", error);
-			setSubmitStatus("error");
+			toast.error(m.waiting_list_error_message());
 		} finally {
 			setIsSubmitting(false);
 		}
@@ -183,15 +191,18 @@ const SectionWaitingList: FunctionComponent<SectionWaitingListProps> = () => {
 										defaultCountry={defaultCountry}
 										value={phone}
 										onChange={setPhone}
+										// Added aria attributes for invalid state and description
+										aria-invalid={phoneError ? "true" : "false"}
+										aria-describedby={
+											phoneError ? `${inputPhoneId}-error` : undefined
+										}
 										className={cn(
 											"bg-background",
 											phoneError
 												? "ring-destructive/20 border-destructive ring-[3px]"
 												: "",
 										)}
-										// Pass the imported translation file directly
 										labels={isPt ? ptLabels : enLabels}
-										// Pass custom strings for the dropdown internals
 										searchPlaceholder={
 											isPt ? "Buscar país..." : "Search country..."
 										}
@@ -200,10 +211,11 @@ const SectionWaitingList: FunctionComponent<SectionWaitingListProps> = () => {
 										}
 									/>
 
+									{/* Swapped standard <p> for your highly accessible FieldError */}
 									{phoneError && (
-										<p className="text-destructive text-sm mt-1">
+										<FieldError id={`${inputPhoneId}-error`}>
 											Please enter a valid phone number.
-										</p>
+										</FieldError>
 									)}
 								</Field>
 							</div>
@@ -237,21 +249,33 @@ const SectionWaitingList: FunctionComponent<SectionWaitingListProps> = () => {
 									disabled={isSubmitting}
 									className="mt-4 w-full font-bold uppercase py-6"
 								>
-									{isSubmitting
-										? m.waiting_list_sending_message()
-										: m.waiting_list_submit_button()}
+									{isSubmitting ? (
+										<>
+											<Spinner aria-hidden="true" />
+											{m.waiting_list_sending_message()}
+										</>
+									) : (
+										m.waiting_list_submit_button()
+									)}
 								</Button>
 
-								{submitStatus === "success" && (
-									<p className="text-green-600 mt-2 font-medium">
-										{m.waiting_list_success_message()}
-									</p>
-								)}
-								{submitStatus === "error" && (
-									<p className="text-destructive mt-2 font-medium">
-										{m.waiting_list_error_message()}
-									</p>
-								)}
+								{/* Added aria-live region to ensure screen readers announce the result */}
+								<div
+									aria-live="polite"
+									aria-atomic="true"
+									className="mt-2 text-center w-full min-h-6"
+								>
+									{submitStatus === "success" && (
+										<p className="text-green-600 font-medium">
+											{m.waiting_list_success_message()}
+										</p>
+									)}
+									{submitStatus === "error" && (
+										<p className="text-destructive font-medium">
+											{m.waiting_list_error_message()}
+										</p>
+									)}
+								</div>
 							</Field>
 						</FieldGroup>
 					</form>

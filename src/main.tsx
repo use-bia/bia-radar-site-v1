@@ -4,6 +4,7 @@ import {
 	RouterProvider,
 } from "@tanstack/react-router";
 import ReactDOM from "react-dom/client";
+import { Toaster } from "@/components/ui/sonner";
 import { getLocale, setLocale } from "@/paraglide/runtime.js";
 import { applyTheme } from "./-theme";
 import { audioEngine } from "./audio/audioEngine";
@@ -49,6 +50,7 @@ if (!rootElement.innerHTML) {
 		<ThemeProvider>
 			<TooltipProvider>
 				<RouterProvider router={router} />
+				<Toaster />
 			</TooltipProvider>
 		</ThemeProvider>,
 	);

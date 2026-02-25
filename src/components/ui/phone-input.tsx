@@ -71,11 +71,7 @@ const InputComponent = React.forwardRef<
 	React.ComponentProps<"input">
 >(({ className, ...props }, ref) => (
 	<Input
-		// Strictly applied rounded-none and your background colors
-		className={cn(
-			"rounded-none bg-background py-6 dark:bg-input/30",
-			className,
-		)}
+		className={cn("rounded-none bg-background py-6", className)}
 		{...props}
 		ref={ref}
 	/>
@@ -120,7 +116,7 @@ const CountrySelect = ({
 					variant="outline"
 					className={cn(
 						// Strictly applied rounded-none and your background colors to the dropdown trigger
-						"flex gap-1 rounded-none border-r-0 px-3 py-6 focus:z-10 bg-background dark:bg-input/30",
+						"flex gap-1 rounded-none border-r-0 px-3 py-6 focus:z-10 bg-background",
 						"border-input shadow-xs transition-[color,box-shadow]",
 						"focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
 					)}

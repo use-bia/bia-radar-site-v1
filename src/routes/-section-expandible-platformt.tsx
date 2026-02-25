@@ -1,7 +1,10 @@
 import { ArrowRightIcon } from "lucide-react";
-import { type FunctionComponent, useId } from "react";
-import UniverseBg from "@/assets/universe.webp";
+import { type FunctionComponent, useEffect, useId, useState } from "react";
+import MountainBg from "@/assets/mountain-bg-light.jpg";
+import UniverseBg from "@/assets/universe-bg-dark.jpg";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "@/contexts/ThemeContext";
+import { cn } from "@/lib/utils";
 import { m } from "@/paraglide/messages";
 
 type SectionExpandiblePlatformProps = Record<string, never>;
@@ -10,6 +13,11 @@ const SectionExpandiblePlatform: FunctionComponent<
 	SectionExpandiblePlatformProps
 > = () => {
 	const headingId = useId();
+	const { theme } = useTheme();
+	const [mounted, setMounted] = useState(false);
+	useEffect(() => setMounted(true), []);
+
+	const currentBg = mounted && theme === "light" ? MountainBg : UniverseBg;
 
 	return (
 		<section
@@ -18,18 +26,18 @@ const SectionExpandiblePlatform: FunctionComponent<
 			className="relative w-full flex py-12 justify-center"
 		>
 			<div
-				className="absolute inset-0 -z-1 bg-size-[80em] bg-center md:bg-position-[calc(50%+15em)_center] bg-no-repeat opacity-20 dark:opacity-20 pointer-events-none transition-all duration-500"
+				className={cn(
+					"absolute inset-0 -z-1 bg-no-repeat opacity-20 pointer-events-none transition-all duration-500",
+					"bg-size-[100%] dark:bg-size-[80em] bg-center",
+					"dark:md:bg-position-[calc(50%+15em)_center]",
+				)}
 				style={{
-					backgroundImage: `url(${UniverseBg})`,
+					backgroundImage: `url(${currentBg})`,
 				}}
 				aria-hidden="true"
 			/>
 
 			<div className="container mx-auto px-4 lg:px-8 grid grid-cols-1 md:grid-cols-5 gap-8 lg:gap-16">
-				{/* Title 
-                    Mobile: Natural stack.
-                    Tablet & Desktop (md+): Takes up the left 3 columns.
-                */}
 				<div className="col-span-1 md:col-span-3">
 					<h2 id={headingId} className="flex flex-col text-center md:text-left">
 						<span className="uppercase text-muted-foreground text-base font-normal">
