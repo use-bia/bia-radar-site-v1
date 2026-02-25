@@ -46,7 +46,10 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 							/>
 						</div>
 
-						<div className="absolute top-0 right-0 bg-primary">
+						<div
+							className="absolute top-0 right-0 bg-primary"
+							aria-hidden="true"
+						>
 							<p className="text-lg text-primary-foreground font-bold px-4 py-1">
 								{m.coming_soon()}
 							</p>
