@@ -114,7 +114,13 @@
   "waiting_list_input_fullname_placeholder": "Full Name",
   "waiting_list_input_email": "Email",
   "waiting_list_input_email_placeholder": "Email",
+  "waiting_list_input_phone": "Phone",
   "waiting_list_i_have_interest_in_being_a_distributor": "I have interest in being a distributor",
-  "waiting_list_submit_button": "Join the waiting list"
+  "waiting_list_submit_button": "Join the waiting list",
+  "waiting_list_success_message": "Thank you for signing up! We'll send a confirmation email within 48 hours.",
+  "waiting_list_error_message": "Oops! Something went wrong. Please try again.",
+  "waiting_list_sending_message": "Sending...",
+  "phone_search_placeholder": "Search country...",
+  "phone_no_country_found": "No country found."
 
 }

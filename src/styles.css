@@ -86,6 +86,12 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  --PhoneInput-color--focus: var(--ring);
+  --PhoneInputCountrySelectArrow-color: var(--muted-foreground);
+  --PhoneInputCountrySelectArrow-color--focus: var(--foreground);
+  --PhoneInputCountryFlag-borderColor: var(--border);
+  --PhoneInputCountryFlag-borderColor--focus: var(--ring);
 }
 
 .dark {
@@ -121,6 +127,9 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  --PhoneInputCountryFlag-borderColor: var(--border);
+  --PhoneInputCountryFlag-borderColor--focus: var(--ring);
 }
 
 @layer base {

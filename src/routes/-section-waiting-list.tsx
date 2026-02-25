@@ -1,18 +1,43 @@
-import { type FormEvent, type FunctionComponent, useId, useState } from "react";
+import {
+	type FormEvent,
+	type FunctionComponent,
+	useEffect,
+	useId,
+	useState,
+} from "react";
+// 1. Import the utility function from the base library
+import { type Country, isValidPhoneNumber } from "react-phone-number-input";
+import enLabels from "react-phone-number-input/locale/en.json";
+import ptLabels from "react-phone-number-input/locale/pt.json";
 import { parseFormattedText } from "@/-helper-tsx";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+// 2. Import your brand new custom Shadcn PhoneInput component
+import { PhoneInput } from "@/components/ui/phone-input";
+import { cn } from "@/lib/utils";
 import { m } from "@/paraglide/messages";
+import { getLocale } from "@/paraglide/runtime";
+
+async function getCountryFromIP(): Promise<string | null> {
+	try {
+		const res = await fetch("https://ipapi.co/json/");
+		const data = await res.json();
+
+		return data.country_code; // "BR"
+	} catch {
+		return null;
+	}
+}
 
 type SectionWaitingListProps = Record<string, never>;
 
 const SectionWaitingList: FunctionComponent<SectionWaitingListProps> = () => {
-	// Generate unique IDs for all fields to satisfy the linter
 	const headingId = useId();
 	const inputNameId = useId();
 	const inputEmailId = useId();
+	const inputPhoneId = useId();
 	const inputDistributorId = useId();
 	const honeypotId = useId();
 
@@ -21,8 +46,30 @@ const SectionWaitingList: FunctionComponent<SectionWaitingListProps> = () => {
 		"idle" | "success" | "error"
 	>("idle");
 
+	const [phone, setPhone] = useState<string | undefined>();
+	const [phoneError, setPhoneError] = useState(false);
+	const [defaultCountry, setDefaultCountry] = useState<Country>("US");
+
+	const currentLocale = getLocale() ?? "pt-br";
+	const isPt = currentLocale.startsWith("pt");
+
+	useEffect(() => {
+		getCountryFromIP().then((countryCode) => {
+			if (countryCode) {
+				setDefaultCountry(countryCode as Country);
+			}
+		});
+	}, []);
+
 	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
+
+		if (phone && !isValidPhoneNumber(phone)) {
+			setPhoneError(true);
+			return;
+		}
+
+		setPhoneError(false);
 		setIsSubmitting(true);
 		setSubmitStatus("idle");
 
@@ -36,19 +83,18 @@ const SectionWaitingList: FunctionComponent<SectionWaitingListProps> = () => {
 				(document.getElementById(inputEmailId) as HTMLInputElement)?.value ||
 				"";
 
-			// TypeScript Fix: Check the instance type safely
 			const checkboxEl = document.getElementById(inputDistributorId);
 			const isDistributor =
 				(checkboxEl instanceof HTMLInputElement && checkboxEl.checked) ||
 				checkboxEl?.getAttribute("aria-checked") === "true";
 
-			// Use the newly generated honeypot ID
 			const username =
 				(document.getElementById(honeypotId) as HTMLInputElement)?.value || "";
 
 			formData.append("type", "WAITING_LIST");
 			formData.append("name", name);
 			formData.append("email", email);
+			formData.append("phone", phone || "");
 			formData.append("supplier", isDistributor ? "Yes" : "No");
 			formData.append("username", username);
 			formData.append("userAgent", navigator.userAgent);
@@ -63,6 +109,7 @@ const SectionWaitingList: FunctionComponent<SectionWaitingListProps> = () => {
 			if (data === "Success") {
 				setSubmitStatus("success");
 				form.reset();
+				setPhone(undefined);
 			} else {
 				setSubmitStatus("error");
 			}
@@ -98,7 +145,6 @@ const SectionWaitingList: FunctionComponent<SectionWaitingListProps> = () => {
 				<div className="w-full max-w-xl mx-auto">
 					<form onSubmit={handleSubmit}>
 						<FieldGroup>
-							{/* THE HONEYPOT: Using useId() for the ID */}
 							<div
 								style={{ position: "absolute", left: "-9999px" }}
 								aria-hidden="true"
@@ -112,10 +158,11 @@ const SectionWaitingList: FunctionComponent<SectionWaitingListProps> = () => {
 								/>
 							</div>
 
-							<div className="grid grid-cols-2 gap-4">
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 								<Field aria-required>
 									<FieldLabel htmlFor={inputNameId}>
-										{m.waiting_list_input_fullname()}
+										{m.waiting_list_input_fullname()}{" "}
+										<span className="text-destructive">*</span>
 									</FieldLabel>
 									<Input
 										id={inputNameId}
@@ -127,43 +174,82 @@ const SectionWaitingList: FunctionComponent<SectionWaitingListProps> = () => {
 									/>
 								</Field>
 								<Field>
-									<FieldLabel htmlFor={inputEmailId}>
-										{m.waiting_list_input_email()}
+									<FieldLabel htmlFor={inputPhoneId}>
+										{m.waiting_list_input_phone()}
 									</FieldLabel>
-									<Input
-										id={inputEmailId}
-										name="email"
-										type="email"
-										autoComplete="on"
-										required
-										placeholder={m.waiting_list_input_email_placeholder()}
-										className="bg-background! py-6 px-4 text-base!"
+
+									<PhoneInput
+										id={inputPhoneId}
+										defaultCountry={defaultCountry}
+										value={phone}
+										onChange={setPhone}
+										className={cn(
+											"bg-background",
+											phoneError
+												? "ring-destructive/20 border-destructive ring-[3px]"
+												: "",
+										)}
+										// Pass the imported translation file directly
+										labels={isPt ? ptLabels : enLabels}
+										// Pass custom strings for the dropdown internals
+										searchPlaceholder={
+											isPt ? "Buscar país..." : "Search country..."
+										}
+										emptyMessage={
+											isPt ? "Nenhum país encontrado." : "No country found."
+										}
 									/>
+
+									{phoneError && (
+										<p className="text-destructive text-sm mt-1">
+											Please enter a valid phone number.
+										</p>
+									)}
 								</Field>
 							</div>
-							<Field orientation="horizontal">
+
+							<Field aria-required className="mt-2">
+								<FieldLabel htmlFor={inputEmailId}>
+									{m.waiting_list_input_email()}{" "}
+									<span className="text-destructive">*</span>
+								</FieldLabel>
+								<Input
+									id={inputEmailId}
+									name="email"
+									type="email"
+									autoComplete="on"
+									required
+									placeholder={m.waiting_list_input_email_placeholder()}
+									className="bg-background! py-6 px-4 text-base!"
+								/>
+							</Field>
+
+							<Field orientation="horizontal" className="mt-2">
 								<Checkbox id={inputDistributorId} name="supplier" />
 								<FieldLabel htmlFor={inputDistributorId}>
 									{m.waiting_list_i_have_interest_in_being_a_distributor()}
 								</FieldLabel>
 							</Field>
+
 							<Field orientation="horizontal" className="flex-col items-center">
 								<Button
 									type="submit"
 									disabled={isSubmitting}
 									className="mt-4 w-full font-bold uppercase py-6"
 								>
-									{isSubmitting ? "Sending..." : m.waiting_list_submit_button()}
+									{isSubmitting
+										? m.waiting_list_sending_message()
+										: m.waiting_list_submit_button()}
 								</Button>
 
 								{submitStatus === "success" && (
 									<p className="text-green-600 mt-2 font-medium">
-										Success! You are on the list.
+										{m.waiting_list_success_message()}
 									</p>
 								)}
 								{submitStatus === "error" && (
 									<p className="text-destructive mt-2 font-medium">
-										Something went wrong. Please try again.
+										{m.waiting_list_error_message()}
 									</p>
 								)}
 							</Field>
