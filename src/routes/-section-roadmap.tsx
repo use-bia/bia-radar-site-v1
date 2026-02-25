@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { PackageIcon } from "lucide-react";
 import { type FunctionComponent, useId } from "react";
+import { generateLoremIpsum } from "@/-helper";
 import { parseFormattedText } from "@/-helper-tsx";
 import PricePlaceholder from "@/assets/price-placeholder.svg?react";
 import ActionButton from "@/components/ActionButton";
@@ -107,10 +108,9 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 						<RoadmapItem isActive>
 							<RoadmapIndicator />
 							<RoadmapContent>
-								<RoadmapTitle>Q1: Foundation</RoadmapTitle>
+								<RoadmapTitle>Q1: {generateLoremIpsum(2)}</RoadmapTitle>
 								<RoadmapDescription>
-									Establish core architecture, finalize the database schema, and
-									deploy the MVP.
+									{generateLoremIpsum(16)}
 								</RoadmapDescription>
 							</RoadmapContent>
 						</RoadmapItem>
@@ -118,21 +118,17 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 						<RoadmapItem isActive>
 							<RoadmapIndicator />
 							<RoadmapContent>
-								<RoadmapTitle>Q2: Expansion</RoadmapTitle>
-								<RoadmapDescription>
-									Roll out user authentication, integrate third-party APIs, and
-									begin marketing.
-								</RoadmapDescription>
+								<RoadmapTitle>Q2: {generateLoremIpsum(1)}</RoadmapTitle>
+								<RoadmapDescription>{generateLoremIpsum(8)}</RoadmapDescription>
 							</RoadmapContent>
 						</RoadmapItem>
 
 						<RoadmapItem>
 							<RoadmapIndicator />
 							<RoadmapContent>
-								<RoadmapTitle>Q3: Scale</RoadmapTitle>
+								<RoadmapTitle>Q3: {generateLoremIpsum(1)}</RoadmapTitle>
 								<RoadmapDescription>
-									Optimize for enterprise clients and launch the mobile
-									application.
+									{generateLoremIpsum(10)}
 								</RoadmapDescription>
 								<button
 									type="button"
@@ -146,10 +142,9 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 						<RoadmapItem>
 							<RoadmapIndicator />
 							<RoadmapContent>
-								<RoadmapTitle>Q4: Future</RoadmapTitle>
+								<RoadmapTitle>Q4: {generateLoremIpsum(2)}</RoadmapTitle>
 								<RoadmapDescription>
-									Explore AI integration, expand to international markets, and
-									host the first annual user conference.
+									{generateLoremIpsum(20)}
 								</RoadmapDescription>
 							</RoadmapContent>
 						</RoadmapItem>

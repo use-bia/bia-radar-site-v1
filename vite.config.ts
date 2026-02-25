@@ -29,6 +29,11 @@ const config = defineConfig({
 		viteReact(),
 		svgr(),
 	],
+	define: {
+		__CONTACT_API_URL__: JSON.stringify(
+			"https://script.google.com/macros/s/AKfycbzoWBo9OnhwwS6p4kidnTOWkjM7bVqeGRPmBAMS3882S3Rn2L-kK4NJ5A8hA4oMf2TJ/exec",
+		),
+	},
 });
 
 export default config;

@@ -107,6 +107,14 @@
   "roadmap_price_note": "Retail price will be announced soon, join the <u>waiting list</u> to not miss anything",
   "roadmap_price_alt": "(X,X,X) Price will be announced soon",
   "waiting_list": "Waiting list",
-  "waiting_list_id": "waiting-list"
+  "waiting_list_id": "waiting-list",
+  "waiting_list_title": "Secure your launch coupon",
+  "waiting_list_description": "Sign up for the waiting list and receive a <b><u>10% off coupon</u></b> at launch",
+  "waiting_list_input_fullname": "Full Name",
+  "waiting_list_input_fullname_placeholder": "Full Name",
+  "waiting_list_input_email": "Email",
+  "waiting_list_input_email_placeholder": "Email",
+  "waiting_list_i_have_interest_in_being_a_distributor": "I have interest in being a distributor",
+  "waiting_list_submit_button": "Join the waiting list"
 
 }

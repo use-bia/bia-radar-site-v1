@@ -7,3 +7,5 @@ declare module '*.svg?react' {
 }
 
 declare module "@fontsource/*";
+
+declare const __CONTACT_API_URL__: string;
