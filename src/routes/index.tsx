@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { lazy, Suspense } from "react";
 import { Separator } from "@/components/ui/separator";
-// KEEP: Direct import for the Hero to ensure it loads immediately
+import { Skeleton } from "@/components/ui/skeleton";
 import SectionHero from "./-section-hero";
 
 const SectionObjective = lazy(() => import("./-section-objective"));
@@ -16,23 +16,57 @@ const SectionWaitingList = lazy(() => import("./-section-waiting-list"));
 
 export const Route = createFileRoute("/")({ component: App });
 
-const SectionLoader = () => <div className="h-32 animate-pulse bg-muted/20" />;
+const SectionLoader = () => (
+	<div className="w-full flex py-16 md:py-24 justify-center bg-background">
+		<div className="container mx-auto px-4 lg:px-8 flex flex-col gap-8 items-center md:items-start">
+			<div className="flex flex-col w-full gap-2 items-center md:items-start text-center md:text-left">
+				<Skeleton className="h-4 w-32" />
+				<Skeleton className="h-10 w-3/4 max-w-md" />
+			</div>
+			<Skeleton className="h-16 w-full max-w-2xl" />
+			<div className="w-full grid grid-cols-1 md:grid-cols-3 gap-8 mt-4">
+				<Skeleton className="h-64 w-full rounded-xl" />
+				<Skeleton className="h-64 w-full rounded-xl" />
+				<Skeleton className="h-64 w-full rounded-xl" />
+			</div>
+		</div>
+	</div>
+);
 
 function App() {
 	return (
 		<main>
-			{/* Critical Path: No Suspense here so it's visible ASAP */}
+			{/* Critical Path: Loaded immediately */}
 			<SectionHero />
 
-			{/* Non-Critical: Wrapped in Suspense */}
+			{/* Non-Critical: Individual Suspense boundaries */}
 			<Suspense fallback={<SectionLoader />}>
 				<SectionObjective />
+			</Suspense>
+
+			<Suspense fallback={<SectionLoader />}>
 				<SectionExpandiblePlatform />
+			</Suspense>
+
+			<Suspense fallback={<SectionLoader />}>
 				<SectionHumanization />
+			</Suspense>
+
+			<Suspense fallback={<SectionLoader />}>
 				<SectionAudioEngine />
+			</Suspense>
+
+			<Suspense fallback={<SectionLoader />}>
 				<SectionRoadmap />
+			</Suspense>
+
+			<Suspense fallback={<SectionLoader />}>
 				<SectionRecognition />
-				<Separator />
+			</Suspense>
+
+			<Separator />
+
+			<Suspense fallback={<SectionLoader />}>
 				<SectionWaitingList />
 			</Suspense>
 		</main>
