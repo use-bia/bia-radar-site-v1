@@ -13,19 +13,9 @@ function RouteComponent() {
 
 	return (
 		<main
-			className="relative w-full py-12 md:py-24 xl:py-32 flex justify-center bg-background overflow-hidden"
+			className="relative w-full py-12 md:py-24 flex justify-center bg-background"
 			aria-labelledby={headingId}
 		>
-			{/* Background Pattern */}
-			<div
-				className="absolute inset-0 opacity-[0.03] dark:opacity-[0.06] pointer-events-none"
-				style={{
-					backgroundImage: `linear-gradient(to right, var(--color-foreground) 1px, transparent 1px), linear-gradient(to bottom, var(--color-foreground) 1px, transparent 1px)`,
-					backgroundSize: "32px 32px",
-				}}
-				aria-hidden="true"
-			/>
-
 			<div className="container relative mx-auto px-4 lg:px-8 flex flex-col gap-12 w-full">
 				<header className="flex flex-col items-start border-l-4 border-primary pl-4 md:pl-8">
 					<h1 id={headingId} className="flex flex-col">
@@ -38,12 +28,12 @@ function RouteComponent() {
 					</h1>
 				</header>
 
-				<div className="flex flex-col lg:flex-row-reverse gap-12 lg:gap-16 items-start relative">
+				<div className="flex flex-col md:flex-row-reverse gap-12 lg:gap-16 items-start relative">
 					{/* Render Navigation Component */}
 					<GuidesNavigation sections={VIDEOS} />
 
-					{/* Videos List Area */}
-					<div className="w-full lg:w-3/4 flex flex-col gap-16">
+					{/* Videos List Area - Adjusted width to md:w-2/3 lg:w-3/4 */}
+					<div className="w-full md:w-2/3 lg:w-3/4 flex flex-col gap-16">
 						{VIDEOS.map((section) => {
 							const sectionId = createSlug(section.title);
 
@@ -51,10 +41,11 @@ function RouteComponent() {
 								<section
 									key={section.title}
 									id={sectionId}
+									tabIndex={-1}
 									aria-labelledby={`heading-${sectionId}`}
-									className="flex flex-col gap-8 scroll-mt-24"
+									className="flex flex-col gap-8 scroll-mt-24 focus:outline-none"
 								>
-									<div className="sticky top-0 z-20 py-4 -mx-4 px-4 lg:mx-0 lg:px-0 bg-background/90 backdrop-blur-md border-b border-border/50">
+									<div className="sticky top-0 z-20 py-4 -mx-4 px-4 md:mx-0 md:px-0 bg-background/90 backdrop-blur-md border-b border-border/50">
 										<h2
 											id={`heading-${sectionId}`}
 											className="text-2xl md:text-3xl font-bold tracking-tight"
@@ -64,7 +55,6 @@ function RouteComponent() {
 									</div>
 
 									<div className="flex flex-col gap-12 lg:gap-16 pt-4">
-										{/* Render Item Component */}
 										{section.videos.map((video) => (
 											<VideoGuideItem key={video.id} video={video} />
 										))}

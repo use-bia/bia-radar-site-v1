@@ -145,7 +145,7 @@ function ContactPage() {
 			<LiveRegion message={statusMessage} />
 
 			<main
-				className="relative w-full py-12 md:py-24 xl:py-32 flex justify-center bg-background overflow-hidden"
+				className="relative w-full py-12 md:py-24 flex justify-center bg-background overflow-hidden"
 				aria-labelledby={headingId}
 			>
 				<div

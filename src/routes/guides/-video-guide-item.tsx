@@ -25,11 +25,11 @@ const VideoGuideItem: FunctionComponent<VideoGuideItemProps> = ({ video }) => {
 			id={video.id}
 			tabIndex={-1}
 			aria-labelledby={titleId}
-			className="flex flex-col md:flex-row gap-6 md:gap-8 group/card scroll-mt-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-8 transition-shadow"
+			className="flex flex-col lg:flex-row gap-6 lg:gap-8 group/card scroll-mt-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-8 transition-shadow"
 		>
 			<button
 				type="button"
-				className="group relative w-full md:w-1/2 lg:w-5/12 aspect-video overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+				className="group relative w-full lg:w-5/12 aspect-video overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
 				aria-label={`Assistir ao vídeo: ${video.title}`}
 			>
 				<img
@@ -47,7 +47,7 @@ const VideoGuideItem: FunctionComponent<VideoGuideItemProps> = ({ video }) => {
 				</div>
 			</button>
 
-			<div className="flex flex-col justify-start space-y-3 md:w-1/2 lg:w-7/12 py-2">
+			<div className="flex flex-col justify-start space-y-3 w-full lg:w-7/12 py-2">
 				<h3
 					id={titleId}
 					className="font-bold text-2xl lg:text-3xl transition-colors group-hover/card:text-primary"
@@ -58,7 +58,8 @@ const VideoGuideItem: FunctionComponent<VideoGuideItemProps> = ({ video }) => {
 					{video.description}
 				</p>
 
-				<div className="flex flex-wrap gap-4 mt-4 pt-2">
+				{/* Added justify-center for mobile/tablet, reverting to justify-start on desktop (lg) */}
+				<div className="flex flex-wrap justify-between lg:justify-start gap-4 mt-4 pt-2">
 					<Button
 						type="button"
 						variant="default"
