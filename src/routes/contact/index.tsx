@@ -229,9 +229,6 @@ function ContactPage() {
 											placeholder={
 												isPt ? "+55 11 99999-9999" : "+1 (555) 000-0000"
 											}
-											/* 3. NEW: Forces the country code to appear visually */
-											international
-											withCountryCallingCode
 											aria-invalid={phoneError ? "true" : "false"}
 											aria-describedby={
 												phoneError ? `${inputPhoneId}-error` : undefined
