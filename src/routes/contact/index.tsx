@@ -139,7 +139,7 @@ function ContactPage() {
 				href={`#${formId}`}
 				className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:font-semibold focus:shadow-lg"
 			>
-				Skip to contact form
+				{m.skip_to_contact_form()}
 			</a>
 
 			<LiveRegion message={statusMessage} />
@@ -335,10 +335,10 @@ function ContactPage() {
 							</div>
 
 							<div className="p-6 md:p-8 bg-primary/5">
-								<p className="text-xs md:text-sm font-black tracking-[0.3em] uppercase opacity-60">
+								<p className="text-xs md:text-sm font-black tracking-[0.3em] uppercase text-muted-foreground">
 									Bia Radar
 								</p>
-								<p className="text-xs md:text-sm mt-1 uppercase font-medium opacity-40">
+								<p className="text-xs md:text-sm mt-1 uppercase font-medium text-muted-foreground">
 									{">"} {m.recognition_quote_sub()}
 								</p>
 							</div>
