@@ -51,10 +51,11 @@ const SectionRecognition: FunctionComponent<SectionRecognitionProps> = () => {
 		<section
 			id={m.recognition_id()}
 			aria-labelledby={headingId}
-			className="relative w-full py-12 flex flex-col justify-center bg-background"
+			// ADDED ALTERNATING BACKGROUND AND INCREASED PADDING HERE
+			className="relative w-full py-16 md:py-24 xl:py-32 flex flex-col justify-center bg-muted/30"
 		>
-			<h2 id={headingId} className="flex flex-col text-center mb-8">
-				<span className="uppercase text-muted-foreground text-base font-normal">
+			<h2 id={headingId} className="flex flex-col text-center mb-10 md:mb-16">
+				<span className="uppercase text-muted-foreground text-base font-normal mb-2">
 					{m.expertize_and_recognition()}
 					<span className="sr-only">:</span>
 				</span>
@@ -63,18 +64,22 @@ const SectionRecognition: FunctionComponent<SectionRecognitionProps> = () => {
 				</span>
 			</h2>
 
-			<div className="container mx-auto px-4 lg:px-8 grid grid-cols-1 md:grid-cols-2 items-center gap-2 xl:gap-12 w-full">
+			{/* INCREASED GAP SPACING HERE */}
+			<div className="container mx-auto px-4 lg:px-8 grid grid-cols-1 md:grid-cols-2 items-center gap-12 xl:gap-20 w-full">
 				{/* 1. Left Column */}
 				<div className="flex flex-col items-center md:items-start md:text-left w-full">
-					<p className="my-6 text-center md:text-left">
+					{/* IMPROVED TYPOGRAPHY HERE */}
+					<p className="mb-10 text-center md:text-left text-base md:text-lg leading-relaxed text-muted-foreground max-w-xl">
 						{parseFormattedText(m.recognition_description())}.
 					</p>
 
-					<blockquote className="border-l-2 border-primary p-2 pl-6">
-						<p className="text-xl font-bold">“{m.recognition_quote()}.”</p>
+					<blockquote className="border-l-4 border-primary p-2 pl-6 bg-background/50 rounded-r-xl py-4 pr-6">
+						<p className="text-xl md:text-2xl italic text-foreground/90">
+							“{m.recognition_quote()}.”
+						</p>
 						<footer className="mt-4">
-							<span className="text-muted-foreground">
-								- {m.recognition_quote_sub()}.
+							<span className="font-semibold tracking-wide uppercase text-muted-foreground">
+								- {m.recognition_quote_sub()}
 							</span>
 						</footer>
 					</blockquote>
@@ -82,22 +87,20 @@ const SectionRecognition: FunctionComponent<SectionRecognitionProps> = () => {
 
 				{/* 2. Right Column (Logos) */}
 				<div className="flex flex-1 items-center justify-center p-4 w-full mt-8 md:mt-0">
-					{/* The Grid: 2 cols (xs) -> 3 cols (sm) -> 2 cols (md) -> 3 cols (lg+) */}
-					<ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-14 w-full">
+					<ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 xl:grid-cols-3 gap-10 xl:gap-14 w-full">
 						{supporters.map(({ type, logo, url, alt }) => (
 							<li
 								key={`supporter-${alt}`}
-								// The magic happens here with `last:col-span-*`
 								className="flex flex-col items-center col-span-1 last:col-span-2 sm:last:col-span-1 md:last:col-span-2 xl:last:col-span-1"
 							>
-								<span className="text-muted-foreground uppercase font-bold mb-2 text-sm text-center">
+								<span className="text-muted-foreground uppercase font-bold mb-4 text-sm tracking-wider text-center">
 									{type}
 								</span>
 								<a
 									href={url}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="h-full items-center flex transition-opacity hover:opacity-80"
+									className="h-full items-center flex transition-transform hover:scale-105 hover:opacity-80 duration-300"
 									aria-label={m.visit_xxx_opens_in_new_tab({ name: alt })}
 								>
 									{logo}

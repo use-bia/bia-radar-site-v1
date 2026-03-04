@@ -13,12 +13,12 @@ const SectionHumanization: FunctionComponent<SectionHumanizationProps> = () => {
 		<section
 			id={m.humanization_id()}
 			aria-labelledby={headingId}
-			className="relative w-full py-12 flex justify-center"
+			className="relative w-full py-16 md:py-24 xl:py-32 bg-background flex justify-center"
 		>
 			{/* 1. Changed to a 10-column grid for the 30/70 split */}
 			<div className="container mx-auto px-4 lg:px-8 grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-12 items-center">
 				{/* LEFT SIDE: 30% width (3 out of 10 cols). Removed all text-center classes. */}
-				<div className="lg:col-span-4 flex flex-col space-y-6 h-full">
+				<div className="lg:col-span-4 flex flex-col space-y-8 h-full">
 					<h2 id={headingId} className="flex flex-col text-left">
 						<span className="uppercase text-muted-foreground text-base font-normal">
 							{m.humanization()}
@@ -29,11 +29,13 @@ const SectionHumanization: FunctionComponent<SectionHumanizationProps> = () => {
 						</span>
 					</h2>
 
-					<p className="text-left">{m.humanization_description()}.</p>
+					<p className="text-left text-base md:text-lg leading-relaxed text-muted-foreground">
+						{m.humanization_description()}.
+					</p>
 				</div>
 
 				{/* RIGHT SIDE: 70% width (7 out of 10 cols) */}
-				<BasicItemList className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+				<BasicItemList className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12">
 					{/* Top Left Box: Added h-full to force equal heights */}
 					<div className="col-span-1 flex flex-col h-full">
 						<BasicItemBox

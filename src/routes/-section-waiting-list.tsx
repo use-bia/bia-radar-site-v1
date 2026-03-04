@@ -133,7 +133,7 @@ const SectionWaitingList: FunctionComponent = () => {
 		<section
 			id={m.waiting_list_id()}
 			aria-labelledby={headingId}
-			className="w-full flex py-12 justify-center bg-secondary"
+			className="w-full flex py-12 md:py-20 xl:py-26 justify-center bg-secondary"
 		>
 			<div className="container mx-auto px-4 lg:px-8 flex flex-col gap-8">
 				<h2 id={headingId} className="flex flex-col text-center">
@@ -146,13 +146,13 @@ const SectionWaitingList: FunctionComponent = () => {
 					</span>
 				</h2>
 
-				<p className="text-center max-w-2xl mx-auto">
+				<p className="text-center max-w-2xl mx-auto md:text-lg text-muted-foreground">
 					{parseFormattedText(m.waiting_list_description())}.
 				</p>
 
-				<div className="w-full max-w-xl mx-auto">
+				<div className="w-full max-w-3xl mx-auto">
 					<form onSubmit={handleSubmit}>
-						<FieldGroup>
+						<FieldGroup className="bg-background p-12 border">
 							<div
 								style={{ position: "absolute", left: "-9999px" }}
 								aria-hidden="true"

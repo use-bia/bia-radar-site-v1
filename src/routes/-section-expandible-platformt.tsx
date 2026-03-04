@@ -23,7 +23,7 @@ const SectionExpandiblePlatform: FunctionComponent<
 		<section
 			id={m.expandible_platform_id()}
 			aria-labelledby={headingId}
-			className="relative w-full flex py-12 justify-center"
+			className="relative w-full flex py-16 md:py-24 xl:py-32 justify-center"
 		>
 			<div
 				className={cn(
@@ -37,7 +37,7 @@ const SectionExpandiblePlatform: FunctionComponent<
 				aria-hidden="true"
 			/>
 
-			<div className="container mx-auto px-4 lg:px-8 grid grid-cols-1 md:grid-cols-5 gap-8 lg:gap-16">
+			<div className="container px-4 lg:px-8 grid grid-cols-1 md:grid-cols-5 gap-8 lg:gap-16">
 				<div className="col-span-1 md:col-span-3">
 					<h2 id={headingId} className="flex flex-col text-center md:text-left">
 						<span className="uppercase text-muted-foreground text-base font-normal">
@@ -54,7 +54,7 @@ const SectionExpandiblePlatform: FunctionComponent<
                     Mobile: Natural stack.
                     Tablet & Desktop (md+): Takes up the left 3 columns, naturally falling under the title.
                 */}
-				<div className="col-span-1 md:col-span-3 text-center md:text-left">
+				<div className="col-span-1 md:col-span-3 text-center md:text-left md:text-lg text-muted-foreground">
 					<p>{m.expandible_platform_description()}.</p>
 				</div>
 
@@ -62,7 +62,7 @@ const SectionExpandiblePlatform: FunctionComponent<
                     Mobile: Natural stack at the bottom.
                     Tablet & Desktop (md+): Forced to the top right (col 4), spanning 2 columns wide and 2 rows tall.
                 */}
-				<div className="col-span-1 md:col-span-2 md:col-start-4 md:row-start-1 md:row-span-2 flex flex-col border border-primary items-center justify-between p-6 backdrop-blur-sm">
+				<div className="col-span-1 md:col-span-2 md:col-start-4 md:row-start-1 md:row-span-2 flex flex-col border border-primary items-center justify-between p-8 backdrop-blur-sm bg-background/60">
 					<div>
 						<h3 className="text-2xl text-center font-bold">
 							{m.more_information_soon()}!

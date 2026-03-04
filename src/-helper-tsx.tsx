@@ -33,7 +33,7 @@ export const parseFormattedText = (text: string): ReactNode => {
 
 			if (isBold) {
 				element = (
-					<strong key={`b-${key}`} className="font-bold">
+					<strong key={`b-${key}`} className="font-bold text-foreground">
 						{element}
 					</strong>
 				);

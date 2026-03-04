@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { lazy, Suspense } from "react";
 import { Separator } from "@/components/ui/separator";
-
 // KEEP: Direct import for the Hero to ensure it loads immediately
 import SectionHero from "./-section-hero";
 
@@ -25,8 +24,6 @@ function App() {
 			{/* Critical Path: No Suspense here so it's visible ASAP */}
 			<SectionHero />
 
-			<Separator />
-
 			{/* Non-Critical: Wrapped in Suspense */}
 			<Suspense fallback={<SectionLoader />}>
 				<SectionObjective />
@@ -34,8 +31,8 @@ function App() {
 				<SectionHumanization />
 				<SectionAudioEngine />
 				<SectionRoadmap />
-				<Separator />
 				<SectionRecognition />
+				<Separator />
 				<SectionWaitingList />
 			</Suspense>
 		</main>

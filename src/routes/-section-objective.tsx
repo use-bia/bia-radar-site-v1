@@ -14,7 +14,7 @@ const SectionObjective: FunctionComponent<SectionObjectiveProps> = () => {
 		<section
 			id={m.objective_section_id()}
 			aria-labelledby={headingId}
-			className="w-full flex py-12 justify-center bg-background"
+			className="w-full flex py-16 md:py-24 justify-center bg-background"
 		>
 			<div className="container mx-auto px-4 lg:px-8 flex flex-col gap-8">
 				<h2 id={headingId} className="flex flex-col text-center">
@@ -27,7 +27,7 @@ const SectionObjective: FunctionComponent<SectionObjectiveProps> = () => {
 					</span>
 				</h2>
 
-				<p className="text-center max-w-3xl mx-auto">
+				<p className="text-center max-w-3xl mx-auto text-muted-foreground md:text-lg">
 					{m.objective_description()}.
 				</p>
 

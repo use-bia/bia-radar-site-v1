@@ -23,13 +23,15 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 		<section
 			id={m.roadmap_id()}
 			aria-labelledby={headingId}
-			className="relative w-full py-12 flex bg-background overflow-hidden"
+			// INCREASED PADDING HERE
+			className="relative w-full py-16 md:py-24 xl:py-32 flex bg-background overflow-hidden"
 		>
-			<div className="container mx-auto px-4 md:px-8 flex flex-col md:flex-row-reverse justify-between w-full">
+			{/* ADDED GENEROUS GAP AND REMOVED VERTICAL LINE ELEMENT BELOW */}
+			<div className="container mx-auto px-4 md:px-8 flex flex-col md:flex-row-reverse justify-between gap-12 lg:gap-24 w-full">
 				{/* Right Column: Title & Price */}
 				<div className="flex flex-col items-center md:items-end text-center md:text-right w-full md:w-2/5 lg:w-1/2">
 					<h2 id={headingId} className="flex flex-col">
-						<span className="uppercase text-muted-foreground text-base font-normal">
+						<span className="uppercase text-muted-foreground text-base font-normal mb-2">
 							{m.heading_to_launch()}
 							<span className="sr-only">:</span>
 						</span>
@@ -38,34 +40,36 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 						</span>
 					</h2>
 
-					<div className="relative border border-primary pt-10 mt-8 w-full flex flex-col overflow-hidden">
-						<div className="w-full h-auto py-12 md:py-12 px-6 lg:px-10 flex justify-center">
+					<div className="relative border bg-card pt-10 mt-8 lg:mt-12 w-full flex flex-col overflow-hidden shadow-md">
+						<div className="w-full h-auto py-12 px-6 lg:px-10 flex justify-center">
 							<PricePlaceholder
 								className="w-full max-w-full h-auto text-foreground"
 								aria-label={m.roadmap_price_alt()}
 							/>
 						</div>
 
+						{/* ROUNDED BOTTOM LEFT CORNER OF RIBBON */}
 						<div
-							className="absolute top-0 right-0 bg-primary"
+							className="absolute top-0 right-0 bg-primary rounded-bl-xl"
 							aria-hidden="true"
 						>
-							<p className="text-lg text-primary-foreground font-bold px-4 py-1">
+							<p className="text-sm md:text-base text-primary-foreground font-bold px-4 py-2">
 								{m.coming_soon()}
 							</p>
 						</div>
 
-						<div className="bg-secondary flex border-t border-primary p-6 sm:px-8 md:px-4 lg:px-8 sm:py-6 gap-4 items-center justify-between flex-col sm:flex-row md:flex-col lg:flex-row">
-							<div className="flex flex-col gap-1 items-center sm:items-start md:items-center lg:items-start text-center sm:text-left md:text-center lg:text-left">
-								<p className="uppercase text-sm sm:text-base text-muted-foreground">
+						{/* SOFTENED BOTTOM AREA */}
+						<div className="bg-muted/40 flex border-t border-primary/20 p-6 sm:px-8 md:px-6 lg:px-8 sm:py-8 gap-6 items-center justify-between flex-col xl:flex-row">
+							<div className="flex flex-col gap-1 items-center xl:items-start text-center xl:text-left">
+								<p className="uppercase text-xs sm:text-sm font-semibold tracking-wide text-muted-foreground">
 									{m.roadmap_distributors()}
 								</p>
 								<p className="uppercase text-lg font-bold">{m.coming_soon()}</p>
 							</div>
-							<div className="w-full sm:w-auto md:w-full lg:w-auto flex justify-center shrink-0">
+							<div className="w-full xl:w-auto flex justify-center shrink-0">
 								<ActionButton
 									icon={<PackageIcon />}
-									className="w-full sm:w-auto md:w-full lg:w-auto"
+									className="w-full xl:w-auto"
 									asChild
 									onClick={() => {
 										document
@@ -85,11 +89,11 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 						</div>
 					</div>
 
-					<p className="mt-3 w-full text-xs sm:text-sm text-muted-foreground text-center px-2 md:px-0">
+					<p className="mt-6 w-full text-xs sm:text-sm text-muted-foreground text-center md:text-right px-2 md:px-0">
 						<Link
 							to="/"
 							hash={m.waiting_list_id()}
-							className="hover:underline hover:text-primary transition-colors"
+							className="hover:underline hover:text-primary transition-colors leading-relaxed block"
 							onClick={() => {
 								document
 									.getElementById(m.waiting_list_id())
@@ -100,13 +104,9 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 						</Link>
 					</p>
 				</div>
-				<div
-					className="bg-border h-[0.08em] w-full md:h-full md:w-[0.08em] mt-6 md:mt-0 md:ml-4 md:mr-4 lg:mr-10"
-					aria-hidden="true"
-				/>
 
 				{/* Left Column: Roadmap */}
-				<div className="flex w-full md:w-3/5 lg:w-1/2 mt-12 md:mt-6">
+				<div className="flex w-full md:w-3/5 lg:w-1/2 mt-4 md:mt-2">
 					<Roadmap className="w-full">
 						<RoadmapItem isActive>
 							<RoadmapIndicator />

@@ -55,7 +55,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 	return (
 		<section
 			id={m.hero_section_id()}
-			className="relative w-full flex py-4 md:py-12 xl:py-15 justify-center overflow-hidden"
+			className="relative w-full flex py-12 md:py-20 xl:py-28 justify-center overflow-hidden"
 		>
 			<div
 				className="absolute inset-0 -z-1 bg-size-[80em] bg-center md:bg-position-[calc(50%+5em)_center] bg-no-repeat opacity-15 dark:opacity-20 pointer-events-none transition-all duration-500"
@@ -65,7 +65,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 				aria-hidden="true"
 			/>
 
-			<div className="relative px-4 lg:px-8 container grid grid-cols-1 md:grid-cols-2 gap-y-8 md:gap-x-8 lg:gap-8">
+			<div className="relative px-4 lg:px-8 container grid grid-cols-1 md:grid-cols-2 gap-y-8 md:gap-x-8 lg:gap-12">
 				<div className="md:col-span-2 lg:col-span-1 lg:col-start-1 lg:row-start-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4">
 					<ScrollArea className="w-full whitespace-nowrap pb-3">
 						<ul
@@ -86,7 +86,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 						</ul>
 						<ScrollBar orientation="horizontal" />
 					</ScrollArea>
-					<h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl 2xl:text-7xl">
+					<h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl 2xl:text-7xl">
 						{m.feel_the_journey()}.
 						<br />
 						{m.reclaim_your_freedom()}!
@@ -95,16 +95,17 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 
 				{/* 2 & 4. CONTENT GROUP (Description + Buttons) */}
 				{/* On mobile: 'contents' lets items be ordered individually. On md+: groups them into the left column. */}
-				<div className="contents md:flex md:flex-col md:gap-6 md:col-start-1 md:row-start-2 lg:col-start-1 lg:row-start-2">
+				<div className="contents md:flex md:flex-col md:gap-12 md:col-start-1 md:row-start-2 lg:col-start-1 lg:row-start-2">
 					{/* Description */}
 					<div className="text-left w-full">
-						<p className="text-base sm:text-lg">
-							{m.hero_section_description()}: <b>{m.safety()}!</b>
+						<p className="text-base sm:text-lg text-muted-foreground">
+							{m.hero_section_description()}:{" "}
+							<span className="text-foreground">{m.safety()}!</span>
 						</p>
 					</div>
 
 					{/* Buttons */}
-					<div className="flex flex-col items-start w-full gap-4 pt-2 md:pt-0">
+					<div className="flex flex-col items-start w-full gap-12 pt-2 md:pt-0">
 						<Tooltip>
 							<TooltipTrigger asChild>
 								<ActionButton

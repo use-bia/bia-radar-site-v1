@@ -52,14 +52,14 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 		<section
 			id={m.audio_engine_id()}
 			aria-labelledby={headingId}
-			className="relative w-full py-12 flex justify-center bg-background-secondary overflow-hidden"
+			// SOFTENED BACKGROUND AND INCREASED PADDING HERE
+			className="relative w-full py-16 md:py-24 xl:py-32 flex justify-center bg-secondary/30 overflow-hidden"
 		>
-			{/* 1. Main Container: Removed justify-center so items align left by default */}
-			<div className="container mx-auto px-4 lg:px-8 flex flex-col sm:flex-row items-center gap-4 lg:gap-8 xl:gap-12 w-full">
-				{/* 2. Left Column: Removed flex-1. It now takes up a maximum width but won't grow infinitely */}
-				<div className="flex flex-col items-center sm:items-start text-center sm:text-left w-full sm:max-w-xl lg:max-w-3xl shrink">
-					<h2 id={headingId} className="flex flex-col">
-						<span className="uppercase text-muted-foreground text-base font-normal">
+			{/* INCREASED GAPS AND CHANGED BREAKPOINT TO MD FOR BETTER SPACING */}
+			<div className="container mx-auto px-4 lg:px-8 flex flex-col md:flex-row items-center gap-12 lg:gap-20 w-full">
+				<div className="flex flex-col items-center md:items-start text-center md:text-left w-full md:max-w-xl lg:max-w-2xl shrink">
+					<h2 id={headingId} className="flex flex-col mb-4">
+						<span className="uppercase text-muted-foreground text-base font-normal mb-2">
 							{m.audio_engine()}
 							<span className="sr-only">:</span>
 						</span>
@@ -68,22 +68,26 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 						</span>
 					</h2>
 
-					<p className="mt-6">
+					{/* ADDED LINE HEIGHT AND MUTED TEXT */}
+					<p className="text-base md:text-lg leading-relaxed text-muted-foreground max-w-xl">
 						{parseFormattedText(m.audio_engine_description())}.
 					</p>
 
-					<Separator className="mt-6 mb-4 w-full" />
+					<Separator className="mt-12 mb-6 w-full" />
 
 					<section
 						aria-labelledby={subHeadingId}
-						className="flex flex-col items-center sm:items-start space-y-4 w-full"
+						className="flex flex-col items-center md:items-start space-y-6 w-full"
 					>
-						<h3 id={subHeadingId} className="uppercase text-muted-foreground">
+						<h3
+							id={subHeadingId}
+							className="uppercase text-muted-foreground font-semibold tracking-wider text-sm"
+						>
 							{m.try_now()}
 						</h3>
 
-						<div className="flex flex-col w-full items-center sm:items-start space-y-4">
-							<div className="flex flex-wrap justify-center sm:justify-start gap-4">
+						<div className="flex flex-col w-full items-center md:items-start space-y-6">
+							<div className="flex flex-wrap justify-center md:justify-start gap-4">
 								<Button
 									variant="ghost"
 									onClick={() => handleLanguageChange("pt-br")}
@@ -94,8 +98,8 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 									className={cn(
 										"border",
 										selectedAudioLanguage === "pt-br"
-											? "border-primary"
-											: "border-transparent text-muted-foreground",
+											? "border-primary bg-primary/5"
+											: "border-transparent text-muted-foreground hover:bg-muted/50",
 									)}
 								>
 									{m.portuguese()}
@@ -110,8 +114,8 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 									className={cn(
 										"border",
 										selectedAudioLanguage === "en"
-											? "border-primary"
-											: "border-transparent text-muted-foreground",
+											? "border-primary bg-primary/5"
+											: "border-transparent text-muted-foreground hover:bg-muted/50",
 									)}
 								>
 									{m.english()}
@@ -134,8 +138,7 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 					</section>
 				</div>
 
-				{/* 3. Right Column: Added flex-1 to fill remaining space, and justify-center to center the visualizer inside it */}
-				<div className="flex flex-1 items-center justify-center p-4 w-full min-w-62.5 mt-8 sm:mt-0">
+				<div className="flex flex-1 items-center justify-center p-4 w-full min-w-[250px] mt-8 md:mt-0">
 					<AudioVisualizer isPlaying={isAnyPlaying} playTrigger={playTrigger} />
 				</div>
 			</div>
