@@ -33,6 +33,18 @@ function guessCountryFromBrowser(): Country | undefined {
 	}
 }
 
+// 1. NEW: Smarter default country logic that prioritizes the app's selected language
+function getReliableDefaultCountry(locale: string): Country {
+	const lowerLocale = locale.toLowerCase();
+
+	// If the user is on the Portuguese version of the site, assume Brazil
+	if (lowerLocale.includes("pt-br") || lowerLocale === "pt") return "BR";
+	if (lowerLocale.includes("pt-pt")) return "PT";
+
+	// Fall back to the browser's language, then to "US"
+	return guessCountryFromBrowser() ?? "US";
+}
+
 const SectionWaitingList: FunctionComponent = () => {
 	const headingId = useId();
 	const inputNameId = useId();
@@ -41,20 +53,21 @@ const SectionWaitingList: FunctionComponent = () => {
 	const inputDistributorId = useId();
 	const honeypotId = useId();
 
-	// 1. Lazy initialize defaultCountry so it only computes ONCE on mount
-	const [defaultCountry] = useState<Country>(
-		() => guessCountryFromBrowser() ?? "US",
+	const currentLocale = getLocale() ?? "pt-br";
+	const isPt = currentLocale.startsWith("pt");
+
+	// 2. Initialize defaultCountry using our smarter fallback
+	const [defaultCountry] = useState<Country>(() =>
+		getReliableDefaultCountry(currentLocale),
 	);
+
 	const [phone, setPhone] = useState<string | undefined>();
 	const [phoneError, setPhoneError] = useState(false);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
-	const isPt = (getLocale() ?? "pt-br").startsWith("pt");
-
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
-		// 1. Only validate if the user actually typed something
 		if (phone && !isValidPhoneNumber(phone)) {
 			setPhoneError(true);
 			document.getElementById(inputPhoneId)?.focus();
@@ -73,11 +86,9 @@ const SectionWaitingList: FunctionComponent = () => {
 				searchParams.append(key, value.toString());
 			});
 
-			// 2. Only append the phone variable if it exists
 			if (phone) {
 				searchParams.set("phone", phone);
 			} else {
-				// Send a fallback string so your Google Sheet doesn't shift columns
 				searchParams.set("phone", "Not provided");
 			}
 
@@ -106,11 +117,7 @@ const SectionWaitingList: FunctionComponent = () => {
 
 			if (data === "Success") {
 				form.reset();
-
-				// 3. Reset to undefined instead of a partial country code!
-				// This ensures the input goes completely blank and shows the placeholder again.
 				setPhone(undefined);
-
 				toast.success(m.waiting_list_success_message());
 
 				const headingEl = document.getElementById(headingId);
@@ -167,7 +174,7 @@ const SectionWaitingList: FunctionComponent = () => {
 							</div>
 
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-								<Field aria-required>
+								<Field>
 									<FieldLabel htmlFor={inputNameId}>
 										{m.waiting_list_input_fullname()}{" "}
 										<span className="text-destructive">*</span>
@@ -190,10 +197,14 @@ const SectionWaitingList: FunctionComponent = () => {
 										id={inputPhoneId}
 										defaultCountry={defaultCountry}
 										value={phone}
-										// 2. Wrap onChange safely to prevent synthetic event loops
 										onChange={(val) => setPhone(val)}
 										inputComponent={Input}
-										placeholder={isPt ? "11 99999-9999" : "+1 (555) 000-0000"}
+										placeholder={
+											isPt ? "+55 11 99999-9999" : "+1 (555) 000-0000"
+										}
+										/* 3. NEW: Forces the country code to appear visually */
+										international
+										withCountryCallingCode
 										aria-invalid={phoneError ? "true" : "false"}
 										aria-describedby={
 											phoneError ? `${inputPhoneId}-error` : undefined
@@ -213,7 +224,7 @@ const SectionWaitingList: FunctionComponent = () => {
 								</Field>
 							</div>
 
-							<Field aria-required className="mt-2">
+							<Field className="mt-2">
 								<FieldLabel htmlFor={inputEmailId}>
 									{m.waiting_list_input_email()}{" "}
 									<span className="text-destructive">*</span>

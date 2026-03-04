@@ -3,19 +3,21 @@ import { cn } from "@/lib/utils";
 
 const BasicItemListContext = React.createContext<boolean>(false);
 
-function BasicItemList({ className, ...props }: React.ComponentProps<"dl">) {
+// 1. Changed to a standard Unordered List (ul)
+function BasicItemList({ className, ...props }: React.ComponentProps<"ul">) {
 	return (
 		<BasicItemListContext.Provider value={true}>
-			<dl
+			<ul
 				data-slot="basic-item-list"
-				className={cn("w-full", className)}
+				className={cn("w-full list-none p-0 m-0", className)}
 				{...props}
 			/>
 		</BasicItemListContext.Provider>
 	);
 }
 
-interface BasicItemBoxProps extends Omit<React.ComponentProps<"div">, "title"> {
+// 2. The Box is now a List Item (li)
+interface BasicItemBoxProps extends Omit<React.ComponentProps<"li">, "title"> {
 	icon?: React.ReactNode;
 	centerTitle?: boolean;
 	title: React.ReactNode;
@@ -37,12 +39,14 @@ function BasicItemBox({
 	}
 
 	return (
-		<div
+		// 3. The card wrapper is natively the <li>
+		<li
 			data-slot="basic-item-box"
 			className={cn("border bg-background text-card-foreground", className)}
 			{...props}
 		>
-			<dt
+			{/* 4. Changed <dt> to a standard styling <div> */}
+			<div
 				className={cn(
 					"flex items-stretch h-fit border-b bg-background-secondary",
 					centerTitle ? "justify-center" : "justify-start",
@@ -60,10 +64,11 @@ function BasicItemBox({
 				<span className="flex items-center text-lg font-bold py-2 px-3">
 					{title}
 				</span>
-			</dt>
+			</div>
 
-			<dd className="p-4 ml-0">{children}</dd>
-		</div>
+			{/* 5. Changed <dd> to a standard styling <div> */}
+			<div className="p-4">{children}</div>
+		</li>
 	);
 }
 

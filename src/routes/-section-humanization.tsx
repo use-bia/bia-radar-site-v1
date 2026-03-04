@@ -15,9 +15,8 @@ const SectionHumanization: FunctionComponent<SectionHumanizationProps> = () => {
 			aria-labelledby={headingId}
 			className="relative w-full py-16 md:py-24 xl:py-32 bg-background flex justify-center"
 		>
-			{/* 1. Changed to a 10-column grid for the 30/70 split */}
 			<div className="container mx-auto px-4 lg:px-8 grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-12 items-center">
-				{/* LEFT SIDE: 30% width (3 out of 10 cols). Removed all text-center classes. */}
+				{/* LEFT SIDE: 30% width (3 out of 10 cols) */}
 				<div className="lg:col-span-4 flex flex-col space-y-8 h-full">
 					<h2 id={headingId} className="flex flex-col text-left">
 						<span className="uppercase text-muted-foreground text-base font-normal">
@@ -36,38 +35,32 @@ const SectionHumanization: FunctionComponent<SectionHumanizationProps> = () => {
 
 				{/* RIGHT SIDE: 70% width (7 out of 10 cols) */}
 				<BasicItemList className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12">
-					{/* Top Left Box: Added h-full to force equal heights */}
-					<div className="col-span-1 flex flex-col h-full">
-						<BasicItemBox
-							title={m.humanization_item_1_title()}
-							icon={<HandCoinsIcon />}
-							className="h-full grow"
-						>
-							{parseFormattedText(m.humanization_item_1_description())}.
-						</BasicItemBox>
-					</div>
+					{/* Top Left Box: Classes merged directly into the li (BasicItemBox) */}
+					<BasicItemBox
+						title={m.humanization_item_1_title()}
+						icon={<HandCoinsIcon />}
+						className="col-span-1 flex flex-col h-full grow"
+					>
+						{parseFormattedText(m.humanization_item_1_description())}.
+					</BasicItemBox>
 
 					{/* Top Right Box */}
-					<div className="col-span-1 flex flex-col h-full">
-						<BasicItemBox
-							title={m.humanization_item_2_title()}
-							icon={<HeartIcon />}
-							className="h-full grow"
-						>
-							{parseFormattedText(m.humanization_item_2_description())}.
-						</BasicItemBox>
-					</div>
+					<BasicItemBox
+						title={m.humanization_item_2_title()}
+						icon={<HeartIcon />}
+						className="col-span-1 flex flex-col h-full grow"
+					>
+						{parseFormattedText(m.humanization_item_2_description())}.
+					</BasicItemBox>
 
 					{/* Bottom Box: Spans both columns */}
-					<div className="col-span-1 sm:col-span-2 flex flex-col h-full">
-						<BasicItemBox
-							title={m.humanization_item_3_title()}
-							icon={<BrainCircuitIcon />}
-							className="h-full grow" // Add this if your component supports it!
-						>
-							{parseFormattedText(m.humanization_item_3_description())}.
-						</BasicItemBox>
-					</div>
+					<BasicItemBox
+						title={m.humanization_item_3_title()}
+						icon={<BrainCircuitIcon />}
+						className="col-span-1 sm:col-span-2 flex flex-col h-full grow"
+					>
+						{parseFormattedText(m.humanization_item_3_description())}.
+					</BasicItemBox>
 				</BasicItemList>
 			</div>
 		</section>
