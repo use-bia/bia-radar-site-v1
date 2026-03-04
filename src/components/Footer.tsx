@@ -35,7 +35,7 @@ const options = linkOptions([
 type FooterProps = Record<string, never>;
 
 const Footer: FunctionComponent<FooterProps> = () => {
-	const { setTheme } = useTheme();
+	const { setTheme, setContrastColor } = useTheme();
 
 	// 1. Add the clear function
 	const handleLockSite = () => {
@@ -194,6 +194,12 @@ const Footer: FunctionComponent<FooterProps> = () => {
 										</DropdownMenuItem>
 										<DropdownMenuItem onClick={() => setTheme("light")}>
 											{m.light_theme()}
+										</DropdownMenuItem>
+										<DropdownMenuItem onClick={() => setContrastColor("white")}>
+											{m.high_contrast_white()}
+										</DropdownMenuItem>
+										<DropdownMenuItem onClick={() => setContrastColor("amber")}>
+											{m.high_contrast_amber()}
 										</DropdownMenuItem>
 									</DropdownMenuGroup>
 								</DropdownMenuContent>

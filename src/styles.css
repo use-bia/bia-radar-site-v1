@@ -132,6 +132,67 @@
   --PhoneInputCountryFlag-borderColor--focus: var(--ring);
 }
 
+/* High Contrast Overrides */
+[data-theme="high-contrast"] {
+  --background: #000000;
+  --background-secondary: #000000;
+  --card: #000000;
+  --popover: #000000;
+  --sidebar: #000000;
+  --sidebar-accent: #000000;
+  /* Removed --input: #000000; from here so borders aren't black */
+}
+
+/* White on Black */
+[data-theme="high-contrast"][data-contrast-color="white"] {
+  --foreground: #FFFFFF;
+  --primary: #FFFFFF;
+  --primary-foreground: #000000;
+  --secondary: #000000;
+  --secondary-foreground: #FFFFFF;
+  --muted: #000000;
+  --muted-foreground: #FFFFFF;
+  --accent: #000000;
+  --accent-foreground: #FFFFFF;
+  --card-foreground: #FFFFFF;
+  --popover-foreground: #FFFFFF;
+  --border: #FFFFFF;
+  --input: #FFFFFF; /* Added here to make borders white */
+  --ring: #FFFFFF;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #FFFFFF;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #FFFFFF;
+  --sidebar-ring: #FFFFFF;
+  --destructive: #FFFFFF;
+}
+
+/* Amber on Black */
+[data-theme="high-contrast"][data-contrast-color="amber"] {
+  --foreground: #FFBF00;
+  --primary: #FFBF00;
+  --primary-foreground: #000000;
+  --secondary: #000000;
+  --secondary-foreground: #FFBF00;
+  --muted: #000000;
+  --muted-foreground: #FFBF00;
+  --accent: #000000;
+  --accent-foreground: #FFBF00;
+  --card-foreground: #FFBF00;
+  --popover-foreground: #FFBF00;
+  --border: #FFBF00;
+  --input: #FFBF00; /* Added here to make borders amber */
+  --ring: #FFBF00;
+  --sidebar-foreground: #FFBF00;
+  --sidebar-primary: #FFBF00;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent-foreground: #FFBF00;
+  --sidebar-border: #FFBF00;
+  --sidebar-ring: #FFBF00;
+  --destructive: #FFBF00;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

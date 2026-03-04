@@ -8,7 +8,7 @@ import {
 	WeightIcon,
 	WifiOffIcon,
 } from "lucide-react";
-import { type FunctionComponent, useState } from "react";
+import { type FunctionComponent, useMemo, useState } from "react";
 import LottusBg from "@/assets/lottus.webp";
 import StillFrame from "@/assets/still-frame-bia-radar.webp";
 import ActionButton from "@/components/ActionButton";
@@ -21,49 +21,76 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useTheme } from "@/contexts/ThemeContext";
 import { m } from "@/paraglide/messages";
-
-type HeroBadges = {
-	title: string;
-	icon: React.ReactNode;
-};
-
-const heroBadges: HeroBadges[] = [
-	{
-		title: m.one_hundred_percent_offline(),
-		icon: <WifiOffIcon className="text-chart-2" aria-hidden="true" />,
-	},
-	{
-		title: m.national_prize(),
-		icon: <TrophyIcon className="text-chart-3" aria-hidden="true" />,
-	},
-	{
-		title: m.water_resistant(),
-		icon: <CloudRainWindIcon className="text-chart-1" aria-hidden="true" />,
-	},
-	{
-		title: m.customizable(),
-		icon: <PuzzleIcon className="text-chart-4" aria-hidden="true" />,
-	},
-];
 
 type SectionHeroProps = Record<string, never>;
 
 const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
+	const { theme } = useTheme();
+
+	const isHighContrast = theme === "high-contrast";
+
+	// 1. Moved the badges inside the component so they can read the theme state.
+	// We force the icon color to be standard foreground text if high contrast is on.
+	const heroBadges = useMemo(
+		() => [
+			{
+				title: m.one_hundred_percent_offline(),
+				icon: (
+					<WifiOffIcon
+						className={isHighContrast ? "text-foreground" : "text-chart-2"}
+						aria-hidden="true"
+					/>
+				),
+			},
+			{
+				title: m.national_prize(),
+				icon: (
+					<TrophyIcon
+						className={isHighContrast ? "text-foreground" : "text-chart-3"}
+						aria-hidden="true"
+					/>
+				),
+			},
+			{
+				title: m.water_resistant(),
+				icon: (
+					<CloudRainWindIcon
+						className={isHighContrast ? "text-foreground" : "text-chart-1"}
+						aria-hidden="true"
+					/>
+				),
+			},
+			{
+				title: m.customizable(),
+				icon: (
+					<PuzzleIcon
+						className={isHighContrast ? "text-foreground" : "text-chart-4"}
+						aria-hidden="true"
+					/>
+				),
+			},
+		],
+		[isHighContrast],
+	);
 
 	return (
 		<section
 			id={m.hero_section_id()}
 			className="relative w-full flex py-12 md:py-20 xl:py-28 justify-center overflow-hidden"
 		>
-			<div
-				className="absolute inset-0 -z-1 bg-size-[80em] bg-center md:bg-position-[calc(50%+5em)_center] bg-no-repeat opacity-15 dark:opacity-20 pointer-events-none transition-all duration-500"
-				style={{
-					backgroundImage: `url(${LottusBg})`,
-				}}
-				aria-hidden="true"
-			/>
+			{/* 2. Conditionally unmount the background image in high-contrast mode */}
+			{!isHighContrast && (
+				<div
+					className="absolute inset-0 -z-1 bg-size-[80em] bg-center md:bg-position-[calc(50%+5em)_center] bg-no-repeat opacity-15 dark:opacity-20 pointer-events-none transition-all duration-500"
+					style={{
+						backgroundImage: `url(${LottusBg})`,
+					}}
+					aria-hidden="true"
+				/>
+			)}
 
 			<div className="relative px-4 lg:px-8 container grid grid-cols-1 md:grid-cols-2 gap-y-8 md:gap-x-8 lg:gap-12">
 				<div className="md:col-span-2 lg:col-span-1 lg:col-start-1 lg:row-start-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4">
@@ -93,8 +120,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 					</h1>
 				</div>
 
-				{/* 2 & 4. CONTENT GROUP (Description + Buttons) */}
-				{/* On mobile: 'contents' lets items be ordered individually. On md+: groups them into the left column. */}
+				{/* CONTENT GROUP (Description + Buttons) */}
 				<div className="contents md:flex md:flex-col md:gap-12 md:col-start-1 md:row-start-2 lg:col-start-1 lg:row-start-2">
 					{/* Description */}
 					<div className="text-left w-full">
@@ -191,7 +217,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 					</div>
 				</div>
 
-				{/* 3. IMAGE */}
+				{/* IMAGE */}
 				<div className="md:col-start-2 md:row-start-2 md:row-span-1 lg:col-start-2 lg:row-start-1 lg:row-span-2 flex justify-center lg:justify-end md:items-start lg:items-center w-full">
 					<ImageBoxComponent
 						imageSrc={StillFrame}
@@ -211,7 +237,6 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 						]}
 						imageDetails={{
 							title: m.description_of_the_bia_radar_device(),
-							// Falar do tamanho de um cartão de crédito
 							content: <p>bla bla bla bla </p>,
 						}}
 						open={isDialogOpen}
