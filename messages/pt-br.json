@@ -125,6 +125,26 @@
   "waiting_list_sending_message": "Enviando...",
   "phone_search_placeholder": "Buscar país...",
   "phone_no_country_found": "Nenhum país encontrado.",
-  "phone_please_enter_a_valid_phone_number": "Por favor, insira um número de telefone válido."
-
+  "phone_please_enter_a_valid_phone_number": "Por favor, insira um número de telefone válido.",
+  "contact_subtitle": "Entre em contato",
+  "contact_title": "Como podemos ajudar?",
+  "contact_input_fullname": "Nome Completo",
+  "contact_input_fullname_placeholder": "João da Silva",
+  "contact_input_phone": "Número de Telefone",
+  "contact_input_email": "Endereço de E-mail",
+  "contact_input_message": "Mensagem",
+  "contact_input_message_placeholder": "Como podemos te ajudar hoje?",
+  "contact_sending_message": "Enviando...",
+  "contact_submit_button": "Enviar Mensagem",
+  "contact_success_message": "Mensagem enviada com sucesso!",
+  "contact_error_message": "Falha ao enviar mensagem. Por favor, tente novamente.",
+  "contact_quick_reply": "Resposta Rápida",
+  "contact_quick_reply_desc": "Nosso objetivo é responder a todas as perguntas dentro de 24 a 48 horas úteis. Para assuntos urgentes sobre um pedido existente, por favor, inclua o número do seu pedido.",
+  "contact_direct_email": "E-mail Direto",
+  "contact_direct_email_desc": "Prefere não usar formulários? Você pode nos contatar diretamente em:",
+  "contact_business_hours": "Horário de Atendimento",
+  "monday_to_friday": "Segunda - Sexta:",
+  "saturday": "Sábado:",
+  "sunday": "Domingo:",
+  "closed": "Fechado"
 }
