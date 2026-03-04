@@ -112,10 +112,16 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 									icon={<ChevronRightIcon />}
 									asChild
 									className="md:w-full xl:w-auto"
-									onClick={() => {
-										document
-											.getElementById(m.waiting_list_id())
-											?.scrollIntoView({ behavior: "smooth" });
+									onClick={(_) => {
+										const targetId = m.waiting_list_id();
+										const targetElement = document.getElementById(targetId);
+
+										if (targetElement) {
+											targetElement.scrollIntoView({ behavior: "smooth" });
+											targetElement.setAttribute("tabindex", "-1");
+											targetElement.style.outline = "none";
+											targetElement.focus();
+										}
 									}}
 								>
 									<Link

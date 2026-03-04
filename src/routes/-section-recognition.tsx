@@ -73,7 +73,7 @@ const SectionRecognition: FunctionComponent<SectionRecognitionProps> = () => {
 						{parseFormattedText(m.recognition_description())}.
 					</p>
 
-					<blockquote className="border-l-4 border-primary p-2 pl-6 bg-background/50 rounded-r-xl py-4 pr-6">
+					<blockquote className="border-l-4 border-primary p-2 pl-6 bg-background/50 py-4 pr-6">
 						<p className="text-xl md:text-2xl italic text-foreground/90">
 							“{m.recognition_quote()}.”
 						</p>
