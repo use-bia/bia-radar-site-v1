@@ -67,9 +67,43 @@ const Footer: FunctionComponent<FooterProps> = () => {
 						<p className="text-muted-foreground mt-4">
 							{m.revolutionizing_mobility_with_new_senses()}
 							<br />
-							{parseFormattedText(m.developed_proudly_in_brazil())}{" "}
-							<strong>{m.brazil()}!</strong>
+							{parseFormattedText(m.developed_proudly_in_brazil())}
 						</p>
+
+						<p className="mt-3">{m.support()}:</p>
+
+						<div className="space-x-4 py-2">
+							<Button
+								variant="outline"
+								className="bg-background! text-muted-foreground px-8 py-1"
+								asChild
+							>
+								<a
+									href="https://abdi.com.br/"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="h-full items-center flex transition-transform hover:scale-105 hover:opacity-80 duration-300"
+									aria-label={m.visit_xxx_opens_in_new_tab({ name: "ABDI" })}
+								>
+									ABDI
+								</a>
+							</Button>
+							<Button
+								variant="outline"
+								className="bg-background! text-muted-foreground px-8 py-1"
+								asChild
+							>
+								<a
+									href="https://www.abdi.com.br/hubtec/"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="h-full items-center flex transition-transform hover:scale-105 hover:opacity-80 duration-300"
+									aria-label={m.visit_xxx_opens_in_new_tab({ name: "HubTec" })}
+								>
+									HubTec
+								</a>
+							</Button>
+						</div>
 					</div>
 
 					<div className="flex flex-col gap-1 items-center sm:items-end">

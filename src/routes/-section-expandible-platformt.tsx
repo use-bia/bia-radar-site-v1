@@ -54,7 +54,7 @@ const SectionExpandiblePlatform: FunctionComponent<
                     Mobile: Natural stack.
                     Tablet & Desktop (md+): Takes up the left 3 columns, naturally falling under the title.
                 */}
-				<div className="col-span-1 md:col-span-3 text-center md:text-left md:text-lg text-muted-foreground">
+				<div className="col-span-1 md:col-span-3 text-center md:text-left md:text-lg text-muted-foreground bg-background/20 backdrop-blur-sm">
 					<p>{m.expandible_platform_description()}.</p>
 				</div>
 

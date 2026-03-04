@@ -53,7 +53,7 @@ const SectionAudioEngine: FunctionComponent<SectionAudioEngineProps> = () => {
 			id={m.audio_engine_id()}
 			aria-labelledby={headingId}
 			// SOFTENED BACKGROUND AND INCREASED PADDING HERE
-			className="relative w-full py-16 md:py-24 xl:py-32 flex justify-center bg-secondary/30 overflow-hidden"
+			className="relative w-full py-16 md:py-24 xl:py-32 flex justify-center bg-background-secondary overflow-hidden"
 		>
 			{/* INCREASED GAPS AND CHANGED BREAKPOINT TO MD FOR BETTER SPACING */}
 			<div className="container mx-auto px-4 lg:px-8 flex flex-col md:flex-row items-center gap-12 lg:gap-20 w-full">
