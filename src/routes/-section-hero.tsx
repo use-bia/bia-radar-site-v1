@@ -124,7 +124,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 									>
 										{m.i_want_to_be_part_of_it()}
 										<Badge variant="secondary" className="bg-background">
-											10% OFF
+											15% OFF
 										</Badge>
 									</Link>
 								</ActionButton>

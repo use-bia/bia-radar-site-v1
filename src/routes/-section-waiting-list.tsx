@@ -1,15 +1,12 @@
 import type * as React from "react";
 import { type FunctionComponent, useId, useState } from "react";
-
-// 1. Import the utility function from the base library
 import { type Country, isValidPhoneNumber } from "react-phone-number-input";
-import enLabels from "react-phone-number-input/locale/en.json";
-import ptLabels from "react-phone-number-input/locale/pt.json";
+import PhoneInput from "react-phone-number-input/input";
 import { toast } from "sonner";
+
 import { parseFormattedText } from "@/-helper-tsx";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-// Add FieldError to the imports here!
 import {
 	Field,
 	FieldError,
@@ -17,8 +14,6 @@ import {
 	FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-// 2. Import your brand new custom Shadcn PhoneInput component
-import { PhoneInput } from "@/components/ui/phone-input";
 import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
 import { m } from "@/paraglide/messages";
@@ -26,28 +21,19 @@ import { getLocale } from "@/paraglide/runtime";
 
 function guessCountryFromBrowser(): Country | undefined {
 	try {
-		// e.g., returns "en-US", "pt-BR", "es-MX", or just "en"
-		// @ts-expect-error - This is a widely supported API, but TypeScript's lib.dom.d.ts might not have it yet.
+		// @ts-expect-error
 		const userLocale = navigator.language || navigator.userLanguage;
-
 		if (userLocale?.includes("-")) {
-			// Split "pt-BR" into ["pt", "BR"] and grab the "BR"
 			const region = userLocale.split("-")[1].toUpperCase();
-
-			// Ensure it looks like a valid 2-letter ISO code
-			if (region.length === 2) {
-				return region as Country;
-			}
+			if (region.length === 2) return region as Country;
 		}
-		return undefined; // If we can't guess, return undefined so the fallback takes over
+		return undefined;
 	} catch {
 		return undefined;
 	}
 }
 
-type SectionWaitingListProps = Record<string, never>;
-
-const SectionWaitingList: FunctionComponent<SectionWaitingListProps> = () => {
+const SectionWaitingList: FunctionComponent = () => {
 	const headingId = useId();
 	const inputNameId = useId();
 	const inputEmailId = useId();
@@ -55,24 +41,22 @@ const SectionWaitingList: FunctionComponent<SectionWaitingListProps> = () => {
 	const inputDistributorId = useId();
 	const honeypotId = useId();
 
-	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [submitStatus] = useState<"idle" | "success" | "error">("idle");
-
+	// 1. Lazy initialize defaultCountry so it only computes ONCE on mount
+	const [defaultCountry] = useState<Country>(
+		() => guessCountryFromBrowser() ?? "US",
+	);
 	const [phone, setPhone] = useState<string | undefined>();
 	const [phoneError, setPhoneError] = useState(false);
-	const [defaultCountry, _] = useState<Country>(
-		guessCountryFromBrowser() ?? "US",
-	);
+	const [isSubmitting, setIsSubmitting] = useState(false);
 
-	const currentLocale = getLocale() ?? "pt-br";
-	const isPt = currentLocale.startsWith("pt");
+	const isPt = (getLocale() ?? "pt-br").startsWith("pt");
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
+		// 1. Only validate if the user actually typed something
 		if (phone && !isValidPhoneNumber(phone)) {
 			setPhoneError(true);
-			// We still keep this! Moving focus to the error is the gold standard.
 			document.getElementById(inputPhoneId)?.focus();
 			return;
 		}
@@ -80,15 +64,32 @@ const SectionWaitingList: FunctionComponent<SectionWaitingListProps> = () => {
 		setPhoneError(false);
 		setIsSubmitting(true);
 
-		// We can remove setSubmitStatus entirely from your state!
-
 		try {
 			const form = event.currentTarget;
-			const formData = new URLSearchParams();
+			const rawFormData = new FormData(form);
+			const searchParams = new URLSearchParams();
 
-			// ... (keep your existing formData mapping here) ...
+			rawFormData.forEach((value, key) => {
+				searchParams.append(key, value.toString());
+			});
 
-			const urlEncodedData = formData.toString();
+			// 2. Only append the phone variable if it exists
+			if (phone) {
+				searchParams.set("phone", phone);
+			} else {
+				// Send a fallback string so your Google Sheet doesn't shift columns
+				searchParams.set("phone", "Not provided");
+			}
+
+			searchParams.set("type", "Waiting List");
+			searchParams.set("userAgent", navigator.userAgent);
+			searchParams.set("message", "User requested to join the waiting list.");
+
+			if (searchParams.get("supplier") === "on") {
+				searchParams.set("supplier", "Yes");
+			}
+
+			const urlEncodedData = searchParams.toString();
 
 			const response = await fetch(__CONTACT_API_URL__, {
 				method: "POST",
@@ -105,16 +106,16 @@ const SectionWaitingList: FunctionComponent<SectionWaitingListProps> = () => {
 
 			if (data === "Success") {
 				form.reset();
+
+				// 3. Reset to undefined instead of a partial country code!
+				// This ensures the input goes completely blank and shows the placeholder again.
 				setPhone(undefined);
 
-				// 1. Fire the accessible toast
 				toast.success(m.waiting_list_success_message());
 
-				// 2. Move focus back to the heading so the screen reader user
-				// isn't lost at the bottom of an empty form.
 				const headingEl = document.getElementById(headingId);
 				if (headingEl) {
-					headingEl.tabIndex = -1; // Makes non-focusable elements focusable via JS
+					headingEl.tabIndex = -1;
 					headingEl.focus();
 				}
 			} else {
@@ -189,31 +190,24 @@ const SectionWaitingList: FunctionComponent<SectionWaitingListProps> = () => {
 										id={inputPhoneId}
 										defaultCountry={defaultCountry}
 										value={phone}
-										onChange={setPhone}
-										// Added aria attributes for invalid state and description
+										// 2. Wrap onChange safely to prevent synthetic event loops
+										onChange={(val) => setPhone(val)}
+										inputComponent={Input}
+										placeholder={isPt ? "11 99999-9999" : "+1 (555) 000-0000"}
 										aria-invalid={phoneError ? "true" : "false"}
 										aria-describedby={
 											phoneError ? `${inputPhoneId}-error` : undefined
 										}
 										className={cn(
-											"bg-background",
-											phoneError
-												? "ring-destructive/20 border-destructive ring-[3px]"
-												: "",
+											"bg-background! py-6 px-4 text-base!",
+											phoneError &&
+												"ring-destructive/20 border-destructive ring-[3px]",
 										)}
-										labels={isPt ? ptLabels : enLabels}
-										searchPlaceholder={
-											isPt ? "Buscar país..." : "Search country..."
-										}
-										emptyMessage={
-											isPt ? "Nenhum país encontrado." : "No country found."
-										}
 									/>
 
-									{/* Swapped standard <p> for your highly accessible FieldError */}
 									{phoneError && (
 										<FieldError id={`${inputPhoneId}-error`}>
-											Please enter a valid phone number.
+											{m.phone_please_enter_a_valid_phone_number()}
 										</FieldError>
 									)}
 								</Field>
@@ -257,24 +251,6 @@ const SectionWaitingList: FunctionComponent<SectionWaitingListProps> = () => {
 										m.waiting_list_submit_button()
 									)}
 								</Button>
-
-								{/* Added aria-live region to ensure screen readers announce the result */}
-								<div
-									aria-live="polite"
-									aria-atomic="true"
-									className="mt-2 text-center w-full min-h-6"
-								>
-									{submitStatus === "success" && (
-										<p className="text-green-600 font-medium">
-											{m.waiting_list_success_message()}
-										</p>
-									)}
-									{submitStatus === "error" && (
-										<p className="text-destructive font-medium">
-											{m.waiting_list_error_message()}
-										</p>
-									)}
-								</div>
 							</Field>
 						</FieldGroup>
 					</form>

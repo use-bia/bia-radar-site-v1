@@ -29,7 +29,7 @@
   "open_full_description_of_the_device": "Open full description of the device",
   "i_want_to_be_part_of_it": "I want to be part of it",
   "join_the_waiting_list": "Join the waiting list",
-  "join_the_waiting_list_and_get_a_10_percent_discount_on_your_purchase": "Join the waiting list and get a 10% discount on your purchase",
+  "join_the_waiting_list_and_get_a_10_percent_discount_on_your_purchase": "Join the waiting list and get a 15% discount on your purchase",
   "find_out_how_bia_works": "Find out how BIA works",
   "find_out_how_long_until_bia_is_available": "Find out how long until BIA is available",
   "one_hundred_percent_offline": "100% offline",
@@ -109,7 +109,7 @@
   "waiting_list": "Waiting list",
   "waiting_list_id": "waiting-list",
   "waiting_list_title": "Secure your launch coupon",
-  "waiting_list_description": "Sign up for the waiting list and receive a <b><u>10% off coupon</u></b> at launch",
+  "waiting_list_description": "Sign up for the waiting list and receive a <b><u>15% off coupon</u></b> at launch",
   "waiting_list_input_fullname": "Full Name",
   "waiting_list_input_fullname_placeholder": "Full Name",
   "waiting_list_input_email": "Email",
@@ -121,6 +121,7 @@
   "waiting_list_error_message": "Oops! Something went wrong. Please try again.",
   "waiting_list_sending_message": "Sending...",
   "phone_search_placeholder": "Search country...",
-  "phone_no_country_found": "No country found."
+  "phone_no_country_found": "No country found.",
+  "phone_please_enter_a_valid_phone_number": "Please enter a valid phone number."
 
 }
