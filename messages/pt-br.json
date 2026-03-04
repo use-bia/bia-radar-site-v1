@@ -147,5 +147,6 @@
   "saturday": "Sábado:",
   "sunday": "Domingo:",
   "closed": "Fechado",
-  "skip_to_contact_form": "Pular para o formulário de contato"
+  "skip_to_contact_form": "Pular para o formulário de contato",
+  "status_in_development": "Status: Em desenvolvimento"
 }

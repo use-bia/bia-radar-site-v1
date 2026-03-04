@@ -147,5 +147,6 @@
   "saturday": "Saturday:",
   "sunday": "Sunday:",
   "closed": "Closed",
-  "skip_to_contact_form": "Skip to contact form"
+  "skip_to_contact_form": "Skip to contact form",
+  "status_in_development": "Status: In Development",
 }

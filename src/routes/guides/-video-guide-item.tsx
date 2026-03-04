@@ -58,7 +58,6 @@ const VideoGuideItem: FunctionComponent<VideoGuideItemProps> = ({ video }) => {
 					{video.description}
 				</p>
 
-				{/* Added justify-center for mobile/tablet, reverting to justify-start on desktop (lg) */}
 				<div className="flex flex-wrap justify-between lg:justify-start gap-4 mt-4 pt-2">
 					<Button
 						type="button"
