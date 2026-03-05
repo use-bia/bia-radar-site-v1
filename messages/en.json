@@ -149,4 +149,9 @@
   "closed": "Closed",
   "skip_to_contact_form": "Skip to contact form",
   "status_in_development": "Status: In Development",
+  "status_coming_soon": "Status: Coming Soon",
+  "watch_guide": "Watch Guide",
+  "read_transcript": "Read Transcript",
+  "transcript": "Transcript",
+  "transcripts_coming_soon": "Transcripts coming soon"
 }

@@ -148,5 +148,10 @@
   "sunday": "Domingo:",
   "closed": "Fechado",
   "skip_to_contact_form": "Pular para o formulário de contato",
-  "status_in_development": "Status: Em desenvolvimento"
+  "status_in_development": "Status: Em desenvolvimento",
+  "status_coming_soon": "Status: Em breve",
+  "watch_guide": "Assistir Guia",
+  "read_transcript": "Ler Transcrição",
+  "transcript": "Transcrição",
+  "transcriptions_coming_soon": "Transcrições em breve"
 }

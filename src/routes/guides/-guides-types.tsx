@@ -1,4 +1,4 @@
-import { generateLoremIpsum } from "@/-helper";
+import { m } from "@/paraglide/messages";
 
 export type VideoType = {
 	id: string;
@@ -25,7 +25,7 @@ export const VIDEOS: SectionType[] = [
 				duration: "1:20",
 				thumb:
 					"https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=60",
-				transcription: generateLoremIpsum(100),
+				transcription: m.transcriptions_coming_soon(),
 			},
 			{
 				id: "b2",
@@ -34,7 +34,7 @@ export const VIDEOS: SectionType[] = [
 				duration: "0:45",
 				thumb:
 					"https://images.unsplash.com/photo-1617788138017-80ad40651399?w=800&q=60",
-				transcription: generateLoremIpsum(100),
+				transcription: m.transcriptions_coming_soon(),
 			},
 			{
 				id: "b3",
@@ -43,7 +43,7 @@ export const VIDEOS: SectionType[] = [
 				duration: "2:10",
 				thumb:
 					"https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?w=800&q=60",
-				transcription: generateLoremIpsum(100),
+				transcription: m.transcriptions_coming_soon(),
 			},
 		],
 	},
@@ -57,7 +57,7 @@ export const VIDEOS: SectionType[] = [
 				duration: "1:45",
 				thumb:
 					"https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=60",
-				transcription: generateLoremIpsum(100),
+				transcription: m.transcriptions_coming_soon(),
 			},
 			{
 				id: "a2",
@@ -66,7 +66,7 @@ export const VIDEOS: SectionType[] = [
 				duration: "2:30",
 				thumb:
 					"https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=60",
-				transcription: generateLoremIpsum(100),
+				transcription: m.transcriptions_coming_soon(),
 			},
 		],
 	},
