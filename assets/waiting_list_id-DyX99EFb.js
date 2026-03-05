@@ -1,0 +1,1 @@
+import{i as n}from"./index-CVaGXqGn.js";const i=()=>"Join the waiting list and get a 15% discount on your purchase",o=()=>"Junte-se à lista de espera e obtenha um desconto de 15% na sua compra",c=((e={},t={})=>(t.locale??n())==="en"?i():o()),a=()=>"waiting-list",s=()=>"waiting-list",u=((e={},t={})=>(t.locale??n())==="en"?a():s());export{c as j,u as w};
