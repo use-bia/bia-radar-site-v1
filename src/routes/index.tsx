@@ -56,9 +56,9 @@ function App() {
 				<SectionAudioEngine />
 			</Suspense>
 
-			<Suspense fallback={<SectionLoader />}>
+			{/* <Suspense fallback={<SectionLoader />}>
 				<SectionRoadmap />
-			</Suspense>
+			</Suspense> */}
 
 			<Suspense fallback={<SectionLoader />}>
 				<SectionRecognition />

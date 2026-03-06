@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { PackageIcon } from "lucide-react";
 import { type FunctionComponent, useId } from "react";
-import { generateLoremIpsum } from "@/-helper";
 import { parseFormattedText } from "@/-helper-tsx";
 import PricePlaceholder from "@/assets/price-placeholder.svg?react";
 import ActionButton from "@/components/ActionButton";
@@ -23,13 +22,14 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 		<section
 			id={m.roadmap_id()}
 			aria-labelledby={headingId}
-			// INCREASED PADDING HERE
-			className="relative w-full py-16 md:py-24 xl:py-32 flex bg-background overflow-hidden"
+			// REMOVED 'overflow-hidden' to allow sticky positioning to work.
+			// If you have horizontal overflow issues, use 'overflow-x-clip' instead.
+			className="relative w-full py-16 md:py-24 xl:py-32 flex bg-background"
 		>
-			{/* ADDED GENEROUS GAP AND REMOVED VERTICAL LINE ELEMENT BELOW */}
 			<div className="container mx-auto px-4 md:px-8 flex flex-col md:flex-row-reverse justify-between gap-12 lg:gap-24 w-full">
 				{/* Right Column: Title & Price */}
-				<div className="flex flex-col items-center md:items-end text-center md:text-right w-full md:w-2/5 lg:w-1/2">
+				{/* ADDED: md:sticky md:top-32 self-start */}
+				<div className="flex flex-col items-center md:items-end text-center md:text-right w-full md:w-2/5 lg:w-1/2 md:sticky md:top-32 self-start">
 					<h2 id={headingId} className="flex flex-col">
 						<span className="uppercase text-muted-foreground text-base font-normal mb-2">
 							{m.heading_to_launch()}
@@ -106,48 +106,88 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 				</div>
 
 				{/* Left Column: Roadmap */}
+				{/* (No changes needed here) */}
 				<div className="flex w-full md:w-3/5 lg:w-1/2 mt-4 md:mt-2">
 					<Roadmap className="w-full">
 						<RoadmapItem isActive>
 							<RoadmapIndicator />
-							<RoadmapContent>
-								<RoadmapTitle>Q1: {generateLoremIpsum(2)}</RoadmapTitle>
+							<RoadmapContent expandedDefault>
+								<RoadmapTitle>{m.roadmap_item_1_title()}</RoadmapTitle>
 								<RoadmapDescription>
-									{generateLoremIpsum(16)}
+									{m.roadmap_item_1_description()}
 								</RoadmapDescription>
 							</RoadmapContent>
 						</RoadmapItem>
 
 						<RoadmapItem isActive>
 							<RoadmapIndicator />
-							<RoadmapContent>
-								<RoadmapTitle>Q2: {generateLoremIpsum(1)}</RoadmapTitle>
-								<RoadmapDescription>{generateLoremIpsum(8)}</RoadmapDescription>
-							</RoadmapContent>
-						</RoadmapItem>
-
-						<RoadmapItem>
-							<RoadmapIndicator />
-							<RoadmapContent>
-								<RoadmapTitle>Q3: {generateLoremIpsum(1)}</RoadmapTitle>
+							<RoadmapContent expandedDefault>
+								<RoadmapTitle>{m.roadmap_item_2_title()}</RoadmapTitle>
 								<RoadmapDescription>
-									{generateLoremIpsum(10)}
+									{m.roadmap_item_2_description()}
 								</RoadmapDescription>
-								<button
-									type="button"
-									className="mt-4 text-sm text-primary underline text-left hover:text-primary/80 transition-colors w-max"
-								>
-									View Q3 specs
-								</button>
+							</RoadmapContent>
+						</RoadmapItem>
+
+						<RoadmapItem isActive>
+							<RoadmapIndicator />
+							<RoadmapContent expandedDefault>
+								<RoadmapTitle>{m.roadmap_item_3_title()}</RoadmapTitle>
+								<RoadmapDescription>
+									{parseFormattedText(m.roadmap_item_3_description())}
+								</RoadmapDescription>
 							</RoadmapContent>
 						</RoadmapItem>
 
 						<RoadmapItem>
 							<RoadmapIndicator />
 							<RoadmapContent>
-								<RoadmapTitle>Q4: {generateLoremIpsum(2)}</RoadmapTitle>
+								<RoadmapTitle>{m.roadmap_item_4_title()}</RoadmapTitle>
 								<RoadmapDescription>
-									{generateLoremIpsum(20)}
+									{m.roadmap_item_4_description()}
+								</RoadmapDescription>
+							</RoadmapContent>
+						</RoadmapItem>
+
+						<RoadmapItem>
+							<RoadmapIndicator />
+							<RoadmapContent>
+								<RoadmapTitle>{m.roadmap_item_5_title()}</RoadmapTitle>
+								<RoadmapDescription>
+									{m.roadmap_item_5_description()}
+								</RoadmapDescription>
+							</RoadmapContent>
+						</RoadmapItem>
+
+						<RoadmapItem>
+							<RoadmapIndicator />
+							<RoadmapContent>
+								<RoadmapTitle>{m.roadmap_item_6_title()}</RoadmapTitle>
+								<RoadmapDescription>
+									{m.roadmap_item_6_description()}
+								</RoadmapDescription>
+							</RoadmapContent>
+						</RoadmapItem>
+
+						<RoadmapItem>
+							<RoadmapIndicator />
+							<RoadmapContent>
+								<RoadmapTitle>{m.roadmap_item_7_title()}</RoadmapTitle>
+								<RoadmapDescription>
+									{m.roadmap_item_7_description()}
+								</RoadmapDescription>
+							</RoadmapContent>
+						</RoadmapItem>
+
+						<RoadmapItem>
+							<RoadmapIndicator />
+							<RoadmapContent>
+								<RoadmapTitle>{m.roadmap_item_7_title()}</RoadmapTitle>
+								<RoadmapDescription>
+									{m.roadmap_item_8_description()}
+									<br />
+									<br />
+									<strong>{m.recognition_quote_sub()}.</strong>
 								</RoadmapDescription>
 							</RoadmapContent>
 						</RoadmapItem>
