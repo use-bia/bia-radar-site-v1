@@ -21,6 +21,7 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { scrollToAndFocus } from "@/-helper";
 import { useTheme } from "@/contexts/ThemeContext";
 import { m } from "@/paraglide/messages";
 
@@ -138,17 +139,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 									icon={<ChevronRightIcon />}
 									asChild
 									className="md:w-full xl:w-auto"
-									onClick={(_) => {
-										const targetId = m.waiting_list_id();
-										const targetElement = document.getElementById(targetId);
-
-										if (targetElement) {
-											targetElement.scrollIntoView({ behavior: "smooth" });
-											targetElement.setAttribute("tabindex", "-1");
-											targetElement.style.outline = "none";
-											targetElement.focus();
-										}
-									}}
+									onClick={() => scrollToAndFocus(m.waiting_list_id())}
 								>
 									<Link
 										to="/"
@@ -198,11 +189,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 									<Button
 										variant="underline"
 										asChild
-										onClick={() => {
-											document
-												.getElementById(m.roadmap_id())
-												?.scrollIntoView({ behavior: "smooth" });
-										}}
+										onClick={() => scrollToAndFocus(m.roadmap_id())}
 									>
 										<Link to="/" hash={m.roadmap_id()}>
 											{m.roadmap()}
@@ -237,7 +224,7 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 						]}
 						imageDetails={{
 							title: m.description_of_the_bia_radar_device(),
-							content: <p>bla bla bla bla </p>,
+							content: <p>{m.hero_image_description()}</p>,
 						}}
 						open={isDialogOpen}
 						onOpenChange={setIsDialogOpen}

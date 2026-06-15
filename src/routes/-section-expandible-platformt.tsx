@@ -3,6 +3,7 @@ import { type FunctionComponent, useEffect, useId, useState } from "react";
 import MountainBg from "@/assets/mountain-bg-light.jpg";
 import UniverseBg from "@/assets/universe-bg-dark.jpg";
 import { Button } from "@/components/ui/button";
+import { scrollToAndFocus } from "@/-helper";
 import { useTheme } from "@/contexts/ThemeContext";
 import { cn } from "@/lib/utils";
 import { m } from "@/paraglide/messages";
@@ -71,11 +72,7 @@ const SectionExpandiblePlatform: FunctionComponent<
 					<Button
 						variant="default"
 						className="my-4 uppercase font-bold w-full max-w-xs flex items-center justify-center gap-2"
-						onClick={() => {
-							document
-								.getElementById(m.waiting_list_id())
-								?.scrollIntoView({ behavior: "smooth" });
-						}}
+						onClick={() => scrollToAndFocus(m.waiting_list_id())}
 					>
 						<span>{m.be_a_part()}</span>
 						<ArrowRightIcon aria-hidden="true" className="w-5 h-5 shrink-0" />

@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { PackageIcon } from "lucide-react";
 import { type FunctionComponent, useId } from "react";
+import { scrollToAndFocus } from "@/-helper";
 import { parseFormattedText } from "@/-helper-tsx";
 import PricePlaceholder from "@/assets/price-placeholder.svg?react";
 import ActionButton from "@/components/ActionButton";
@@ -71,11 +72,7 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 									icon={<PackageIcon />}
 									className="w-full xl:w-auto"
 									asChild
-									onClick={() => {
-										document
-											.getElementById(m.waiting_list_id())
-											?.scrollIntoView({ behavior: "smooth" });
-									}}
+									onClick={() => scrollToAndFocus(m.waiting_list_id())}
 								>
 									<Link
 										to="/"
@@ -94,11 +91,7 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 							to="/"
 							hash={m.waiting_list_id()}
 							className="hover:underline hover:text-primary transition-colors leading-relaxed block"
-							onClick={() => {
-								document
-									.getElementById(m.waiting_list_id())
-									?.scrollIntoView({ behavior: "smooth" });
-							}}
+							onClick={() => scrollToAndFocus(m.waiting_list_id())}
 						>
 							* {parseFormattedText(m.roadmap_price_note())}.
 						</Link>
@@ -182,7 +175,7 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 						<RoadmapItem>
 							<RoadmapIndicator />
 							<RoadmapContent>
-								<RoadmapTitle>{m.roadmap_item_7_title()}</RoadmapTitle>
+								<RoadmapTitle>{m.roadmap_item_8_title()}</RoadmapTitle>
 								<RoadmapDescription>
 									{m.roadmap_item_8_description()}
 									<br />

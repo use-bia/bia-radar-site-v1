@@ -19,6 +19,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
+import { persistLocaleChoice } from "@/-helper";
 import { useTheme } from "@/contexts/ThemeContext";
 import { m } from "@/paraglide/messages";
 import { setLocale } from "@/paraglide/runtime";
@@ -144,6 +145,8 @@ const Footer: FunctionComponent<FooterProps> = () => {
 							<Select
 								onValueChange={(value) => {
 									const mappedValue = value === "en" ? "en" : "pt-br";
+									// Treat selecting a language as an explicit choice.
+									persistLocaleChoice(mappedValue);
 									setLocale(mappedValue);
 								}}
 							>
@@ -156,7 +159,7 @@ const Footer: FunctionComponent<FooterProps> = () => {
 								<SelectContent align="center">
 									<SelectGroup>
 										<SelectItem value="pt-br">Português (Brasil)</SelectItem>
-										<SelectItem value="en">English</SelectItem>
+										<SelectItem value="en">English (Canada)</SelectItem>
 									</SelectGroup>
 								</SelectContent>
 							</Select>
@@ -177,6 +180,7 @@ const Footer: FunctionComponent<FooterProps> = () => {
 							<DropdownMenu>
 								<DropdownMenuTrigger asChild>
 									<Button
+										id="accessibility-options"
 										variant="ghost"
 										className="text-muted-foreground underline whitespace-nowrap px-4"
 									>

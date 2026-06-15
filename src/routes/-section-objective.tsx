@@ -39,7 +39,7 @@ const SectionObjective: FunctionComponent<SectionObjectiveProps> = () => {
 							className="w-full h-full shrink-0 lg:min-h-0"
 							imageDetails={{
 								title: m.description_of_the_bia_radar_device(),
-								content: <p>bla bla bla bla</p>,
+								content: <p>{m.objective_image_description()}</p>,
 							}}
 							imageClassName="object-contain lg:object-cover xl:object-contain"
 							details={[
