@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import {
 	ChevronRightIcon,
-	CloudRainWindIcon,
 	PuzzleIcon,
+	SunMoonIcon,
 	TargetIcon,
 	TrophyIcon,
 	WeightIcon,
@@ -56,9 +56,9 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 				),
 			},
 			{
-				title: m.water_resistant(),
+				title: m.day_and_night(),
 				icon: (
-					<CloudRainWindIcon
+					<SunMoonIcon
 						className={isHighContrast ? "text-foreground" : "text-chart-1"}
 						aria-hidden="true"
 					/>
@@ -213,12 +213,12 @@ const SectionHero: FunctionComponent<SectionHeroProps> = () => {
 						details={[
 							{
 								title: m.weight(),
-								value: `87 ${m.grams()}`,
+								value: `~100 ${m.grams()}`,
 								icon: <WeightIcon aria-hidden="true" />,
 							},
 							{
-								title: m.precision(),
-								value: "25mm",
+								title: m.tested_range(),
+								value: "3 m",
 								icon: <TargetIcon aria-hidden="true" />,
 							},
 						]}

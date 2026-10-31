@@ -132,9 +132,9 @@ const SectionRoadmap: FunctionComponent<SectionRoadmapProps> = () => {
 							</RoadmapContent>
 						</RoadmapItem>
 
-						<RoadmapItem>
+						<RoadmapItem isActive>
 							<RoadmapIndicator />
-							<RoadmapContent>
+							<RoadmapContent expandedDefault>
 								<RoadmapTitle>{m.roadmap_item_4_title()}</RoadmapTitle>
 								<RoadmapDescription>
 									{m.roadmap_item_4_description()}
